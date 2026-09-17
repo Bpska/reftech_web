@@ -1,0 +1,115 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    extend: {
+      colors: {
+        frost: {
+          50: '#f0f7fa',
+          100: '#d9eef5',
+          200: '#b3dde9',
+          300: '#7cc4d6',
+          400: '#43a4bf',
+          500: '#1d8aae',
+          600: '#176e93',
+          700: '#15597a',
+          800: '#164b66',
+          900: '#163f56',
+          950: '#0d2a3d',
+        },
+        ice: {
+          50: '#f5fbfd',
+          100: '#eaf6fb',
+          200: '#d4edf6',
+          300: '#b3e0f0',
+          400: '#84cbe6',
+          500: '#52afda',
+          600: '#3691c6',
+          700: '#2c75a3',
+          800: '#295f86',
+          900: '#274f6e',
+          950: '#1a3349',
+        },
+        deep: {
+          50: '#f1f5f8',
+          100: '#e1e9ef',
+          200: '#c3d3df',
+          300: '#9ab3c5',
+          400: '#6889a5',
+          500: '#4a6c8c',
+          600: '#3a5773',
+          700: '#30475e',
+          800: '#2a3c50',
+          900: '#263443',
+          950: '#18222e',
+        },
+        accent: {
+          50: '#fef9f0',
+          100: '#fcecd6',
+          200: '#f9d8ad',
+          300: '#f4bb77',
+          400: '#ef9440',
+          500: '#ec7619',
+          600: '#dd5d0f',
+          700: '#b7440e',
+          800: '#923713',
+          900: '#782f13',
+          950: '#431708',
+        },
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+      },
+      fontSize: {
+        '7xl': ['4.5rem', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
+        '8xl': ['6rem', { lineHeight: '1.02', letterSpacing: '-0.03em' }],
+      },
+      animation: {
+        'fade-up': 'fadeUp 0.7s ease-out forwards',
+        'fade-in': 'fadeIn 0.6s ease-out forwards',
+        'slide-right': 'slideRight 0.6s ease-out forwards',
+        'float': 'float 6s ease-in-out infinite',
+        'pulse-ring': 'pulseRing 2.5s ease-out infinite',
+        'gradient-shift': 'gradientShift 8s ease infinite',
+        'scroll-x': 'scrollX 30s linear infinite',
+        'spin-slow': 'spin 12s linear infinite',
+      },
+      keyframes: {
+        fadeUp: {
+          '0%': { opacity: '0', transform: 'translateY(30px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideRight: {
+          '0%': { opacity: '0', transform: 'translateX(-30px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-12px)' },
+        },
+        pulseRing: {
+          '0%': { transform: 'scale(0.95)', opacity: '0.6' },
+          '50%': { transform: 'scale(1.05)', opacity: '0.2' },
+          '100%': { transform: 'scale(0.95)', opacity: '0.6' },
+        },
+        gradientShift: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+        },
+        scrollX: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+      },
+      backgroundImage: {
+        'grid-pattern': "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.06'%3E%3Cpath d='M0 0h60v60H0z'/%3E%3C/g%3E%3C/svg%3E\")",
+      },
+    },
+  },
+  plugins: [],
+};
