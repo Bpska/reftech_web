@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Snowflake, ArrowLeft, LockKeyhole, UserRound } from 'lucide-react';
 
 export function LoginPage() {
- const [kind,setKind]=useState<'EMPLOYEE'|'PARTNER'>('EMPLOYEE');
+ const requested = new URLSearchParams(window.location.search).get('type');
+ const [kind,setKind]=useState<'EMPLOYEE'|'PARTNER'>(requested === 'PARTNER' ? 'PARTNER' : 'EMPLOYEE');
  const [message,setMessage]=useState('');
  const api=import.meta.env.VITE_API_URL || 'http://localhost:8080';
  async function submit(e: React.FormEvent<HTMLFormElement>){e.preventDefault(); const f=new FormData(e.currentTarget); setMessage('Signing in…'); try{const r=await fetch(`${api}/api/auth/login`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:f.get('username'),password:f.get('password'),loginType:kind})}); if(!r.ok) throw new Error(await r.text()); const data=await r.json(); localStorage.setItem('reftech_token',data.token); localStorage.setItem('reftech_user',JSON.stringify(data)); location.href='/dashboard';}catch(err){setMessage(err instanceof Error?err.message:'Login failed');}}

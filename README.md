@@ -14,3 +14,11 @@ Open `/` for the public site, `/login` for Employee/Partner login, and `/dashboa
 
 ## Production
 Set `VITE_API_URL=https://api.yourdomain.example`. The Netlify `_redirects` file keeps SPA routes working. Replace demo dashboard metrics with authenticated API data.
+
+## Home hero media rotation
+The home hero now rotates all three supplied media assets one at a time every 7 seconds:
+1. `/public/media/reftech_video.mp4`
+2. `/public/media/reftech_truck.jpeg`
+3. `/public/media/reftech_warehouse.jpeg`
+
+The three dots near the bottom of the hero can also be clicked to switch media manually.

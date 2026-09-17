@@ -1,24 +1,45 @@
-import { ArrowRight, Play, Snowflake, ThermometerSun, Truck, ShieldCheck } from 'lucide-react';
-import { HERO_IMAGE } from '@/data';
+import { useEffect, useState } from 'react';
+import { ArrowRight, Play, ThermometerSun, Truck, ShieldCheck } from 'lucide-react';
+import { HERO_IMAGE, HERO_IMAGE_2 } from '@/data';
 
 const VIDEO_URL = '/media/reftech_video.mp4';
+const SLIDE_MS = 7000;
 
 export function Hero() {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % 3);
+    }, SLIDE_MS);
+    return () => window.clearInterval(timer);
+  }, []);
+
   return (
     <section id="home" className="relative min-h-screen overflow-hidden bg-white">
-      {/* Video background — light overlay so truck is clearly visible */}
-      <div className="absolute inset-0">
+      {/* Media carousel: video -> truck photo -> warehouse photo, one at a time */}
+      <div className="absolute inset-0 bg-frost-950">
         <video
           autoPlay
           muted
           loop
           playsInline
           poster={HERO_IMAGE}
-          className="h-full w-full object-cover"
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${activeSlide === 0 ? 'opacity-100' : 'opacity-0'}`}
         >
           <source src={VIDEO_URL} type="video/mp4" />
         </video>
-        {/* Light gradient: darker on left for text readability, transparent on right so truck shows */}
+        <img
+          src={HERO_IMAGE}
+          alt="RefTech refrigerated truck on the highway"
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${activeSlide === 1 ? 'opacity-100' : 'opacity-0'}`}
+        />
+        <img
+          src={HERO_IMAGE_2}
+          alt="RefTech cold-chain warehouse and refrigerated fleet"
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${activeSlide === 2 ? 'opacity-100' : 'opacity-0'}`}
+        />
+
         <div className="absolute inset-0 bg-gradient-to-r from-frost-950/90 via-frost-950/45 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-frost-950/70 via-transparent to-frost-950/20" />
       </div>
@@ -131,6 +152,19 @@ export function Hero() {
             ))}
           </div>
         </div>
+      </div>
+
+      {/* Media indicators — Video, Truck, Warehouse */}
+      <div className="absolute bottom-28 left-1/2 z-30 flex -translate-x-1/2 gap-2" aria-label="Hero media slides">
+        {['Video', 'Truck', 'Warehouse'].map((label, index) => (
+          <button
+            key={label}
+            type="button"
+            onClick={() => setActiveSlide(index)}
+            aria-label={`Show ${label}`}
+            className={`h-2.5 rounded-full border border-white/70 transition-all duration-300 ${activeSlide === index ? 'w-9 bg-white' : 'w-2.5 bg-white/35 hover:bg-white/70'}`}
+          />
+        ))}
       </div>
 
       {/* Bottom wave */}

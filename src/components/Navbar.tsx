@@ -68,7 +68,8 @@ export function Navbar() {
               <Phone className="h-4 w-4" />
               +91 98765 43210
             </a>
-            <a href="/login" className="rounded-full border border-frost-300 px-4 py-2.5 text-xs font-semibold text-frost-700">ERP Login</a>
+            <a href="/login?type=EMPLOYEE" className="rounded-full border border-frost-300 px-4 py-2.5 text-xs font-semibold text-frost-700">Employee Login</a>
+            <a href="/login?type=PARTNER" className="rounded-full border border-frost-300 px-4 py-2.5 text-xs font-semibold text-frost-700">Partner Login</a>
             <a href="#contact" className="btn-primary !py-2.5 !px-5 text-xs">Get a Quote</a>
           </div>
 
@@ -111,7 +112,9 @@ export function Navbar() {
               </li>
             ))}
           </ul>
-          <div className="mt-auto pt-6">
+          <div className="mt-auto space-y-3 pt-6">
+            <a href="/login?type=EMPLOYEE" onClick={() => setOpen(false)} className="block rounded-xl border border-white/20 px-4 py-3 text-center text-sm font-semibold text-white">Employee Login</a>
+            <a href="/login?type=PARTNER" onClick={() => setOpen(false)} className="block rounded-xl border border-white/20 px-4 py-3 text-center text-sm font-semibold text-white">Partner Login</a>
             <a href="#contact" onClick={() => setOpen(false)} className="btn-primary w-full">
               Get a Quote
             </a>
