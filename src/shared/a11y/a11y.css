@@ -1,0 +1,88 @@
+/*
+ * RefTech Technology Company
+ * CONFIDENTIAL: this source code is the property of RefTech Technology Company and is confidential to the
+ * company. Copying it, or sharing it with anyone outside the company without written permission, is a
+ * violation of law.
+ */
+/* REQ-PLT-015 -- accessibility styles (imported once by src/shared/i18n/PrefsProvider.tsx).
+   1. A clear focus ring for keyboard users on every focusable element (mouse clicks do not show it).
+   2. High contrast (class rt-high-contrast on <html>): darker text, stronger borders, underlined links.
+   3. Reduce motion (class rt-reduce-motion on <html>, or the "reduce motion" setting of the computer): no animations. */
+
+/* 1. Focus ring: dark line and a yellow halo, visible on the light pages and on the dark menu. */
+:focus-visible {
+  outline: 2px solid #0f172a !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px #facc15 !important;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* 2. High contrast. The dark menu (bg-frost-950) keeps its light text. */
+html.rt-high-contrast body {
+  color: #000;
+}
+html.rt-high-contrast .text-slate-400,
+html.rt-high-contrast .text-slate-500,
+html.rt-high-contrast .text-slate-600,
+html.rt-high-contrast .text-slate-700,
+html.rt-high-contrast .text-gray-400,
+html.rt-high-contrast .text-gray-500,
+html.rt-high-contrast .text-gray-600 {
+  color: #0f172a !important;
+}
+html.rt-high-contrast aside .text-slate-200,
+html.rt-high-contrast aside .text-slate-100 {
+  color: #fff !important;
+}
+html.rt-high-contrast input,
+html.rt-high-contrast select,
+html.rt-high-contrast textarea,
+html.rt-high-contrast .border,
+html.rt-high-contrast .border-t,
+html.rt-high-contrast .border-b,
+html.rt-high-contrast .border-slate-200,
+html.rt-high-contrast .border-slate-300 {
+  border-color: #0f172a !important;
+  border-width: 2px;
+}
+html.rt-high-contrast main a:not([class*="bg-"]) {
+  text-decoration: underline;
+}
+html.rt-high-contrast ::placeholder {
+  color: #334155 !important;
+  opacity: 1;
+}
+html.rt-high-contrast button:disabled,
+html.rt-high-contrast .disabled\:opacity-50:disabled {
+  opacity: 0.7 !important;
+}
+html.rt-high-contrast .shadow-sm,
+html.rt-high-contrast .shadow {
+  box-shadow: 0 0 0 1px #0f172a !important;
+}
+html.rt-high-contrast :focus-visible {
+  outline-width: 3px !important;
+  box-shadow: 0 0 0 5px #facc15 !important;
+}
+
+/* 3. Reduce motion. */
+html.rt-reduce-motion *,
+html.rt-reduce-motion *::before,
+html.rt-reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
