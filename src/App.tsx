@@ -55,6 +55,10 @@ import { TransfersPage } from '@/modules/warehouse/TransfersPage'; // REQ-WMS-01
 import { StockControlPage } from '@/modules/warehouse/StockControlPage'; // REQ-WMS-005
 import { ReturnsPage } from '@/modules/warehouse/ReturnsPage'; // REQ-WMS-013
 import { ServicesPage } from '@/modules/warehouse/ServicesPage'; // REQ-WMS-014
+// REQ-WMS-018, REQ-WMS-019, REQ-WMS-021: reserved space, kitting and grading, e-commerce fulfilment
+import { ReservedSpacePage } from '@/modules/warehouse/ReservedSpacePage';
+import { KittingPage } from '@/modules/warehouse/KittingPage';
+import { EcommercePage } from '@/modules/warehouse/EcommercePage';
 import { StorageBillingPage } from '@/modules/warehouse/StorageBillingPage'; // REQ-WMS-004
 import { WarehouseReportsPage } from '@/modules/warehouse/WarehouseReportsPage'; // REQ-WMS-016
 import { TransportersPage } from '@/modules/transporter/TransportersPage'; // REQ-TAL-001
@@ -211,6 +215,10 @@ export default function App() {
           <Route path="/warehouse/stock-control" element={<StockControlPage/>} />{/* REQ-WMS-005 Count, Hold & Trace */}
           <Route path="/warehouse/returns" element={<ReturnsPage/>} />{/* REQ-WMS-013 Returns & Disposal */}
           <Route path="/warehouse/services" element={<ServicesPage/>} />{/* REQ-WMS-014 Freezing & Services */}
+          {/* REQ-WMS-018, REQ-WMS-019, REQ-WMS-021 */}
+          <Route path="/warehouse/capacity" element={<ReservedSpacePage/>} />
+          <Route path="/warehouse/kitting" element={<KittingPage/>} />
+          <Route path="/warehouse/ecommerce" element={<EcommercePage/>} />
           <Route path="/warehouse/billing" element={<StorageBillingPage/>} />{/* REQ-WMS-004 Storage Billing */}
           <Route path="/warehouse/reports" element={<WarehouseReportsPage/>} />{/* REQ-WMS-016 Warehouse Reports */}
           <Route path="/transporters" element={<TransportersPage/>} />{/* REQ-TAL-001 Transporters and fleet ownership */}

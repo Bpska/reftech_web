@@ -135,6 +135,10 @@ export const hi: Record<string, string> = {
   "Platform": "प्लेटफ़ॉर्म",
   "Analytics": "विश्लेषण",
   "My Account": "मेरा खाता",
+  // REQ-WMS-018, REQ-WMS-019, REQ-WMS-021: warehouse menu links
+  "Reserved Space": "आरक्षित जगह",
+  "Kitting & Grading": "किटिंग और ग्रेडिंग",
+  "E-commerce Fulfilment": "ई-कॉमर्स फ़ुलफ़िलमेंट",
   // Common words of every screen and of DataTable.
   "Save": "सहेजें",
   "Cancel": "रद्द करें",
