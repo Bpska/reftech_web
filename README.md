@@ -89,10 +89,19 @@ Open <http://localhost:5173>.
 npm ci
 npm run build             # output in dist/
 npm run preview           # optional: serve dist/ locally to check it
+npm run package           # build + reftech-portal-<version>.tar.gz, for deploy/install.sh
 ```
 
-Deploy the `dist/` folder to any static web host (Netlify, Nginx, S3 + CloudFront, IIS and so on). The app uses
-browser routing, so every unknown path must return `index.html`:
+**Our server setup (nginx under `/opt/reftech`):**
+- `deploy/install.sh reftech-portal-<version>.tar.gz` unpacks the build into `/opt/reftech/portal/releases/<version>`,
+  points `/opt/reftech/portal/current` at it and reloads nginx. To roll back, point `current` at an older release.
+- `deploy/nginx/reftech.conf` is the nginx site. It serves the portal and forwards `/api/` to `reftech_core` on
+  `127.0.0.1:8080`, so portal and API share one address. Build with `VITE_API_URL` set to that same address,
+  e.g. `https://erp.yourdomain.com`.
+- Full steps and the folder structure are in the `reftech_core` repository: `docs/DEPLOYMENT.md`.
+
+**Any other static host** (Netlify, S3 + CloudFront, IIS and so on) works too. The app uses browser routing, so
+every unknown path must return `index.html`:
 
 - **Netlify:** already handled by `public/_redirects`.
 - **Nginx:** `location / { try_files $uri /index.html; }`
