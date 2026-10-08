@@ -63,6 +63,10 @@ export const MENU_TEXTS = [
   "Verification & Portal",
   "Scorecard",
   "Truck Changes",
+  // REQ-TAL-013, REQ-TAL-014, REQ-TAL-015
+  "Lane Tenders",
+  "Free Trucks",
+  "Transporter Invoices",
   "Trip",
   "My Trips",
   "Create Trip",

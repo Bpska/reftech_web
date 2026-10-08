@@ -62,6 +62,10 @@ export const or: Record<string, string> = {
   "Verification & Portal": "ଯାଞ୍ଚ ଓ ପୋର୍ଟାଲ୍",
   "Scorecard": "ସ୍କୋରକାର୍ଡ",
   "Truck Changes": "ଟ୍ରକ୍ ବଦଳ",
+  // REQ-TAL-013, REQ-TAL-014, REQ-TAL-015
+  "Lane Tenders": "ଲେନ୍ ଟେଣ୍ଡର",
+  "Free Trucks": "ଖାଲି ଟ୍ରକ୍",
+  "Transporter Invoices": "ଟ୍ରାନ୍ସପୋର୍ଟର ବିଲ୍",
   "Trip": "ଟ୍ରିପ୍",
   "My Trips": "ମୋର ଟ୍ରିପ୍",
   "Create Trip": "ଟ୍ରିପ୍ ତିଆରି କରନ୍ତୁ",

@@ -62,6 +62,10 @@ export const hi: Record<string, string> = {
   "Verification & Portal": "सत्यापन और पोर्टल",
   "Scorecard": "स्कोरकार्ड",
   "Truck Changes": "ट्रक बदलाव",
+  // REQ-TAL-013, REQ-TAL-014, REQ-TAL-015
+  "Lane Tenders": "लेन टेंडर",
+  "Free Trucks": "खाली ट्रक",
+  "Transporter Invoices": "ट्रांसपोर्टर बिल",
   "Trip": "ट्रिप",
   "My Trips": "मेरी ट्रिप",
   "Create Trip": "ट्रिप बनाएँ",

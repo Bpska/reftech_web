@@ -241,6 +241,10 @@ export function AppShell() {
               <Link className={sub} to="/transporters/scorecard">{t('Scorecard')}</Link>
               {/* REQ-TAL-010 */}
               <Link className={sub} to="/transshipments">{t('Truck Changes')}</Link>
+              {/* REQ-TAL-013, REQ-TAL-014, REQ-TAL-015: annual lane tender, free trucks / return loads, invoice intake (OCR, tolerance, debit notes) */}
+              <Link className={sub} to="/transporters/lane-tenders">{t('Lane Tenders')}</Link>
+              <Link className={sub} to="/transporters/free-trucks">{t('Free Trucks')}</Link>
+              <Link className={sub} to="/transporters/invoices">{t('Transporter Invoices')}</Link>
             </>)}
             {/* REQ-CC-003-FIX1: the Trip menu is about trips only. "Create Full Load" and "Create Part Load" opened the same
                 page (which also carried the Create Load Request form); they are now one "Create Trip" link, staff only,
