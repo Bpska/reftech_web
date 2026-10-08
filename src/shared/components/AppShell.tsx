@@ -188,6 +188,10 @@ export function AppShell() {
               <Link className={sub} to="/warehouse/returns">{t('Returns & Disposal')}</Link>
               {/* REQ-WMS-014 */}
               <Link className={sub} to="/warehouse/services">{t('Freezing & Services')}</Link>
+              {/* REQ-WMS-018, REQ-WMS-019, REQ-WMS-021: reserved space, kitting and grading, e-commerce fulfilment */}
+              <Link className={sub} to="/warehouse/capacity">{t('Reserved Space')}</Link>
+              <Link className={sub} to="/warehouse/kitting">{t('Kitting & Grading')}</Link>
+              <Link className={sub} to="/warehouse/ecommerce">{t('E-commerce Fulfilment')}</Link>
               {/* REQ-WMS-004 */}
               <Link className={sub} to="/warehouse/billing">{t('Storage Billing')}</Link>
               {/* REQ-WMS-016 */}

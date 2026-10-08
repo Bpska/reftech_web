@@ -136,6 +136,10 @@ export const MENU_TEXTS = [
   "Platform",
   "Analytics",
   "My Account",
+  // REQ-WMS-018, REQ-WMS-019, REQ-WMS-021: warehouse menu links
+  "Reserved Space",
+  "Kitting & Grading",
+  "E-commerce Fulfilment",
 ] as const;
 
 /** Common words of every screen and of DataTable. */
