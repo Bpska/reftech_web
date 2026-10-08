@@ -37,7 +37,7 @@ export function Navbar() {
         }`}
       >
         <nav className="flex w-full items-center justify-between px-5 md:px-10">
-          <a href="#home" className="group flex shrink-0 items-center gap-2.5">
+          <a href="/#home" className="group flex shrink-0 items-center gap-2.5">
             <BrandMark dark={scrolled} compact/>
           </a>
 
@@ -65,7 +65,7 @@ export function Navbar() {
             </a>
             {/* One Login button: the sign-in page offers Employee, Partner and Hired Truck/Transporter Login. */}
             <a href="/login" className="rounded-full bg-deep-900 px-6 py-2.5 text-xs font-bold text-white shadow-md ring-1 ring-deep-800 transition-colors hover:bg-deep-800">Login</a>
-            <a href="#contact" className="btn-primary !py-2.5 !px-5 text-xs">Get a Quote</a>
+            <a href="/#contact" className="btn-primary !py-2.5 !px-5 text-xs">Get a Quote</a>
           </div>
 
           <button
@@ -109,7 +109,7 @@ export function Navbar() {
           </ul>
           <div className="mt-auto space-y-3 pt-6">
             <a href="/login" onClick={() => setOpen(false)} className="block rounded-xl bg-deep-800 px-3 py-3 text-center text-sm font-bold text-white shadow-md hover:bg-deep-700">Login</a>
-            <a href="#contact" onClick={() => setOpen(false)} className="btn-primary w-full">
+            <a href="/#contact" onClick={() => setOpen(false)} className="btn-primary w-full">
               Get a Quote
             </a>
             <a

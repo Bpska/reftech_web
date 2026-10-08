@@ -23,6 +23,7 @@ export const MENU_TEXTS = [
   "Work Email",
   "Detail Changes",
   "Driver Safety",
+  "Recruitment",
   "Salary Report",
   "Access Control",
   "Inventory",

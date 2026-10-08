@@ -22,6 +22,7 @@ export const or: Record<string, string> = {
   "Work Email": "କାର୍ଯ୍ୟ ଇମେଲ୍",
   "Detail Changes": "ବିବରଣୀ ପରିବର୍ତ୍ତନ",
   "Driver Safety": "ଡ୍ରାଇଭର ସୁରକ୍ଷା",
+  "Recruitment": "ନିଯୁକ୍ତି",
   "Salary Report": "ଦରମା ରିପୋର୍ଟ",
   "Access Control": "ପ୍ରବେଶ ନିୟନ୍ତ୍ରଣ",
   "Inventory": "ଇନଭେଣ୍ଟୋରୀ",

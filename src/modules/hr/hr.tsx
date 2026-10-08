@@ -80,6 +80,9 @@ const BADGE: Record<string, string> = {
   REPLACED: 'bg-slate-200 text-slate-700', OPEN: 'bg-amber-100 text-amber-800', CLOSED: 'bg-slate-200 text-slate-700', OK: 'bg-emerald-100 text-emerald-800',
   DUE_SOON: 'bg-amber-100 text-amber-800', OVERDUE: 'bg-red-100 text-red-800', Good: 'bg-emerald-100 text-emerald-800', Watch: 'bg-amber-100 text-amber-800',
   'At risk': 'bg-red-100 text-red-800', LOW: 'bg-slate-100 text-slate-700', MEDIUM: 'bg-amber-100 text-amber-800', HIGH: 'bg-red-100 text-red-800',
+  // REQ-HR-010 recruitment: openings and the stages of an application
+  PUBLISHED: 'bg-emerald-100 text-emerald-800', NEW: 'bg-amber-100 text-amber-800', SCREENING: 'bg-sky-100 text-sky-800', SHORTLISTED: 'bg-indigo-100 text-indigo-800',
+  INTERVIEW: 'bg-violet-100 text-violet-800', OFFERED: 'bg-teal-100 text-teal-800', HIRED: 'bg-emerald-200 text-emerald-900', WITHDRAWN: 'bg-slate-200 text-slate-700',
 };
 export function Badge({ v }: { v: any }) {
   const s = String(v ?? '-');
