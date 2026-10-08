@@ -1,3 +1,10 @@
+/*
+ * RefTech Technology Company
+ * CONFIDENTIAL: this source code is the property of RefTech Technology Company and is confidential to the
+ * company. Copying it, or sharing it with anyone outside the company without written permission, is a
+ * violation of law.
+ */
+
 import js from '@eslint/js';
 import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';

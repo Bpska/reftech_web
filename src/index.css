@@ -1,3 +1,10 @@
+/*
+ * RefTech Technology Company
+ * CONFIDENTIAL: this source code is the property of RefTech Technology Company and is confidential to the
+ * company. Copying it, or sharing it with anyone outside the company without written permission, is a
+ * violation of law.
+ */
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 
 @tailwind base;
@@ -83,7 +90,7 @@
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #f0f7fa;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
   background: #7cc4d6;
