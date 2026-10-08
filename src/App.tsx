@@ -114,6 +114,12 @@ import { DriverSharePage } from '@/modules/tracking/DriverSharePage'; // REQ-TRK
 import { FleetAnalyticsPage } from '@/modules/tracking/FleetAnalyticsPage'; // REQ-TRK-007
 import { ReeferUnitsPage } from '@/modules/tracking/ReeferUnitsPage'; // REQ-TRK-008
 import { EwayWatchPage } from '@/modules/tracking/EwayWatchPage'; // REQ-TRK-009
+// REQ-DSP-012, REQ-DSP-013, REQ-CC-015, REQ-CC-016: scheduled reefer routes, home delivery (and the customer's order page), food safety, eutectic plates
+import { ScheduledRoutesPage } from '@/modules/dispatch/schedule/ScheduledRoutesPage';
+import { HomeDeliveryPage } from '@/modules/dispatch/homedelivery/HomeDeliveryPage';
+import { TrackOrderPage } from '@/modules/dispatch/homedelivery/TrackOrderPage';
+import { FoodSafetyPage } from '@/modules/coldchain/foodsafety/FoodSafetyPage';
+import { EutecticPage } from '@/modules/coldchain/eutectic/EutecticPage';
 import { ChangePasswordPage } from '@/modules/auth/ChangePasswordPage'; // REQ-HR-002
 import { ForgotPasswordPage } from '@/modules/auth/ForgotPasswordPage'; // REQ-HR-002
 import { AccessControlPage } from '@/modules/hr/AccessControlPage'; // REQ-HR-001, 002
@@ -308,6 +314,14 @@ export default function App() {
           <Route path="/platform/jobs" element={<JobsPage/>} />
           <Route path="/platform/integrations" element={<IntegrationsPage/>} />
           <Route path="/platform/api" element={<ApiAccessPage/>} />
+        </Route>
+        {/* REQ-DSP-012, REQ-DSP-013, REQ-CC-015, REQ-CC-016: the customer's order page (no login) and the four staff screens */}
+        <Route path="/track/order/:token" element={<TrackOrderPage/>} />
+        <Route element={<AppShell/>}>
+          <Route path="/dispatch/scheduled-routes" element={<ScheduledRoutesPage/>} />
+          <Route path="/dispatch/home-delivery" element={<HomeDeliveryPage/>} />
+          <Route path="/cold-chain/food-safety" element={<FoodSafetyPage/>} />
+          <Route path="/cold-chain/eutectic" element={<EutecticPage/>} />
         </Route>
         <Route path="/" element={<PublicWebsite/>} />
         <Route path="*" element={<PublicWebsite/>} />

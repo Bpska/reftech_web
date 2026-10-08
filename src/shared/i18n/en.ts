@@ -136,6 +136,11 @@ export const MENU_TEXTS = [
   "Platform",
   "Analytics",
   "My Account",
+  // REQ-DSP-012, REQ-DSP-013, REQ-CC-015, REQ-CC-016
+  "Scheduled Routes",
+  "Home Delivery",
+  "Food Safety",
+  "Eutectic Plates",
 ] as const;
 
 /** Common words of every screen and of DataTable. */

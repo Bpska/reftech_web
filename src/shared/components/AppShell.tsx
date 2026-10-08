@@ -271,6 +271,11 @@ export function AppShell() {
               {(admin || manager || employee) && !partnerLogin && <Link className={sub} to="/cold-chain/emergencies">{t('Cold Chain Emergencies')}</Link>}
               {(admin || manager || employee) && !partnerLogin && <Link className={sub} to="/cold-chain/packaging">{t('Packaging & Time Out')}</Link>}
               {(admin || manager || employee) && !partnerLogin && <Link className={sub} to="/cold-chain/hygiene">{t('Hygiene & Audit')}</Link>}
+              {/* REQ-DSP-012, REQ-DSP-013, REQ-CC-015, REQ-CC-016: scheduled routes, home delivery, food safety (view: TRACKING_VIEW, edit: FOOD_SAFETY), eutectic plates. Staff only. */}
+              {staff && may('TRIPS_VIEW') && <Link className={sub} to="/dispatch/scheduled-routes">{t('Scheduled Routes')}</Link>}
+              {staff && may('TRIPS_VIEW') && <Link className={sub} to="/dispatch/home-delivery">{t('Home Delivery')}</Link>}
+              {staff && may('FOOD_SAFETY', 'TRACKING_VIEW') && <Link className={sub} to="/cold-chain/food-safety">{t('Food Safety')}</Link>}
+              {staff && may('TRACKING_VIEW') && <Link className={sub} to="/cold-chain/eutectic">{t('Eutectic Plates')}</Link>}
               {/* REQ-TRK-001: GPS providers, device keys and device health. Staff only. */}
               {(admin || manager || employee) && !partnerLogin && <Link className={sub} to="/gps">{t('GPS Connections')}</Link>}
               {/* REQ-CC-006: an Employee has no Inventory menu, so the register (read-only for an Employee) is linked here. */}
