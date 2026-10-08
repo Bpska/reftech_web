@@ -117,6 +117,11 @@ export const hi: Record<string, string> = {
   "Profitability": "लाभप्रदता",
   "Supplier Payables": "आपूर्तिकर्ता देय",
   "Tally Export": "टैली एक्सपोर्ट",
+  // REQ-BIL-009, 010, 011, 012: fuel clauses, collections, agreement vault, dedicated vehicles
+  "Fuel & Surcharges": "ईंधन और अधिभार",
+  "Collections": "वसूली",
+  "Agreement Vault": "अनुबंध तिजोरी",
+  "Dedicated Vehicles": "समर्पित वाहन",
   "E-way Bills": "ई-वे बिल",
   "Company GST Profile": "कंपनी जीएसटी प्रोफ़ाइल",
   "Expenses": "खर्च",
