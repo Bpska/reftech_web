@@ -194,6 +194,11 @@ export function AppShell() {
               <Link className={sub} to="/warehouse/reports">{t('Warehouse Reports')}</Link>
               <Link className={sub} to="/warehouse/products">{t('Product Master')}</Link>
               <Link className={sub} to="/warehouse/layout">{t('Warehouse Layout')}</Link>
+              {/* REQ-WMS-020, REQ-WMS-022, REQ-WMS-023, REQ-TRK-010: bonded warehouse, plant & equipment, reefer plug points, electronic locks */}
+              <Link className={sub} to="/warehouse/bonded">{t('Bonded Warehouse')}</Link>
+              <Link className={sub} to="/warehouse/plant">{t('Plant & Equipment')}</Link>
+              <Link className={sub} to="/warehouse/plug-points">{t('Reefer Plug Points')}</Link>
+              {may('TRACKING_VIEW') && <Link className={sub} to="/tracking/elocks">{t('Electronic Locks')}</Link>}
             </>)}
             {/* REQ-CNF-001..007: C&F agency for principals (staff) */}
             {staff && may('WAREHOUSE_VIEW') && section('cnf', t('C&F Agency'), Building2, <>
