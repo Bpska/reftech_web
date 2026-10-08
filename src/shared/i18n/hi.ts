@@ -355,7 +355,6 @@ export const hi: Record<string, string> = {
   "Purchase Orders": "खरीद आदेश",
   "Trading Stock": "ट्रेडिंग स्टॉक",
   "Sales & Invoices": "बिक्री और चालान",
-  "Collections": "वसूली",
   "Margins": "मार्जिन",
   "Website Requests": "वेबसाइट अनुरोध",
   "Ask": "पूछें",

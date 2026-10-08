@@ -166,7 +166,6 @@ export const MENU_TEXTS = [
   "Purchase Orders",
   "Trading Stock",
   "Sales & Invoices",
-  "Collections",
   "Margins",
   "Website Requests",
   "Ask",

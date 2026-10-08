@@ -355,7 +355,6 @@ export const or: Record<string, string> = {
   "Purchase Orders": "କ୍ରୟ ଆଦେଶ",
   "Trading Stock": "ବ୍ୟାପାର ଷ୍ଟକ୍",
   "Sales & Invoices": "ବିକ୍ରି ଓ ଇନଭଏସ୍",
-  "Collections": "ଆଦାୟ",
   "Margins": "ମାର୍ଜିନ୍",
   "Website Requests": "ୱେବସାଇଟ୍ ଅନୁରୋଧ",
   "Ask": "ପଚାରନ୍ତୁ",
