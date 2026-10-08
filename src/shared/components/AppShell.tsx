@@ -362,6 +362,19 @@ export function AppShell() {
               <Link className={sub} to="/expenses">{t('Expenses')}</Link>
               {admin && <><Link className={sub} to="/admin/finance">{t('Finance Report & Balance Sheet')}</Link></>}
             </>)}
+            {/* REQ-CNF-008, REQ-CNF-009, REQ-PRT-004, REQ-PLT-017, REQ-PLT-018: replenishment, trading, website requests, Ask, energy and carbon */}
+            {((staff && may('WAREHOUSE_VIEW')) || partnerLogin) && <Link title={t('Replenishment')} to="/cnf/replenishment" className={`${nav} ${location.pathname === '/cnf/replenishment' ? 'bg-sky-700' : ''}`}><PackagePlus className="h-5 w-5 shrink-0" />{label(t('Replenishment'))}</Link>}
+            {staff && may('TRADING_VIEW') && section('trading', t('Trading & Distribution'), Boxes, <>
+              <Link className={sub} to="/trading?tab=masters">{t('Vendors & Customers')}</Link>
+              <Link className={sub} to="/trading?tab=buy">{t('Purchase Orders')}</Link>
+              <Link className={sub} to="/trading?tab=stock">{t('Trading Stock')}</Link>
+              <Link className={sub} to="/trading?tab=sell">{t('Sales & Invoices')}</Link>
+              <Link className={sub} to="/trading?tab=collect">{t('Collections')}</Link>
+              <Link className={sub} to="/trading?tab=margin">{t('Margins')}</Link>
+            </>)}
+            {staff && may('WEB_REQUESTS') && <Link title={t('Website Requests')} to="/web-requests" className={`${nav} ${location.pathname === '/web-requests' ? 'bg-sky-700' : ''}`}><Landmark className="h-5 w-5 shrink-0" />{label(t('Website Requests'))}</Link>}
+            {((staff && may('ASK_QUESTIONS')) || partnerLogin) && <Link title={t('Ask')} to="/ask" className={`${nav} ${location.pathname === '/ask' ? 'bg-sky-700' : ''}`}><Radar className="h-5 w-5 shrink-0" />{label(t('Ask'))}</Link>}
+            {((staff && may('ENERGY_VIEW')) || partnerLogin) && <Link title={partnerLogin ? t('My Carbon Report') : t('Energy & Carbon')} to="/energy" className={`${nav} ${location.pathname === '/energy' ? 'bg-sky-700' : ''}`}><BarChart3 className="h-5 w-5 shrink-0" />{label(partnerLogin ? t('My Carbon Report') : t('Energy & Carbon'))}</Link>}
             {/* REQ-HR-007: the login's own attendance, leave, payslips, letters and documents */}
             {staff && <Link title={t('My HR')} to="/me" className={`${nav} ${location.pathname === '/me' ? 'bg-sky-700' : ''}`}><UserRound className="h-5 w-5 shrink-0" />{label(t('My HR'))}</Link>}
             {/* REQ-HR-002: every login can change its own password (was Admin only) */}

@@ -348,4 +348,17 @@ export const hi: Record<string, string> = {
   "Home Delivery": "होम डिलीवरी",
   "Food Safety": "खाद्य सुरक्षा",
   "Eutectic Plates": "यूटेक्टिक प्लेटें",
+  // REQ-CNF-008, REQ-CNF-009, REQ-PRT-004, REQ-PLT-017, REQ-PLT-018: menu labels
+  "Replenishment": "पुनःपूर्ति",
+  "Trading & Distribution": "ट्रेडिंग और वितरण",
+  "Vendors & Customers": "विक्रेता और ग्राहक",
+  "Purchase Orders": "खरीद आदेश",
+  "Trading Stock": "ट्रेडिंग स्टॉक",
+  "Sales & Invoices": "बिक्री और चालान",
+  "Collections": "वसूली",
+  "Margins": "मार्जिन",
+  "Website Requests": "वेबसाइट अनुरोध",
+  "Ask": "पूछें",
+  "Energy & Carbon": "ऊर्जा और कार्बन",
+  "My Carbon Report": "मेरी कार्बन रिपोर्ट",
 };
