@@ -103,6 +103,10 @@ import { TendersPage } from '@/modules/tender/TendersPage'; // REQ-TAL-004, 005
 import { ShareRulesPage } from '@/modules/tender/ShareRulesPage'; // REQ-TAL-006
 import { VerificationPage } from '@/modules/transporter/VerificationPage'; // REQ-TAL-008, 009
 import { ScorecardPage } from '@/modules/transporter/ScorecardPage'; // REQ-TAL-012
+// REQ-TAL-013, REQ-TAL-014, REQ-TAL-015: lane tenders, free trucks and return loads, transporter invoice intake
+import { LaneTendersPage } from '@/modules/transporter/LaneTendersPage';
+import { FreeTrucksPage } from '@/modules/transporter/FreeTrucksPage';
+import { InvoiceIntakePage } from '@/modules/transporter/InvoiceIntakePage';
 import { TransshipmentsPage } from '@/modules/trip/TransshipmentsPage'; // REQ-TAL-010
 import { TransporterPortalPage } from '@/modules/transporterportal/TransporterPortalPage'; // REQ-TAL-009
 import { TelemetryQualityPage } from '@/modules/tracking/TelemetryQualityPage'; // REQ-CC-007
@@ -222,6 +226,10 @@ export default function App() {
           <Route path="/tenders/share-rules" element={<ShareRulesPage/>} />{/* REQ-TAL-006 Contract share rules */}
           <Route path="/transporters/verification" element={<VerificationPage/>} />{/* REQ-TAL-008, 009 VAHAN / Sarathi checks, portal logins, uploaded documents */}
           <Route path="/transporters/scorecard" element={<ScorecardPage/>} />{/* REQ-TAL-012 Transporter scorecard */}
+          {/* REQ-TAL-013, REQ-TAL-014, REQ-TAL-015 */}
+          <Route path="/transporters/lane-tenders" element={<LaneTendersPage/>} />
+          <Route path="/transporters/free-trucks" element={<FreeTrucksPage/>} />
+          <Route path="/transporters/invoices" element={<InvoiceIntakePage/>} />
           <Route path="/transshipments" element={<TransshipmentsPage/>} />{/* REQ-TAL-010 Truck changes on the road */}
           <Route path="/pod/check" element={<ProofBillCheckPage/>} />{/* REQ-POD-006 Proof-to-Bill Check; ?tab=returns REQ-POD-003 Returns */}
           <Route path="/pod/review" element={<PodReviewPage/>} />{/* REQ-POD-002, 004, 005, 007, REQ-TRP-011 Proof Review */}
