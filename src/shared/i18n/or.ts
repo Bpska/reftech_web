@@ -325,4 +325,17 @@ export const or: Record<string, string> = {
   "Available": "ଉପଲବ୍ଧ",
   "Breakdown": "ବିଗିଡ଼ିଛି",
   "Under maintenance": "ମରାମତିରେ",
+  // REQ-CNF-008, REQ-CNF-009, REQ-PRT-004, REQ-PLT-017, REQ-PLT-018: menu labels
+  "Replenishment": "ପୁନଃପୂରଣ",
+  "Trading & Distribution": "ବ୍ୟାପାର ଓ ବଣ୍ଟନ",
+  "Vendors & Customers": "ବିକ୍ରେତା ଓ ଗ୍ରାହକ",
+  "Purchase Orders": "କ୍ରୟ ଆଦେଶ",
+  "Trading Stock": "ବ୍ୟାପାର ଷ୍ଟକ୍",
+  "Sales & Invoices": "ବିକ୍ରି ଓ ଇନଭଏସ୍",
+  "Collections": "ଆଦାୟ",
+  "Margins": "ମାର୍ଜିନ୍",
+  "Website Requests": "ୱେବସାଇଟ୍ ଅନୁରୋଧ",
+  "Ask": "ପଚାରନ୍ତୁ",
+  "Energy & Carbon": "ଶକ୍ତି ଓ କାର୍ବନ",
+  "My Carbon Report": "ମୋ କାର୍ବନ ରିପୋର୍ଟ",
 };

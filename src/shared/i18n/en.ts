@@ -136,6 +136,19 @@ export const MENU_TEXTS = [
   "Platform",
   "Analytics",
   "My Account",
+  // REQ-CNF-008, REQ-CNF-009, REQ-PRT-004, REQ-PLT-017, REQ-PLT-018: menu labels
+  "Replenishment",
+  "Trading & Distribution",
+  "Vendors & Customers",
+  "Purchase Orders",
+  "Trading Stock",
+  "Sales & Invoices",
+  "Collections",
+  "Margins",
+  "Website Requests",
+  "Ask",
+  "Energy & Carbon",
+  "My Carbon Report",
 ] as const;
 
 /** Common words of every screen and of DataTable. */

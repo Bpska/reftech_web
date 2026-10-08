@@ -151,6 +151,13 @@ import { NotificationsPage } from '@/modules/platform/NotificationsPage'; // REQ
 import { JobsPage } from '@/modules/platform/JobsPage'; // REQ-PLT-010
 import { IntegrationsPage } from '@/modules/platform/IntegrationsPage'; // REQ-PLT-012
 import { ApiAccessPage } from '@/modules/platform/ApiAccessPage'; // REQ-PLT-013
+// REQ-CNF-008, REQ-CNF-009, REQ-PRT-004, REQ-PLT-017, REQ-PLT-018: replenishment, trading, the public website pages, website requests, Ask, energy and carbon.
+import { ReplenishmentPage } from '@/modules/cnf/ReplenishmentPage';
+import { TradingPage } from '@/modules/trading/TradingPage';
+import { TrackLrPage, PickupRequestPage, LocationsPage } from '@/website/publicsite/PublicSitePages';
+import { WebRequestsPage } from '@/modules/platform/WebRequestsPage';
+import { AskPage } from '@/modules/platform/AskPage';
+import { EnergyPage } from '@/modules/platform/EnergyPage';
 
 function PublicWebsite() {
   return <div className="min-h-screen bg-white"><ScrollProgress/><Navbar/><main><Hero/><About/><VisionMission/><Services/><Industries/><Technology/><ErpAccess/><Stats/><Testimonials/><CareersTeaser/><Contact/></main><Footer/><BackToTop/></div>;
@@ -308,7 +315,16 @@ export default function App() {
           <Route path="/platform/jobs" element={<JobsPage/>} />
           <Route path="/platform/integrations" element={<IntegrationsPage/>} />
           <Route path="/platform/api" element={<ApiAccessPage/>} />
+          {/* REQ-CNF-008, REQ-CNF-009, REQ-PRT-004, REQ-PLT-017, REQ-PLT-018: office pages (inside the menu), then the public website pages (no login) */}
+          <Route path="/cnf/replenishment" element={<ReplenishmentPage/>} />
+          <Route path="/trading" element={<TradingPage/>} />
+          <Route path="/web-requests" element={<WebRequestsPage/>} />
+          <Route path="/ask" element={<AskPage/>} />
+          <Route path="/energy" element={<EnergyPage/>} />
         </Route>
+        <Route path="/track" element={<TrackLrPage/>} />
+        <Route path="/pickup" element={<PickupRequestPage/>} />
+        <Route path="/locations" element={<LocationsPage/>} />
         <Route path="/" element={<PublicWebsite/>} />
         <Route path="*" element={<PublicWebsite/>} />
       </Routes>
