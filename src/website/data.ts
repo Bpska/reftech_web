@@ -53,6 +53,7 @@ export const NAV_LINKS = [
   { label: 'Industries', href: '/#industries' },
   { label: 'Technology', href: '/#technology' },
   { label: 'Careers', href: '/careers' },
+  { label: 'Track', href: '/track' }, // REQ-PRT-004 track a consignment by LR number
   { label: 'Contact', href: '/#contact' },
 ];
 
@@ -324,6 +325,11 @@ export const FOOTER_LINKS = {
     { label: 'Industries', href: '/#industries' },
     { label: 'Technology', href: '/#technology' },
     { label: 'Careers', href: '/careers' },
+    // REQ-PRT-004: public tracking, pickup / quote request and the locator
+    { label: 'Track a Consignment', href: '/track' },
+    { label: 'Request a Pickup', href: '/pickup' },
+    { label: 'Get a Quote', href: '/pickup?kind=QUOTE' },
+    { label: 'Our Locations', href: '/locations' },
     { label: 'Contact', href: '/#contact' },
   ],
   Services: [

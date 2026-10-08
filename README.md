@@ -115,7 +115,7 @@ Serve the site over HTTPS. Push notifications (`public/sw.js`) and the driver's 
 |---|---|
 | `npm run typecheck` | TypeScript check |
 | `npm run lint` | ESLint |
-| `npm test` | unit tests (Vitest), 77 tests |
+| `npm test` | unit tests (Vitest), 175 tests |
 
 ## Notes
 

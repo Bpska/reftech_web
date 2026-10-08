@@ -188,12 +188,21 @@ export function AppShell() {
               <Link className={sub} to="/warehouse/returns">{t('Returns & Disposal')}</Link>
               {/* REQ-WMS-014 */}
               <Link className={sub} to="/warehouse/services">{t('Freezing & Services')}</Link>
+              {/* REQ-WMS-018, REQ-WMS-019, REQ-WMS-021: reserved space, kitting and grading, e-commerce fulfilment */}
+              <Link className={sub} to="/warehouse/capacity">{t('Reserved Space')}</Link>
+              <Link className={sub} to="/warehouse/kitting">{t('Kitting & Grading')}</Link>
+              <Link className={sub} to="/warehouse/ecommerce">{t('E-commerce Fulfilment')}</Link>
               {/* REQ-WMS-004 */}
               <Link className={sub} to="/warehouse/billing">{t('Storage Billing')}</Link>
               {/* REQ-WMS-016 */}
               <Link className={sub} to="/warehouse/reports">{t('Warehouse Reports')}</Link>
               <Link className={sub} to="/warehouse/products">{t('Product Master')}</Link>
               <Link className={sub} to="/warehouse/layout">{t('Warehouse Layout')}</Link>
+              {/* REQ-WMS-020, REQ-WMS-022, REQ-WMS-023, REQ-TRK-010: bonded warehouse, plant & equipment, reefer plug points, electronic locks */}
+              <Link className={sub} to="/warehouse/bonded">{t('Bonded Warehouse')}</Link>
+              <Link className={sub} to="/warehouse/plant">{t('Plant & Equipment')}</Link>
+              <Link className={sub} to="/warehouse/plug-points">{t('Reefer Plug Points')}</Link>
+              {may('TRACKING_VIEW') && <Link className={sub} to="/tracking/elocks">{t('Electronic Locks')}</Link>}
             </>)}
             {/* REQ-CNF-001..007: C&F agency for principals (staff) */}
             {staff && may('WAREHOUSE_VIEW') && section('cnf', t('C&F Agency'), Building2, <>
@@ -232,6 +241,10 @@ export function AppShell() {
               <Link className={sub} to="/transporters/scorecard">{t('Scorecard')}</Link>
               {/* REQ-TAL-010 */}
               <Link className={sub} to="/transshipments">{t('Truck Changes')}</Link>
+              {/* REQ-TAL-013, REQ-TAL-014, REQ-TAL-015: annual lane tender, free trucks / return loads, invoice intake (OCR, tolerance, debit notes) */}
+              <Link className={sub} to="/transporters/lane-tenders">{t('Lane Tenders')}</Link>
+              <Link className={sub} to="/transporters/free-trucks">{t('Free Trucks')}</Link>
+              <Link className={sub} to="/transporters/invoices">{t('Transporter Invoices')}</Link>
             </>)}
             {/* REQ-CC-003-FIX1: the Trip menu is about trips only. "Create Full Load" and "Create Part Load" opened the same
                 page (which also carried the Create Load Request form); they are now one "Create Trip" link, staff only,
@@ -271,6 +284,11 @@ export function AppShell() {
               {(admin || manager || employee) && !partnerLogin && <Link className={sub} to="/cold-chain/emergencies">{t('Cold Chain Emergencies')}</Link>}
               {(admin || manager || employee) && !partnerLogin && <Link className={sub} to="/cold-chain/packaging">{t('Packaging & Time Out')}</Link>}
               {(admin || manager || employee) && !partnerLogin && <Link className={sub} to="/cold-chain/hygiene">{t('Hygiene & Audit')}</Link>}
+              {/* REQ-DSP-012, REQ-DSP-013, REQ-CC-015, REQ-CC-016: scheduled routes, home delivery, food safety (view: TRACKING_VIEW, edit: FOOD_SAFETY), eutectic plates. Staff only. */}
+              {staff && may('TRIPS_VIEW') && <Link className={sub} to="/dispatch/scheduled-routes">{t('Scheduled Routes')}</Link>}
+              {staff && may('TRIPS_VIEW') && <Link className={sub} to="/dispatch/home-delivery">{t('Home Delivery')}</Link>}
+              {staff && may('FOOD_SAFETY', 'TRACKING_VIEW') && <Link className={sub} to="/cold-chain/food-safety">{t('Food Safety')}</Link>}
+              {staff && may('TRACKING_VIEW') && <Link className={sub} to="/cold-chain/eutectic">{t('Eutectic Plates')}</Link>}
               {/* REQ-TRK-001: GPS providers, device keys and device health. Staff only. */}
               {(admin || manager || employee) && !partnerLogin && <Link className={sub} to="/gps">{t('GPS Connections')}</Link>}
               {/* REQ-CC-006: an Employee has no Inventory menu, so the register (read-only for an Employee) is linked here. */}
@@ -334,11 +352,29 @@ export function AppShell() {
                 <Link className={sub} to="/billing/payables">{t('Supplier Payables')}</Link>
                 <Link className={sub} to="/billing/tally">{t('Tally Export')}</Link>
               </>}
+              {/* REQ-BIL-009, 010, 011, 012: fuel clauses and surcharges, collections, the agreement vault, dedicated vehicle contracts */}
+              {(admin || manager) && <Link className={sub} to="/billing/fuel-clauses">{t('Fuel & Surcharges')}</Link>}
+              {(admin || manager || (!!me && can(me, 'BILLING_COLLECTIONS'))) && <Link className={sub} to="/billing/collections">{t('Collections')}</Link>}
+              {(admin || manager || (!!me && can(me, 'BILLING_AGREEMENTS'))) && <Link className={sub} to="/billing/agreements">{t('Agreement Vault')}</Link>}
+              {(admin || manager) && <Link className={sub} to="/billing/dedicated">{t('Dedicated Vehicles')}</Link>}
               {employee && !admin && !manager && <Link className={sub} to="/billing/gst?tab=eway">{t('E-way Bills')}</Link>}
               {admin && <Link className={sub} to="/billing#company-gst-profile">{t('Company GST Profile')}</Link>}
               <Link className={sub} to="/expenses">{t('Expenses')}</Link>
               {admin && <><Link className={sub} to="/admin/finance">{t('Finance Report & Balance Sheet')}</Link></>}
             </>)}
+            {/* REQ-CNF-008, REQ-CNF-009, REQ-PRT-004, REQ-PLT-017, REQ-PLT-018: replenishment, trading, website requests, Ask, energy and carbon */}
+            {((staff && may('WAREHOUSE_VIEW')) || partnerLogin) && <Link title={t('Replenishment')} to="/cnf/replenishment" className={`${nav} ${location.pathname === '/cnf/replenishment' ? 'bg-sky-700' : ''}`}><PackagePlus className="h-5 w-5 shrink-0" />{label(t('Replenishment'))}</Link>}
+            {staff && may('TRADING_VIEW') && section('trading', t('Trading & Distribution'), Boxes, <>
+              <Link className={sub} to="/trading?tab=masters">{t('Vendors & Customers')}</Link>
+              <Link className={sub} to="/trading?tab=buy">{t('Purchase Orders')}</Link>
+              <Link className={sub} to="/trading?tab=stock">{t('Trading Stock')}</Link>
+              <Link className={sub} to="/trading?tab=sell">{t('Sales & Invoices')}</Link>
+              <Link className={sub} to="/trading?tab=collect">{t('Collections')}</Link>
+              <Link className={sub} to="/trading?tab=margin">{t('Margins')}</Link>
+            </>)}
+            {staff && may('WEB_REQUESTS') && <Link title={t('Website Requests')} to="/web-requests" className={`${nav} ${location.pathname === '/web-requests' ? 'bg-sky-700' : ''}`}><Landmark className="h-5 w-5 shrink-0" />{label(t('Website Requests'))}</Link>}
+            {((staff && may('ASK_QUESTIONS')) || partnerLogin) && <Link title={t('Ask')} to="/ask" className={`${nav} ${location.pathname === '/ask' ? 'bg-sky-700' : ''}`}><Radar className="h-5 w-5 shrink-0" />{label(t('Ask'))}</Link>}
+            {((staff && may('ENERGY_VIEW')) || partnerLogin) && <Link title={partnerLogin ? t('My Carbon Report') : t('Energy & Carbon')} to="/energy" className={`${nav} ${location.pathname === '/energy' ? 'bg-sky-700' : ''}`}><BarChart3 className="h-5 w-5 shrink-0" />{label(partnerLogin ? t('My Carbon Report') : t('Energy & Carbon'))}</Link>}
             {/* REQ-HR-007: the login's own attendance, leave, payslips, letters and documents */}
             {staff && <Link title={t('My HR')} to="/me" className={`${nav} ${location.pathname === '/me' ? 'bg-sky-700' : ''}`}><UserRound className="h-5 w-5 shrink-0" />{label(t('My HR'))}</Link>}
             {/* REQ-HR-002: every login can change its own password (was Admin only) */}

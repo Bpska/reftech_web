@@ -22,11 +22,13 @@ import { VEHICLE_TYPES, day, docLabel, rupees } from '@/modules/transporter/tran
 import { when } from '@/modules/allocation/allocation';
 import { KIND_LABEL, OFFER_LABEL, VERIFY_LABEL, call, openFile, pill, upload } from '@/modules/tender/tender';
 import { COMMON_UNIT_FIELDS, fmtWeight, toBaseFields, unitNow } from '@/shared/i18n/format'; // REQ-PLT-015 the login's units, date format and time zone
+import { PortalFreeTrucks, PortalInvoices, PortalLaneTenders } from './PortalTalTabs'; // REQ-TAL-013, 014, 015
 
 const P = '/api/transporter-portal';
-type Tab = 'home' | 'offers' | 'auctions' | 'awards' | 'fleet' | 'documents' | 'trips' | 'bills';
+type Tab = 'home' | 'offers' | 'auctions' | 'awards' | 'fleet' | 'documents' | 'trips' | 'bills' | 'laneTenders' | 'freeTrucks' | 'invoices'; // REQ-TAL-013, 014, 015: the last three
 const TABS: [Tab, string][] = [['home', 'Home'], ['offers', 'Loads offered'], ['auctions', 'Quotes & auctions'], ['awards', 'Awarded loads'], ['fleet', 'Trucks & drivers'],
-  ['documents', 'Documents'], ['trips', 'Trips'], ['bills', 'Bills & payments']];
+  ['documents', 'Documents'], ['trips', 'Trips'], ['bills', 'Bills & payments'],
+  ['laneTenders', 'Lane tenders'], ['freeTrucks', 'Free trucks'], ['invoices', 'Invoices & debit notes']]; // REQ-TAL-013, 014, 015
 
 const loadText = (l: any) => <><b>{l.originCity} → {l.destinationCity}</b>, {fmtWeight(l.loadTons)}, {l.temperature}<div className="text-xs text-slate-500">Pickup {when(l.pickupAt)}{l.deliverBy ? ` · deliver by ${when(l.deliverBy)}` : ''} · {l.requestNo}{l.notes ? ` · ${l.notes}` : ''}</div></>;
 
@@ -48,7 +50,7 @@ export function TransporterPortalPage() {
     try {
       if (tab === 'home') { await loadMe(); return; }
       if (tab === 'awards' || tab === 'fleet') setFleet(await api(`${P}/fleet`));
-      const path = { offers: 'offers', auctions: 'auctions', awards: 'awards', fleet: '', documents: 'documents', trips: 'trips', bills: 'bills' }[tab];
+      const path = { offers: 'offers', auctions: 'auctions', awards: 'awards', fleet: '', documents: 'documents', trips: 'trips', bills: 'bills', laneTenders: '', freeTrucks: '', invoices: '' }[tab]; // REQ-TAL-013..015 tabs load their own data
       if (path) setData(await api(`${P}/${path}`));
     } catch (x) { setError(errorText(x, 'Could not load')); }
   }, [tab]);
@@ -81,6 +83,10 @@ export function TransporterPortalPage() {
       {tab === 'trips' && data && <Trips rows={data} />}
       {tab === 'trips' && data && <PaperNotes trips={data} />}
       {tab === 'bills' && data && <Bills rows={data} />}
+      {/* REQ-TAL-013, 014, 015 */}
+      {tab === 'laneTenders' && <PortalLaneTenders busy={busy} run={run} />}
+      {tab === 'freeTrucks' && <PortalFreeTrucks busy={busy} run={run} />}
+      {tab === 'invoices' && <PortalInvoices busy={busy} run={run} />}
     </main>
   </div>;
 }

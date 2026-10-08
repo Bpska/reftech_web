@@ -55,6 +55,10 @@ import { TransfersPage } from '@/modules/warehouse/TransfersPage'; // REQ-WMS-01
 import { StockControlPage } from '@/modules/warehouse/StockControlPage'; // REQ-WMS-005
 import { ReturnsPage } from '@/modules/warehouse/ReturnsPage'; // REQ-WMS-013
 import { ServicesPage } from '@/modules/warehouse/ServicesPage'; // REQ-WMS-014
+// REQ-WMS-018, REQ-WMS-019, REQ-WMS-021: reserved space, kitting and grading, e-commerce fulfilment
+import { ReservedSpacePage } from '@/modules/warehouse/ReservedSpacePage';
+import { KittingPage } from '@/modules/warehouse/KittingPage';
+import { EcommercePage } from '@/modules/warehouse/EcommercePage';
 import { StorageBillingPage } from '@/modules/warehouse/StorageBillingPage'; // REQ-WMS-004
 import { WarehouseReportsPage } from '@/modules/warehouse/WarehouseReportsPage'; // REQ-WMS-016
 import { TransportersPage } from '@/modules/transporter/TransportersPage'; // REQ-TAL-001
@@ -89,6 +93,11 @@ import { ComplianceCalendarPage } from '@/modules/gov/ComplianceCalendarPage'; /
 import { RoadSafetyPage } from '@/modules/gov/RoadSafetyPage'; // REQ-GOV-015
 import { GovConnectionsPage } from '@/modules/gov/GovConnectionsPage'; // REQ-GOV-014
 import { PerTonBillingPage } from '@/modules/billing/PerTonBillingPage'; // REQ-BIL-008
+// REQ-BIL-009, 010, 011, 012: fuel clauses and surcharges, collections, the agreement vault, dedicated vehicle contracts
+import { FuelClausesPage } from '@/modules/billing/FuelClausesPage';
+import { CollectionsPage } from '@/modules/billing/CollectionsPage';
+import { AgreementVaultPage } from '@/modules/billing/AgreementVaultPage';
+import { DedicatedVehiclesPage } from '@/modules/billing/DedicatedVehiclesPage';
 import BillingRateContractsPage from '@/modules/billing/RateContractsPage'; // REQ-BIL-001 (renamed: the transporter page above has the same name)
 import PaymentsPage from '@/modules/billing/PaymentsPage'; // REQ-BIL-002
 import GstPage from '@/modules/billing/GstPage'; // REQ-BIL-003
@@ -103,6 +112,10 @@ import { TendersPage } from '@/modules/tender/TendersPage'; // REQ-TAL-004, 005
 import { ShareRulesPage } from '@/modules/tender/ShareRulesPage'; // REQ-TAL-006
 import { VerificationPage } from '@/modules/transporter/VerificationPage'; // REQ-TAL-008, 009
 import { ScorecardPage } from '@/modules/transporter/ScorecardPage'; // REQ-TAL-012
+// REQ-TAL-013, REQ-TAL-014, REQ-TAL-015: lane tenders, free trucks and return loads, transporter invoice intake
+import { LaneTendersPage } from '@/modules/transporter/LaneTendersPage';
+import { FreeTrucksPage } from '@/modules/transporter/FreeTrucksPage';
+import { InvoiceIntakePage } from '@/modules/transporter/InvoiceIntakePage';
 import { TransshipmentsPage } from '@/modules/trip/TransshipmentsPage'; // REQ-TAL-010
 import { TransporterPortalPage } from '@/modules/transporterportal/TransporterPortalPage'; // REQ-TAL-009
 import { TelemetryQualityPage } from '@/modules/tracking/TelemetryQualityPage'; // REQ-CC-007
@@ -114,6 +127,17 @@ import { DriverSharePage } from '@/modules/tracking/DriverSharePage'; // REQ-TRK
 import { FleetAnalyticsPage } from '@/modules/tracking/FleetAnalyticsPage'; // REQ-TRK-007
 import { ReeferUnitsPage } from '@/modules/tracking/ReeferUnitsPage'; // REQ-TRK-008
 import { EwayWatchPage } from '@/modules/tracking/EwayWatchPage'; // REQ-TRK-009
+// REQ-WMS-020, REQ-WMS-022, REQ-WMS-023, REQ-TRK-010: bonded warehouse, plant & equipment, reefer plug points, electronic locks
+import { BondedWarehousePage } from '@/modules/warehouse/BondedWarehousePage';
+import { PlantPage } from '@/modules/warehouse/PlantPage';
+import { PlugPointsPage } from '@/modules/warehouse/PlugPointsPage';
+import { ElocksPage } from '@/modules/tracking/ElocksPage';
+// REQ-DSP-012, REQ-DSP-013, REQ-CC-015, REQ-CC-016: scheduled reefer routes, home delivery (and the customer's order page), food safety, eutectic plates
+import { ScheduledRoutesPage } from '@/modules/dispatch/schedule/ScheduledRoutesPage';
+import { HomeDeliveryPage } from '@/modules/dispatch/homedelivery/HomeDeliveryPage';
+import { TrackOrderPage } from '@/modules/dispatch/homedelivery/TrackOrderPage';
+import { FoodSafetyPage } from '@/modules/coldchain/foodsafety/FoodSafetyPage';
+import { EutecticPage } from '@/modules/coldchain/eutectic/EutecticPage';
 import { ChangePasswordPage } from '@/modules/auth/ChangePasswordPage'; // REQ-HR-002
 import { ForgotPasswordPage } from '@/modules/auth/ForgotPasswordPage'; // REQ-HR-002
 import { AccessControlPage } from '@/modules/hr/AccessControlPage'; // REQ-HR-001, 002
@@ -151,6 +175,13 @@ import { NotificationsPage } from '@/modules/platform/NotificationsPage'; // REQ
 import { JobsPage } from '@/modules/platform/JobsPage'; // REQ-PLT-010
 import { IntegrationsPage } from '@/modules/platform/IntegrationsPage'; // REQ-PLT-012
 import { ApiAccessPage } from '@/modules/platform/ApiAccessPage'; // REQ-PLT-013
+// REQ-CNF-008, REQ-CNF-009, REQ-PRT-004, REQ-PLT-017, REQ-PLT-018: replenishment, trading, the public website pages, website requests, Ask, energy and carbon.
+import { ReplenishmentPage } from '@/modules/cnf/ReplenishmentPage';
+import { TradingPage } from '@/modules/trading/TradingPage';
+import { TrackLrPage, PickupRequestPage, LocationsPage } from '@/website/publicsite/PublicSitePages';
+import { WebRequestsPage } from '@/modules/platform/WebRequestsPage';
+import { AskPage } from '@/modules/platform/AskPage';
+import { EnergyPage } from '@/modules/platform/EnergyPage';
 
 function PublicWebsite() {
   return <div className="min-h-screen bg-white"><ScrollProgress/><Navbar/><main><Hero/><About/><VisionMission/><Services/><Industries/><Technology/><ErpAccess/><Stats/><Testimonials/><CareersTeaser/><Contact/></main><Footer/><BackToTop/></div>;
@@ -211,6 +242,10 @@ export default function App() {
           <Route path="/warehouse/stock-control" element={<StockControlPage/>} />{/* REQ-WMS-005 Count, Hold & Trace */}
           <Route path="/warehouse/returns" element={<ReturnsPage/>} />{/* REQ-WMS-013 Returns & Disposal */}
           <Route path="/warehouse/services" element={<ServicesPage/>} />{/* REQ-WMS-014 Freezing & Services */}
+          {/* REQ-WMS-018, REQ-WMS-019, REQ-WMS-021 */}
+          <Route path="/warehouse/capacity" element={<ReservedSpacePage/>} />
+          <Route path="/warehouse/kitting" element={<KittingPage/>} />
+          <Route path="/warehouse/ecommerce" element={<EcommercePage/>} />
           <Route path="/warehouse/billing" element={<StorageBillingPage/>} />{/* REQ-WMS-004 Storage Billing */}
           <Route path="/warehouse/reports" element={<WarehouseReportsPage/>} />{/* REQ-WMS-016 Warehouse Reports */}
           <Route path="/transporters" element={<TransportersPage/>} />{/* REQ-TAL-001 Transporters and fleet ownership */}
@@ -222,6 +257,10 @@ export default function App() {
           <Route path="/tenders/share-rules" element={<ShareRulesPage/>} />{/* REQ-TAL-006 Contract share rules */}
           <Route path="/transporters/verification" element={<VerificationPage/>} />{/* REQ-TAL-008, 009 VAHAN / Sarathi checks, portal logins, uploaded documents */}
           <Route path="/transporters/scorecard" element={<ScorecardPage/>} />{/* REQ-TAL-012 Transporter scorecard */}
+          {/* REQ-TAL-013, REQ-TAL-014, REQ-TAL-015 */}
+          <Route path="/transporters/lane-tenders" element={<LaneTendersPage/>} />
+          <Route path="/transporters/free-trucks" element={<FreeTrucksPage/>} />
+          <Route path="/transporters/invoices" element={<InvoiceIntakePage/>} />
           <Route path="/transshipments" element={<TransshipmentsPage/>} />{/* REQ-TAL-010 Truck changes on the road */}
           <Route path="/pod/check" element={<ProofBillCheckPage/>} />{/* REQ-POD-006 Proof-to-Bill Check; ?tab=returns REQ-POD-003 Returns */}
           <Route path="/pod/review" element={<PodReviewPage/>} />{/* REQ-POD-002, 004, 005, 007, REQ-TRP-011 Proof Review */}
@@ -234,6 +273,11 @@ export default function App() {
           <Route path="/tracking/analytics" element={<FleetAnalyticsPage/>} />{/* REQ-TRK-007 Fleet Analytics */}
           <Route path="/tracking/reefers" element={<ReeferUnitsPage/>} />{/* REQ-TRK-008 Reefer Units */}
           <Route path="/tracking/eway-watch" element={<EwayWatchPage/>} />{/* REQ-TRK-009 E-way Bill Watch */}
+          {/* REQ-WMS-020, REQ-WMS-022, REQ-WMS-023, REQ-TRK-010 */}
+          <Route path="/warehouse/bonded" element={<BondedWarehousePage/>} />
+          <Route path="/warehouse/plant" element={<PlantPage/>} />
+          <Route path="/warehouse/plug-points" element={<PlugPointsPage/>} />
+          <Route path="/tracking/elocks" element={<ElocksPage/>} />
           <Route path="/dispatch" element={<DispatchBoardPage/>} />{/* REQ-DSP-001 Planning Board (?load=<id> plans that load) */}
           <Route path="/dispatch/trips/:id" element={<DispatchPlanPage/>} />{/* REQ-DSP-003..009 Dispatch plan of one trip: route, load plan, stock, dock & gate, documents, suggestions */}
           <Route path="/dispatch/loads/:id" element={<LoadDispatchPage/>} />{/* REQ-DSP-004/007/009 goods and consignee of a load, trucks for it */}
@@ -267,6 +311,11 @@ export default function App() {
           <Route path="/billing/profitability" element={<ProfitabilityPage/>} />{/* REQ-BIL-004 */}
           <Route path="/billing/tally" element={<TallyExportPage/>} />{/* REQ-BIL-006 */}
           <Route path="/billing/payables" element={<SupplierPayablesPage/>} />{/* REQ-BIL-007 */}
+          {/* REQ-BIL-009, 010, 011, 012: fuel clauses and surcharges, collections, the agreement vault, dedicated vehicles */}
+          <Route path="/billing/fuel-clauses" element={<FuelClausesPage/>} />{/* REQ-BIL-009 */}
+          <Route path="/billing/collections" element={<CollectionsPage/>} />{/* REQ-BIL-010 */}
+          <Route path="/billing/agreements" element={<AgreementVaultPage/>} />{/* REQ-BIL-011 */}
+          <Route path="/billing/dedicated" element={<DedicatedVehiclesPage/>} />{/* REQ-BIL-012 */}
           <Route path="/expenses" element={<VehicleExpensePage/>} />
           <Route path="/admin/account" element={<ChangePasswordPage/>} />{/* REQ-HR-002: every login, with the password policy */}
           <Route path="/admin/access" element={<AccessControlPage/>} />{/* REQ-HR-001, 002 Access Control */}
@@ -308,7 +357,24 @@ export default function App() {
           <Route path="/platform/jobs" element={<JobsPage/>} />
           <Route path="/platform/integrations" element={<IntegrationsPage/>} />
           <Route path="/platform/api" element={<ApiAccessPage/>} />
+          {/* REQ-CNF-008, REQ-CNF-009, REQ-PRT-004, REQ-PLT-017, REQ-PLT-018: office pages (inside the menu), then the public website pages (no login) */}
+          <Route path="/cnf/replenishment" element={<ReplenishmentPage/>} />
+          <Route path="/trading" element={<TradingPage/>} />
+          <Route path="/web-requests" element={<WebRequestsPage/>} />
+          <Route path="/ask" element={<AskPage/>} />
+          <Route path="/energy" element={<EnergyPage/>} />
         </Route>
+        {/* REQ-DSP-012, REQ-DSP-013, REQ-CC-015, REQ-CC-016: the customer's order page (no login) and the four staff screens */}
+        <Route path="/track/order/:token" element={<TrackOrderPage/>} />
+        <Route element={<AppShell/>}>
+          <Route path="/dispatch/scheduled-routes" element={<ScheduledRoutesPage/>} />
+          <Route path="/dispatch/home-delivery" element={<HomeDeliveryPage/>} />
+          <Route path="/cold-chain/food-safety" element={<FoodSafetyPage/>} />
+          <Route path="/cold-chain/eutectic" element={<EutecticPage/>} />
+        </Route>
+        <Route path="/track" element={<TrackLrPage/>} />
+        <Route path="/pickup" element={<PickupRequestPage/>} />
+        <Route path="/locations" element={<LocationsPage/>} />
         <Route path="/" element={<PublicWebsite/>} />
         <Route path="*" element={<PublicWebsite/>} />
       </Routes>
