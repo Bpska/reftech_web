@@ -8,7 +8,6 @@ coverage/
 *.local
 
 # Local environment and secrets (.env.example is kept)
-.env
 .env.*
 !.env.example
 
