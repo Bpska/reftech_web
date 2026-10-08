@@ -122,6 +122,11 @@ export const MENU_TEXTS = [
   "Profitability",
   "Supplier Payables",
   "Tally Export",
+  // REQ-BIL-009, 010, 011, 012: fuel clauses, collections, agreement vault, dedicated vehicles
+  "Fuel & Surcharges",
+  "Collections",
+  "Agreement Vault",
+  "Dedicated Vehicles",
   "E-way Bills",
   "Company GST Profile",
   "Expenses",

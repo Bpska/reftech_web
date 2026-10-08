@@ -121,6 +121,11 @@ export const or: Record<string, string> = {
   "Profitability": "ଲାଭଜନକତା",
   "Supplier Payables": "ଯୋଗାଣକାରୀ ଦେୟ",
   "Tally Export": "ଟାଲି ଏକ୍ସପୋର୍ଟ",
+  // REQ-BIL-009, 010, 011, 012: fuel clauses, collections, agreement vault, dedicated vehicles
+  "Fuel & Surcharges": "ଇନ୍ଧନ ଓ ଅତିରିକ୍ତ ଶୁଳ୍କ",
+  "Collections": "ଆଦାୟ",
+  "Agreement Vault": "ଚୁକ୍ତିନାମା ଭଣ୍ଡାର",
+  "Dedicated Vehicles": "ଉଦ୍ଦିଷ୍ଟ ଯାନ",
   "E-way Bills": "ଇ-ୱେ ବିଲ୍",
   "Company GST Profile": "କମ୍ପାନୀ ଜିଏସଟି ପ୍ରୋଫାଇଲ୍",
   "Expenses": "ଖର୍ଚ୍ଚ",

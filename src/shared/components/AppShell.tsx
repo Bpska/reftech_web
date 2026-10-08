@@ -352,6 +352,11 @@ export function AppShell() {
                 <Link className={sub} to="/billing/payables">{t('Supplier Payables')}</Link>
                 <Link className={sub} to="/billing/tally">{t('Tally Export')}</Link>
               </>}
+              {/* REQ-BIL-009, 010, 011, 012: fuel clauses and surcharges, collections, the agreement vault, dedicated vehicle contracts */}
+              {(admin || manager) && <Link className={sub} to="/billing/fuel-clauses">{t('Fuel & Surcharges')}</Link>}
+              {(admin || manager || (!!me && can(me, 'BILLING_COLLECTIONS'))) && <Link className={sub} to="/billing/collections">{t('Collections')}</Link>}
+              {(admin || manager || (!!me && can(me, 'BILLING_AGREEMENTS'))) && <Link className={sub} to="/billing/agreements">{t('Agreement Vault')}</Link>}
+              {(admin || manager) && <Link className={sub} to="/billing/dedicated">{t('Dedicated Vehicles')}</Link>}
               {employee && !admin && !manager && <Link className={sub} to="/billing/gst?tab=eway">{t('E-way Bills')}</Link>}
               {admin && <Link className={sub} to="/billing#company-gst-profile">{t('Company GST Profile')}</Link>}
               <Link className={sub} to="/expenses">{t('Expenses')}</Link>

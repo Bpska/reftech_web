@@ -93,6 +93,11 @@ import { ComplianceCalendarPage } from '@/modules/gov/ComplianceCalendarPage'; /
 import { RoadSafetyPage } from '@/modules/gov/RoadSafetyPage'; // REQ-GOV-015
 import { GovConnectionsPage } from '@/modules/gov/GovConnectionsPage'; // REQ-GOV-014
 import { PerTonBillingPage } from '@/modules/billing/PerTonBillingPage'; // REQ-BIL-008
+// REQ-BIL-009, 010, 011, 012: fuel clauses and surcharges, collections, the agreement vault, dedicated vehicle contracts
+import { FuelClausesPage } from '@/modules/billing/FuelClausesPage';
+import { CollectionsPage } from '@/modules/billing/CollectionsPage';
+import { AgreementVaultPage } from '@/modules/billing/AgreementVaultPage';
+import { DedicatedVehiclesPage } from '@/modules/billing/DedicatedVehiclesPage';
 import BillingRateContractsPage from '@/modules/billing/RateContractsPage'; // REQ-BIL-001 (renamed: the transporter page above has the same name)
 import PaymentsPage from '@/modules/billing/PaymentsPage'; // REQ-BIL-002
 import GstPage from '@/modules/billing/GstPage'; // REQ-BIL-003
@@ -299,6 +304,11 @@ export default function App() {
           <Route path="/billing/profitability" element={<ProfitabilityPage/>} />{/* REQ-BIL-004 */}
           <Route path="/billing/tally" element={<TallyExportPage/>} />{/* REQ-BIL-006 */}
           <Route path="/billing/payables" element={<SupplierPayablesPage/>} />{/* REQ-BIL-007 */}
+          {/* REQ-BIL-009, 010, 011, 012: fuel clauses and surcharges, collections, the agreement vault, dedicated vehicles */}
+          <Route path="/billing/fuel-clauses" element={<FuelClausesPage/>} />{/* REQ-BIL-009 */}
+          <Route path="/billing/collections" element={<CollectionsPage/>} />{/* REQ-BIL-010 */}
+          <Route path="/billing/agreements" element={<AgreementVaultPage/>} />{/* REQ-BIL-011 */}
+          <Route path="/billing/dedicated" element={<DedicatedVehiclesPage/>} />{/* REQ-BIL-012 */}
           <Route path="/expenses" element={<VehicleExpensePage/>} />
           <Route path="/admin/account" element={<ChangePasswordPage/>} />{/* REQ-HR-002: every login, with the password policy */}
           <Route path="/admin/access" element={<AccessControlPage/>} />{/* REQ-HR-001, 002 Access Control */}
