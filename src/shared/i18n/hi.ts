@@ -338,4 +338,9 @@ export const hi: Record<string, string> = {
   "Available": "उपलब्ध",
   "Breakdown": "खराबी",
   "Under maintenance": "मरम्मत में",
+  // REQ-DSP-012, REQ-DSP-013, REQ-CC-015, REQ-CC-016
+  "Scheduled Routes": "निर्धारित रूट",
+  "Home Delivery": "होम डिलीवरी",
+  "Food Safety": "खाद्य सुरक्षा",
+  "Eutectic Plates": "यूटेक्टिक प्लेटें",
 };

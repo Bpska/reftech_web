@@ -338,4 +338,9 @@ export const or: Record<string, string> = {
   "Available": "ଉପଲବ୍ଧ",
   "Breakdown": "ବିଗିଡ଼ିଛି",
   "Under maintenance": "ମରାମତିରେ",
+  // REQ-DSP-012, REQ-DSP-013, REQ-CC-015, REQ-CC-016
+  "Scheduled Routes": "ନିର୍ଦ୍ଧାରିତ ରୁଟ୍",
+  "Home Delivery": "ହୋମ୍ ଡେଲିଭରି",
+  "Food Safety": "ଖାଦ୍ୟ ସୁରକ୍ଷା",
+  "Eutectic Plates": "ୟୁଟେକ୍ଟିକ୍ ପ୍ଲେଟ୍",
 };
