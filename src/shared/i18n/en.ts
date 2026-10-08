@@ -63,6 +63,10 @@ export const MENU_TEXTS = [
   "Verification & Portal",
   "Scorecard",
   "Truck Changes",
+  // REQ-TAL-013, REQ-TAL-014, REQ-TAL-015
+  "Lane Tenders",
+  "Free Trucks",
+  "Transporter Invoices",
   "Trip",
   "My Trips",
   "Create Trip",
@@ -118,6 +122,11 @@ export const MENU_TEXTS = [
   "Profitability",
   "Supplier Payables",
   "Tally Export",
+  // REQ-BIL-009, 010, 011, 012: fuel clauses, collections, agreement vault, dedicated vehicles
+  "Fuel & Surcharges",
+  "Collections",
+  "Agreement Vault",
+  "Dedicated Vehicles",
   "E-way Bills",
   "Company GST Profile",
   "Expenses",
@@ -136,6 +145,32 @@ export const MENU_TEXTS = [
   "Platform",
   "Analytics",
   "My Account",
+  // REQ-WMS-018, REQ-WMS-019, REQ-WMS-021: warehouse menu links
+  "Reserved Space",
+  "Kitting & Grading",
+  "E-commerce Fulfilment",
+  // REQ-WMS-020, REQ-WMS-022, REQ-WMS-023, REQ-TRK-010
+  "Bonded Warehouse",
+  "Plant & Equipment",
+  "Reefer Plug Points",
+  "Electronic Locks",
+  // REQ-DSP-012, REQ-DSP-013, REQ-CC-015, REQ-CC-016
+  "Scheduled Routes",
+  "Home Delivery",
+  "Food Safety",
+  "Eutectic Plates",
+  // REQ-CNF-008, REQ-CNF-009, REQ-PRT-004, REQ-PLT-017, REQ-PLT-018: menu labels
+  "Replenishment",
+  "Trading & Distribution",
+  "Vendors & Customers",
+  "Purchase Orders",
+  "Trading Stock",
+  "Sales & Invoices",
+  "Margins",
+  "Website Requests",
+  "Ask",
+  "Energy & Carbon",
+  "My Carbon Report",
 ] as const;
 
 /** Common words of every screen and of DataTable. */

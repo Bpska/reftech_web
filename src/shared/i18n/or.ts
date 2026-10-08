@@ -62,6 +62,10 @@ export const or: Record<string, string> = {
   "Verification & Portal": "ଯାଞ୍ଚ ଓ ପୋର୍ଟାଲ୍",
   "Scorecard": "ସ୍କୋରକାର୍ଡ",
   "Truck Changes": "ଟ୍ରକ୍ ବଦଳ",
+  // REQ-TAL-013, REQ-TAL-014, REQ-TAL-015
+  "Lane Tenders": "ଲେନ୍ ଟେଣ୍ଡର",
+  "Free Trucks": "ଖାଲି ଟ୍ରକ୍",
+  "Transporter Invoices": "ଟ୍ରାନ୍ସପୋର୍ଟର ବିଲ୍",
   "Trip": "ଟ୍ରିପ୍",
   "My Trips": "ମୋର ଟ୍ରିପ୍",
   "Create Trip": "ଟ୍ରିପ୍ ତିଆରି କରନ୍ତୁ",
@@ -117,6 +121,11 @@ export const or: Record<string, string> = {
   "Profitability": "ଲାଭଜନକତା",
   "Supplier Payables": "ଯୋଗାଣକାରୀ ଦେୟ",
   "Tally Export": "ଟାଲି ଏକ୍ସପୋର୍ଟ",
+  // REQ-BIL-009, 010, 011, 012: fuel clauses, collections, agreement vault, dedicated vehicles
+  "Fuel & Surcharges": "ଇନ୍ଧନ ଓ ଅତିରିକ୍ତ ଶୁଳ୍କ",
+  "Collections": "ଆଦାୟ",
+  "Agreement Vault": "ଚୁକ୍ତିନାମା ଭଣ୍ଡାର",
+  "Dedicated Vehicles": "ଉଦ୍ଦିଷ୍ଟ ଯାନ",
   "E-way Bills": "ଇ-ୱେ ବିଲ୍",
   "Company GST Profile": "କମ୍ପାନୀ ଜିଏସଟି ପ୍ରୋଫାଇଲ୍",
   "Expenses": "ଖର୍ଚ୍ଚ",
@@ -135,6 +144,15 @@ export const or: Record<string, string> = {
   "Platform": "ପ୍ଲାଟଫର୍ମ",
   "Analytics": "ବିଶ୍ଳେଷଣ",
   "My Account": "ମୋ ଖାତା",
+  // REQ-WMS-018, REQ-WMS-019, REQ-WMS-021: warehouse menu links
+  "Reserved Space": "ସଂରକ୍ଷିତ ସ୍ଥାନ",
+  "Kitting & Grading": "କିଟିଂ ଓ ଗ୍ରେଡିଂ",
+  "E-commerce Fulfilment": "ଇ-କମର୍ସ ଫୁଲଫିଲମେଣ୍ଟ",
+  // REQ-WMS-020, REQ-WMS-022, REQ-WMS-023, REQ-TRK-010
+  "Bonded Warehouse": "ବଣ୍ଡେଡ୍ ଗୋଦାମ",
+  "Plant & Equipment": "ପ୍ଲାଣ୍ଟ ଓ ଉପକରଣ",
+  "Reefer Plug Points": "ରିଫର୍ ପ୍ଲଗ୍ ପଏଣ୍ଟ",
+  "Electronic Locks": "ଇଲେକ୍ଟ୍ରୋନିକ୍ ତାଲା",
   // Common words of every screen and of DataTable.
   "Save": "ସେଭ୍ କରନ୍ତୁ",
   "Cancel": "ବାତିଲ୍ କରନ୍ତୁ",
@@ -325,4 +343,21 @@ export const or: Record<string, string> = {
   "Available": "ଉପଲବ୍ଧ",
   "Breakdown": "ବିଗିଡ଼ିଛି",
   "Under maintenance": "ମରାମତିରେ",
+  // REQ-DSP-012, REQ-DSP-013, REQ-CC-015, REQ-CC-016
+  "Scheduled Routes": "ନିର୍ଦ୍ଧାରିତ ରୁଟ୍",
+  "Home Delivery": "ହୋମ୍ ଡେଲିଭରି",
+  "Food Safety": "ଖାଦ୍ୟ ସୁରକ୍ଷା",
+  "Eutectic Plates": "ୟୁଟେକ୍ଟିକ୍ ପ୍ଲେଟ୍",
+  // REQ-CNF-008, REQ-CNF-009, REQ-PRT-004, REQ-PLT-017, REQ-PLT-018: menu labels
+  "Replenishment": "ପୁନଃପୂରଣ",
+  "Trading & Distribution": "ବ୍ୟାପାର ଓ ବଣ୍ଟନ",
+  "Vendors & Customers": "ବିକ୍ରେତା ଓ ଗ୍ରାହକ",
+  "Purchase Orders": "କ୍ରୟ ଆଦେଶ",
+  "Trading Stock": "ବ୍ୟାପାର ଷ୍ଟକ୍",
+  "Sales & Invoices": "ବିକ୍ରି ଓ ଇନଭଏସ୍",
+  "Margins": "ମାର୍ଜିନ୍",
+  "Website Requests": "ୱେବସାଇଟ୍ ଅନୁରୋଧ",
+  "Ask": "ପଚାରନ୍ତୁ",
+  "Energy & Carbon": "ଶକ୍ତି ଓ କାର୍ବନ",
+  "My Carbon Report": "ମୋ କାର୍ବନ ରିପୋର୍ଟ",
 };

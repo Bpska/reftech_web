@@ -62,6 +62,10 @@ export const hi: Record<string, string> = {
   "Verification & Portal": "सत्यापन और पोर्टल",
   "Scorecard": "स्कोरकार्ड",
   "Truck Changes": "ट्रक बदलाव",
+  // REQ-TAL-013, REQ-TAL-014, REQ-TAL-015
+  "Lane Tenders": "लेन टेंडर",
+  "Free Trucks": "खाली ट्रक",
+  "Transporter Invoices": "ट्रांसपोर्टर बिल",
   "Trip": "ट्रिप",
   "My Trips": "मेरी ट्रिप",
   "Create Trip": "ट्रिप बनाएँ",
@@ -117,6 +121,11 @@ export const hi: Record<string, string> = {
   "Profitability": "लाभप्रदता",
   "Supplier Payables": "आपूर्तिकर्ता देय",
   "Tally Export": "टैली एक्सपोर्ट",
+  // REQ-BIL-009, 010, 011, 012: fuel clauses, collections, agreement vault, dedicated vehicles
+  "Fuel & Surcharges": "ईंधन और अधिभार",
+  "Collections": "वसूली",
+  "Agreement Vault": "अनुबंध तिजोरी",
+  "Dedicated Vehicles": "समर्पित वाहन",
   "E-way Bills": "ई-वे बिल",
   "Company GST Profile": "कंपनी जीएसटी प्रोफ़ाइल",
   "Expenses": "खर्च",
@@ -135,6 +144,15 @@ export const hi: Record<string, string> = {
   "Platform": "प्लेटफ़ॉर्म",
   "Analytics": "विश्लेषण",
   "My Account": "मेरा खाता",
+  // REQ-WMS-018, REQ-WMS-019, REQ-WMS-021: warehouse menu links
+  "Reserved Space": "आरक्षित जगह",
+  "Kitting & Grading": "किटिंग और ग्रेडिंग",
+  "E-commerce Fulfilment": "ई-कॉमर्स फ़ुलफ़िलमेंट",
+  // REQ-WMS-020, REQ-WMS-022, REQ-WMS-023, REQ-TRK-010
+  "Bonded Warehouse": "बॉन्डेड गोदाम",
+  "Plant & Equipment": "प्लांट और उपकरण",
+  "Reefer Plug Points": "रीफर प्लग पॉइंट",
+  "Electronic Locks": "इलेक्ट्रॉनिक ताले",
   // Common words of every screen and of DataTable.
   "Save": "सहेजें",
   "Cancel": "रद्द करें",
@@ -325,4 +343,21 @@ export const hi: Record<string, string> = {
   "Available": "उपलब्ध",
   "Breakdown": "खराबी",
   "Under maintenance": "मरम्मत में",
+  // REQ-DSP-012, REQ-DSP-013, REQ-CC-015, REQ-CC-016
+  "Scheduled Routes": "निर्धारित रूट",
+  "Home Delivery": "होम डिलीवरी",
+  "Food Safety": "खाद्य सुरक्षा",
+  "Eutectic Plates": "यूटेक्टिक प्लेटें",
+  // REQ-CNF-008, REQ-CNF-009, REQ-PRT-004, REQ-PLT-017, REQ-PLT-018: menu labels
+  "Replenishment": "पुनःपूर्ति",
+  "Trading & Distribution": "ट्रेडिंग और वितरण",
+  "Vendors & Customers": "विक्रेता और ग्राहक",
+  "Purchase Orders": "खरीद आदेश",
+  "Trading Stock": "ट्रेडिंग स्टॉक",
+  "Sales & Invoices": "बिक्री और चालान",
+  "Margins": "मार्जिन",
+  "Website Requests": "वेबसाइट अनुरोध",
+  "Ask": "पूछें",
+  "Energy & Carbon": "ऊर्जा और कार्बन",
+  "My Carbon Report": "मेरी कार्बन रिपोर्ट",
 };
