@@ -140,6 +140,11 @@ export const MENU_TEXTS = [
   "Reserved Space",
   "Kitting & Grading",
   "E-commerce Fulfilment",
+  // REQ-WMS-020, REQ-WMS-022, REQ-WMS-023, REQ-TRK-010
+  "Bonded Warehouse",
+  "Plant & Equipment",
+  "Reefer Plug Points",
+  "Electronic Locks",
 ] as const;
 
 /** Common words of every screen and of DataTable. */

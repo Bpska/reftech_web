@@ -118,6 +118,11 @@ import { DriverSharePage } from '@/modules/tracking/DriverSharePage'; // REQ-TRK
 import { FleetAnalyticsPage } from '@/modules/tracking/FleetAnalyticsPage'; // REQ-TRK-007
 import { ReeferUnitsPage } from '@/modules/tracking/ReeferUnitsPage'; // REQ-TRK-008
 import { EwayWatchPage } from '@/modules/tracking/EwayWatchPage'; // REQ-TRK-009
+// REQ-WMS-020, REQ-WMS-022, REQ-WMS-023, REQ-TRK-010: bonded warehouse, plant & equipment, reefer plug points, electronic locks
+import { BondedWarehousePage } from '@/modules/warehouse/BondedWarehousePage';
+import { PlantPage } from '@/modules/warehouse/PlantPage';
+import { PlugPointsPage } from '@/modules/warehouse/PlugPointsPage';
+import { ElocksPage } from '@/modules/tracking/ElocksPage';
 import { ChangePasswordPage } from '@/modules/auth/ChangePasswordPage'; // REQ-HR-002
 import { ForgotPasswordPage } from '@/modules/auth/ForgotPasswordPage'; // REQ-HR-002
 import { AccessControlPage } from '@/modules/hr/AccessControlPage'; // REQ-HR-001, 002
@@ -242,6 +247,11 @@ export default function App() {
           <Route path="/tracking/analytics" element={<FleetAnalyticsPage/>} />{/* REQ-TRK-007 Fleet Analytics */}
           <Route path="/tracking/reefers" element={<ReeferUnitsPage/>} />{/* REQ-TRK-008 Reefer Units */}
           <Route path="/tracking/eway-watch" element={<EwayWatchPage/>} />{/* REQ-TRK-009 E-way Bill Watch */}
+          {/* REQ-WMS-020, REQ-WMS-022, REQ-WMS-023, REQ-TRK-010 */}
+          <Route path="/warehouse/bonded" element={<BondedWarehousePage/>} />
+          <Route path="/warehouse/plant" element={<PlantPage/>} />
+          <Route path="/warehouse/plug-points" element={<PlugPointsPage/>} />
+          <Route path="/tracking/elocks" element={<ElocksPage/>} />
           <Route path="/dispatch" element={<DispatchBoardPage/>} />{/* REQ-DSP-001 Planning Board (?load=<id> plans that load) */}
           <Route path="/dispatch/trips/:id" element={<DispatchPlanPage/>} />{/* REQ-DSP-003..009 Dispatch plan of one trip: route, load plan, stock, dock & gate, documents, suggestions */}
           <Route path="/dispatch/loads/:id" element={<LoadDispatchPage/>} />{/* REQ-DSP-004/007/009 goods and consignee of a load, trucks for it */}

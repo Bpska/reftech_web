@@ -139,6 +139,11 @@ export const or: Record<string, string> = {
   "Reserved Space": "ସଂରକ୍ଷିତ ସ୍ଥାନ",
   "Kitting & Grading": "କିଟିଂ ଓ ଗ୍ରେଡିଂ",
   "E-commerce Fulfilment": "ଇ-କମର୍ସ ଫୁଲଫିଲମେଣ୍ଟ",
+  // REQ-WMS-020, REQ-WMS-022, REQ-WMS-023, REQ-TRK-010
+  "Bonded Warehouse": "ବଣ୍ଡେଡ୍ ଗୋଦାମ",
+  "Plant & Equipment": "ପ୍ଲାଣ୍ଟ ଓ ଉପକରଣ",
+  "Reefer Plug Points": "ରିଫର୍ ପ୍ଲଗ୍ ପଏଣ୍ଟ",
+  "Electronic Locks": "ଇଲେକ୍ଟ୍ରୋନିକ୍ ତାଲା",
   // Common words of every screen and of DataTable.
   "Save": "ସେଭ୍ କରନ୍ତୁ",
   "Cancel": "ବାତିଲ୍ କରନ୍ତୁ",
