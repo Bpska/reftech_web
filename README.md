@@ -17,7 +17,7 @@ Vitest. The interface is available in English, Hindi and Odia.
 
 | Part | Where | Main pages |
 |---|---|---|
-| Public website | `src/website/` | `/` (home, services, industries, technology, contact) |
+| Public website | `src/website/` | `/` (home, services, industries, technology, contact), `/careers` and `/careers/:id` (job openings and the Apply form) |
 | Sign-in and account | `src/modules/auth/` | `/login`, `/forgot-password`, `/account/password`, `/me` |
 | Dashboard and operations | `dashboard`, `trip`, `partload`, `dispatch` | `/dashboard`, `/operations`, `/trips/:id`, `/loads`, `/part-load`, `/dispatch/...`, `/delays` |
 | Cold chain and compliance | `coldchain`, `compliance` | `/cold-chain/...`, `/excursions`, `/temperature-profiles`, `/device-events`, `/compliance`, `/quality-holds` |
@@ -29,7 +29,7 @@ Vitest. The interface is available in English, Hindi and Odia.
 | Fleet and maintenance | `fleet`, `maintenance` | `/admin/vehicles`, `/maintenance`, `/expenses` |
 | Billing and finance | `billing` | `/billing/...` (per-ton, rate contracts, payments, GST, Tally, payables, profitability), `/admin/finance` |
 | Government data | `gov` | `/gov/...` (alerts, tolls, vehicles, challans, licences, GST, FSSAI) |
-| HR and access | `hr`, `admin` | `/admin/hr`, `/admin/access`, `/hr/...` (attendance, leave, payroll, letters, documents, driver safety) |
+| HR and access | `hr`, `admin` | `/admin/hr`, `/admin/access`, `/hr/...` (attendance, leave, payroll, letters, documents, driver safety, recruitment) |
 | Driver mobile screens | `driver` | `/driver`, `/driver/:tripId`, `/driver/me` |
 | Customer links (no sign-in) | `tracking`, `pod` | `/track/:token`, `/share-location/:token` |
 | Platform administration | `platform` | `/platform/...` (companies, plans, audit, privacy, backups, health, jobs, notifications, files, API keys) |
@@ -115,7 +115,7 @@ Serve the site over HTTPS. Push notifications (`public/sw.js`) and the driver's 
 |---|---|
 | `npm run typecheck` | TypeScript check |
 | `npm run lint` | ESLint |
-| `npm test` | unit tests (Vitest), 73 tests |
+| `npm test` | unit tests (Vitest), 77 tests |
 
 ## Notes
 

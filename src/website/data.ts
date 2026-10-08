@@ -45,13 +45,15 @@ import {
   Star,
 } from 'lucide-react';
 
+// The section links start with "/" so they also work from the Careers pages (REQ-HR-010), which are not on the home page.
 export const NAV_LINKS = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Industries', href: '#industries' },
-  { label: 'Technology', href: '#technology' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/#home' },
+  { label: 'About', href: '/#about' },
+  { label: 'Services', href: '/#services' },
+  { label: 'Industries', href: '/#industries' },
+  { label: 'Technology', href: '/#technology' },
+  { label: 'Careers', href: '/careers' },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 export const HERO_IMAGE = '/media/reftech_truck.jpeg';
@@ -316,24 +318,25 @@ export const SOCIAL_LINKS = [
 
 export const FOOTER_LINKS = {
   Menu: [
-    { label: 'Home', href: '#home' },
-    { label: 'About Us', href: '#about' },
-    { label: 'Services', href: '#services' },
-    { label: 'Industries', href: '#industries' },
-    { label: 'Technology', href: '#technology' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Home', href: '/#home' },
+    { label: 'About Us', href: '/#about' },
+    { label: 'Services', href: '/#services' },
+    { label: 'Industries', href: '/#industries' },
+    { label: 'Technology', href: '/#technology' },
+    { label: 'Careers', href: '/careers' },
+    { label: 'Contact', href: '/#contact' },
   ],
   Services: [
-    { label: 'Temperature-Controlled Logistics', href: '#services' },
-    { label: 'Real-Time Tracking', href: '#technology' },
-    { label: 'End-to-End Supply Chain', href: '#services' },
-    { label: 'Sustainable Cold Chain', href: '#services' },
+    { label: 'Temperature-Controlled Logistics', href: '/#services' },
+    { label: 'Real-Time Tracking', href: '/#technology' },
+    { label: 'End-to-End Supply Chain', href: '/#services' },
+    { label: 'Sustainable Cold Chain', href: '/#services' },
   ],
   Industries: [
-    { label: 'Food & Beverage', href: '#industries' },
-    { label: 'Pharmaceuticals', href: '#industries' },
-    { label: 'Agriculture', href: '#industries' },
-    { label: 'Dairy & Frozen', href: '#industries' },
+    { label: 'Food & Beverage', href: '/#industries' },
+    { label: 'Pharmaceuticals', href: '/#industries' },
+    { label: 'Agriculture', href: '/#industries' },
+    { label: 'Dairy & Frozen', href: '/#industries' },
   ],
 };
 

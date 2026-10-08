@@ -47,7 +47,7 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5 lg:gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <a href="#home" className="flex items-center gap-2.5">
+            <a href="/#home" className="flex items-center gap-2.5">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-frost-500 to-frost-700 shadow-lg">
                 <Snowflake className="h-5 w-5 text-white" />
               </div>

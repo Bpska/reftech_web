@@ -31,7 +31,7 @@ export function AppShell() {
   const me = useMe();
   // Until /api/access/me answers (or before database_v2/56 is run) every section shows as before.
   const may = (...perms: string[]) => admin || !me || !me.ready || can(me, ...perms);
-  const hrAny = admin || (!!me && can(me, 'HR_EMPLOYEES', 'HR_ATTENDANCE', 'HR_LEAVE_APPROVE', 'HR_PAYROLL', 'HR_PAYROLL_APPROVE', 'HR_LETTERS', 'HR_DOCUMENTS', 'HR_WORK_EMAIL', 'DRIVER_SAFETY_VIEW'));
+  const hrAny = admin || (!!me && can(me, 'HR_EMPLOYEES', 'HR_ATTENDANCE', 'HR_LEAVE_APPROVE', 'HR_PAYROLL', 'HR_PAYROLL_APPROVE', 'HR_LETTERS', 'HR_DOCUMENTS', 'HR_WORK_EMAIL', 'DRIVER_SAFETY_VIEW', 'HR_RECRUITMENT'));
   const staff = (admin || manager || employee) && !(String(user.loginType || user.userType || '').toUpperCase() === 'PARTNER' || role === 'PARTNER');
   // REQ-CC-003-FIX1: a Partner login (a customer of RefTech) gets its own short menu for load requests.
   const partnerLogin = String(user.loginType || user.userType || '').toUpperCase() === 'PARTNER' || role === 'PARTNER';
@@ -154,6 +154,8 @@ export function AppShell() {
               {may('HR_WORK_EMAIL') && <Link className={sub} to="/hr/work-email">{t('Work Email')}</Link>}
               {may('HR_EMPLOYEES') && <Link className={sub} to="/hr/profile-changes">{t('Detail Changes')}</Link>}
               {may('DRIVER_SAFETY_VIEW') && <Link className={sub} to="/hr/driver-safety">{t('Driver Safety')}</Link>}
+              {/* REQ-HR-010: job openings on the Careers page and the applicants */}
+              {may('HR_RECRUITMENT') && <Link className={sub} to="/hr/recruitment">{t('Recruitment')}</Link>}
               {admin && <Link className={sub} to="/admin/hr#salary-report">{t('Salary Report')}</Link>}
             </>)}
             {/* REQ-HR-001, 002: roles, permissions, logins, password policy */}

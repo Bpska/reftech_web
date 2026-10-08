@@ -125,6 +125,8 @@ import { EssPage } from '@/modules/hr/EssPage'; // REQ-HR-007
 import { ProfileChangesPage } from '@/modules/hr/ProfileChangesPage'; // REQ-HR-007
 import { HrDocumentsPage } from '@/modules/hr/HrDocumentsPage'; // REQ-HR-008
 import { DriverSafetyPage } from '@/modules/hr/DriverSafetyPage'; // REQ-HR-009
+import { RecruitmentPage } from '@/modules/hr/RecruitmentPage'; // REQ-HR-010
+import { CareersListPage, CareerJobPage, CareersTeaser } from '@/website/careers/CareersPage'; // REQ-HR-010 Careers page of the website
 // REQ-PRT-001, REQ-PLT-001 .. 016: platform screens (database_v2/60 on reftech_hr, 61 on reftech_ai)
 import { PrefsProvider } from '@/shared/i18n/PrefsProvider'; // REQ-PLT-015 language, units, accessibility
 import { PartnerUsersPage } from '@/modules/platform/PartnerUsersPage'; // REQ-PRT-001
@@ -151,7 +153,7 @@ import { IntegrationsPage } from '@/modules/platform/IntegrationsPage'; // REQ-P
 import { ApiAccessPage } from '@/modules/platform/ApiAccessPage'; // REQ-PLT-013
 
 function PublicWebsite() {
-  return <div className="min-h-screen bg-white"><ScrollProgress/><Navbar/><main><Hero/><About/><VisionMission/><Services/><Industries/><Technology/><ErpAccess/><Stats/><Testimonials/><Contact/></main><Footer/><BackToTop/></div>;
+  return <div className="min-h-screen bg-white"><ScrollProgress/><Navbar/><main><Hero/><About/><VisionMission/><Services/><Industries/><Technology/><ErpAccess/><Stats/><Testimonials/><CareersTeaser/><Contact/></main><Footer/><BackToTop/></div>;
 }
 
 export default function App() {
@@ -173,6 +175,9 @@ export default function App() {
         {/* REQ-TRK-006: the customer's tracking link and REQ-TRK-002 / MOB-204: the hired driver's sharing link. No login, outside the office menu. */}
         <Route path="/track/:token" element={<PublicTrackingPage/>} />
         <Route path="/share-location/:token" element={<DriverSharePage/>} />
+        {/* REQ-HR-010: the Careers page of the website: open positions and the Apply form with resume upload. No login. */}
+        <Route path="/careers" element={<CareersListPage/>} />
+        <Route path="/careers/:id" element={<CareerJobPage/>} />
         <Route element={<AppShell/>}>
           <Route path="/dashboard" element={<DashboardPage/>} />
           <Route path="/admin/hr" element={<AdminHrPage/>} />
@@ -273,6 +278,7 @@ export default function App() {
           <Route path="/hr/profile-changes" element={<ProfileChangesPage/>} />{/* REQ-HR-007 */}
           <Route path="/hr/documents" element={<HrDocumentsPage/>} />{/* REQ-HR-008 */}
           <Route path="/hr/driver-safety" element={<DriverSafetyPage/>} />{/* REQ-HR-009 */}
+          <Route path="/hr/recruitment" element={<RecruitmentPage/>} />{/* REQ-HR-010 job openings and applicants */}
           <Route path="/me" element={<EssPage/>} />{/* REQ-HR-007 My HR */}
           <Route path="/admin/finance" element={<FinanceReportPage/>} />
           {/* REQ-PRT-001, REQ-PLT-001 .. 016 platform */}

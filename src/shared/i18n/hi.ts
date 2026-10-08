@@ -22,6 +22,7 @@ export const hi: Record<string, string> = {
   "Work Email": "कार्य ईमेल",
   "Detail Changes": "विवरण में बदलाव",
   "Driver Safety": "ड्राइवर सुरक्षा",
+  "Recruitment": "भर्ती",
   "Salary Report": "वेतन रिपोर्ट",
   "Access Control": "पहुँच नियंत्रण",
   "Inventory": "इन्वेंटरी",
