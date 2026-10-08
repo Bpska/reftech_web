@@ -58,15 +58,15 @@ export function Navbar() {
           <div className="hidden items-center gap-3 lg:flex">
             <a
               href="tel:+919876543210"
-              className={`flex items-center gap-2 text-sm font-medium transition-colors ${scrolled ? 'text-white/80 hover:text-white' : 'text-deep-600 hover:text-frost-700'}`}
+              className={`flex items-center gap-2 whitespace-nowrap text-sm font-medium transition-colors ${scrolled ? 'text-white/80 hover:text-white' : 'text-deep-600 hover:text-frost-700'}`}
             >
               <Phone className="h-4 w-4" />
               +91 98765 43210
             </a>
-            {/* The office email after the phone number; on wide screens (2xl) only, so the top bar does not crowd on laptops; the mobile menu always shows it. */}
+            {/* The office email after the phone number; from 1400px wide, so the top bar does not crowd on laptops; the mobile menu always shows it. */}
             <a
               href="mailto:admin@reftech.in"
-              className={`hidden items-center gap-2 whitespace-nowrap text-sm font-medium transition-colors 2xl:flex ${scrolled ? 'text-white/80 hover:text-white' : 'text-deep-600 hover:text-frost-700'}`}
+              className={`hidden items-center gap-2 whitespace-nowrap text-sm font-medium transition-colors min-[1400px]:flex ${scrolled ? 'text-white/80 hover:text-white' : 'text-deep-600 hover:text-frost-700'}`}
             >
               <Mail className="h-4 w-4" />
               admin@reftech.in
