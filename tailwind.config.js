@@ -1,3 +1,10 @@
+/*
+ * RefTech Technology Company
+ * CONFIDENTIAL: this source code is the property of RefTech Technology Company and is confidential to the
+ * company. Copying it, or sharing it with anyone outside the company without written permission, is a
+ * violation of law.
+ */
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
@@ -15,7 +22,14 @@ export default {
           700: '#15597a',
           800: '#164b66',
           900: '#163f56',
-          950: '#0d2a3d',
+          // REQ-PLT-002: the header and menu of the app; a darker shade of the company's main colour when it set one
+          950: 'rgb(var(--brand-header-rgb, 13 42 61) / <alpha-value>)',
+        },
+        // REQ-PLT-002: primary buttons, the active menu item and links (bg-sky-700, hover bg-sky-800) follow the
+        // company's main colour (branding.tsx sets the variables); without one they keep Tailwind's own sky colours.
+        sky: {
+          700: 'rgb(var(--brand-primary-rgb, 3 105 161) / <alpha-value>)',
+          800: 'rgb(var(--brand-primary-dark-rgb, 7 89 133) / <alpha-value>)',
         },
         ice: {
           50: '#f5fbfd',
