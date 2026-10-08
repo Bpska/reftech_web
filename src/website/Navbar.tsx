@@ -6,7 +6,7 @@
  */
 
 import { useEffect, useState } from 'react';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, Mail } from 'lucide-react';
 import { NAV_LINKS } from '@/website/data';
 import { BrandMark } from '@/shared/components/BrandMark';
 
@@ -63,6 +63,14 @@ export function Navbar() {
               <Phone className="h-4 w-4" />
               +91 98765 43210
             </a>
+            {/* The office email after the phone number; on wide screens (2xl) only, so the top bar does not crowd on laptops; the mobile menu always shows it. */}
+            <a
+              href="mailto:admin@reftech.in"
+              className={`hidden items-center gap-2 whitespace-nowrap text-sm font-medium transition-colors 2xl:flex ${scrolled ? 'text-white/80 hover:text-white' : 'text-deep-600 hover:text-frost-700'}`}
+            >
+              <Mail className="h-4 w-4" />
+              admin@reftech.in
+            </a>
             {/* One Login button: the sign-in page offers Employee, Partner and Hired Truck/Transporter Login. */}
             <a href="/login" className="rounded-full bg-deep-900 px-6 py-2.5 text-xs font-bold text-white shadow-md ring-1 ring-deep-800 transition-colors hover:bg-deep-800">Login</a>
             <a href="/#contact" className="btn-primary !py-2.5 !px-5 text-xs">Get a Quote</a>
@@ -118,6 +126,13 @@ export function Navbar() {
             >
               <Phone className="h-4 w-4" />
               +91 98765 43210
+            </a>
+            <a
+              href="mailto:admin@reftech.in"
+              className="flex items-center justify-center gap-2 text-sm font-medium text-white/60"
+            >
+              <Mail className="h-4 w-4" />
+              admin@reftech.in
             </a>
           </div>
         </div>
