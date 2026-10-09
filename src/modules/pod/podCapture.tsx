@@ -257,7 +257,7 @@ export function PaperProofs({ base, deliveryId, staff, canAdd, delivered, onChan
       const c = p.checkResult ? CHECK[p.checkResult] : null;
       return <li key={p.id} className="flex flex-wrap gap-3 rounded-xl bg-slate-50 p-2">
         <AuthPicture path={`${base}/deliveries/${deliveryId}/paper/${p.id}/image`} alt={p.fileName || 'Paper note'} className="h-24 w-32 rounded-lg border border-slate-200 object-cover" />
-        <div className="min-w-[14rem] flex-1 text-sm">
+        <div className="min-w-56 flex-1 text-sm">
           <p className="font-semibold text-slate-800">{p.fileName || 'Paper note'} · {p.ocrStatus === 'DONE' ? `read${p.ocrConfidence != null ? ` (${Math.round(Number(p.ocrConfidence))}% sure)` : ''}` : p.ocrStatus === 'FAILED' ? 'could not be read' : p.ocrStatus === 'WAITING' ? 'being read' : 'typed by hand'}
             {c && <span className={`ml-2 rounded-full px-2 py-0.5 text-xs font-bold ${c[1]}`}>{c[0]}</span>}</p>
           <p className="text-xs text-slate-500">Added {when(p.uploadedAt)}{p.uploadedBy ? ` by ${p.uploadedBy}` : ''}{p.source && p.source !== 'OFFICE' ? ` (${PAPER_SOURCE[p.source] || p.source})` : ''}{p.sharpness != null ? ` · sharpness ${Math.round(Number(p.sharpness))}` : ''}{p.confirmedAt ? ` · confirmed ${when(p.confirmedAt)}${p.confirmedBy ? ` by ${p.confirmedBy}` : ''}` : ''}</p>

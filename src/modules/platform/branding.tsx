@@ -105,7 +105,7 @@ export function BrandMark({ className = '' }: { className?: string }) {
   const b = useBranding();
   const name = b?.name || 'RefTech';
   return <span className={`inline-flex items-center gap-2 ${className}`}>
-    {b?.logo && <img src={b.logo} alt={`${name} logo`} className="h-8 w-auto max-w-[8rem] object-contain" />}
+    {b?.logo && <img src={b.logo} alt={`${name} logo`} className="h-8 w-auto max-w-32 object-contain" />}
     <span className="font-bold" style={{ color: 'var(--brand-primary, #0369A1)' }}>{name}</span>
   </span>;
 }

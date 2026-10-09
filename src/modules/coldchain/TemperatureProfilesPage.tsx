@@ -206,7 +206,7 @@ export function TemperatureProfilesPage() {
                     <input name="targetC" required type="number" step="any" defaultValue={toShown('temp', p.agreedTargetC ?? p.targetC)} aria-label={`Agreed target for ${p.name}`} className={small} />
                     <input name="minC" required type="number" step="any" defaultValue={toShown('temp', p.agreedMinC ?? p.minC)} aria-label={`Agreed minimum for ${p.name}`} className={small} />
                     <input name="maxC" required type="number" step="any" defaultValue={toShown('temp', p.agreedMaxC ?? p.maxC)} aria-label={`Agreed maximum for ${p.name}`} className={small} />
-                    <input name="notes" defaultValue={p.agreedNotes || ''} placeholder="Contract or email" aria-label={`Note for ${p.name}`} className="min-w-[10rem] grow rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-slate-900" />
+                    <input name="notes" defaultValue={p.agreedNotes || ''} placeholder="Contract or email" aria-label={`Note for ${p.name}`} className="min-w-40 grow rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-slate-900" />
                     <button disabled={busy} className="rounded-lg bg-cyan-700 px-3 py-1.5 text-xs font-bold text-white disabled:opacity-50">Save</button>
                     {p.agreedWithPartner && <button type="button" onClick={() => backToStandard(p)} disabled={busy} className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 disabled:opacity-50">Use standard</button>}
                   </form>

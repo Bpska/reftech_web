@@ -157,7 +157,7 @@ export function TripStatusPanel({ tripId, refreshKey, onChanged, openAlerts = 0,
             <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full ${dot}`}><Icon className="h-4 w-4" /></span>
             <span className={`font-bold ${s.state === 'todo' || s.state === 'skipped' ? 'text-slate-500' : 'text-slate-900'}`}>{i + 1}. {s.label}</span>
           </div>
-          <div className="mt-1 min-h-[2.25rem] text-xs text-slate-600">{s.state === 'skipped' ? 'Not reached' : s.at ? <>{when(s.at)}{s.by ? <><br />{s.by}</> : null}</> : s.state === 'current' ? 'Now' : ''}</div>
+          <div className="mt-1 min-h-9 text-xs text-slate-600">{s.state === 'skipped' ? 'Not reached' : s.at ? <>{when(s.at)}{s.by ? <><br />{s.by}</> : null}</> : s.state === 'current' ? 'Now' : ''}</div>
         </li>;
       })}
     </ol>

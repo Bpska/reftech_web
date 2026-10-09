@@ -12,7 +12,7 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-frost-950 text-white">
       {/* Top accent */}
-      <div className="h-1 w-full bg-gradient-to-r from-frost-500 via-ice-400 to-frost-500" />
+      <div className="h-1 w-full bg-linear-to-r from-frost-500 via-ice-400 to-frost-500" />
 
       {/* Newsletter strip */}
       <div className="border-b border-white/10">
@@ -34,7 +34,7 @@ export function Footer() {
               placeholder="Enter your email"
               className="flex-1 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm text-white outline-none transition-all placeholder:text-white/40 focus:border-frost-400 focus:bg-white/10"
             />
-            <button className="btn-primary !py-3">
+            <button className="btn-primary py-3!">
               Subscribe
               <ArrowRight className="h-4 w-4" />
             </button>
@@ -48,7 +48,7 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <a href="/#home" className="flex items-center gap-2.5">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-frost-500 to-frost-700 shadow-lg">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-linear-to-br from-frost-500 to-frost-700 shadow-lg">
                 <Snowflake className="h-5 w-5 text-white" />
               </div>
               <div className="flex flex-col leading-none">

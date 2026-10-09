@@ -93,7 +93,7 @@ export function BrandingForm() {
     <Section title="Logo">
       <div className="flex flex-wrap items-center gap-4">
         <div className="flex h-20 w-48 items-center justify-center rounded-xl border border-dashed border-slate-300 bg-slate-50">
-          {logo ? <img src={logo} alt="Company logo" className="max-h-16 max-w-[11rem] object-contain" /> : <span className="text-sm text-slate-500">No logo</span>}
+          {logo ? <img src={logo} alt="Company logo" className="max-h-16 max-w-44 object-contain" /> : <span className="text-sm text-slate-500">No logo</span>}
         </div>
         <label className={label}>PNG, JPG or SVG, at most 1 MB
           <input type="file" accept="image/png,image/jpeg,image/svg+xml,.png,.jpg,.jpeg,.svg" onChange={e => setFile(e.target.files?.[0] || null)} className="block text-sm" />

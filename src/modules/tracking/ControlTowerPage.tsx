@@ -166,7 +166,7 @@ export function ControlTowerPage() {
             return [
               <tr key={a.id} className={`border-t border-slate-200 ${open ? 'bg-sky-50/40' : ''}`}>
                 <td className={cell}><span className={`${pill} ${p.pill}`}>{p.label}</span></td>
-                <td className={`${cell} max-w-[22rem]`}><div className="font-bold">{a.typeLabel}</div><div>{a.message}</div>
+                <td className={`${cell} max-w-88`}><div className="font-bold">{a.typeLabel}</div><div>{a.message}</div>
                   {a.measuredValue != null && <div className="text-xs text-slate-500">Measured {Number(a.measuredValue)}{a.thresholdValue != null ? `, limit ${Number(a.thresholdValue)}` : ''}</div>}
                   <div className="text-xs text-slate-500">Raised {when(a.createdAt)} (no. {a.id})</div>
                   {done && <div className="mt-1 text-xs text-emerald-800">Resolved {when(a.resolvedAt)}{a.resolvedByName ? ` by ${a.resolvedByName}` : ''}{a.correctiveAction ? `: ${a.correctiveAction}` : ''}</div>}</td>
@@ -182,7 +182,7 @@ export function ControlTowerPage() {
                   ? <><span className={`${pill} bg-red-100 text-red-800`}>Level {a.escalationLevel}</span>{a.escalatedToName && <div className="text-xs">to {a.escalatedToName}</div>}<div className="text-xs text-slate-500">{when(a.escalatedAt)}</div></>
                   : <span className="text-slate-500">Not escalated</span>}
                   {!done && a.nextEscalationAt && <div className={`text-xs ${next != null && next <= 0 ? 'font-bold text-red-700' : 'text-slate-600'}`}>Next: {when(a.nextEscalationAt)}{next != null && (next > 0 ? ` (in ${minutesText(next)})` : ' (due now)')}</div>}</td>
-                <td className={`${cell} text-right`}><div className="flex max-w-[15rem] flex-wrap justify-end gap-1.5">
+                <td className={`${cell} text-right`}><div className="flex max-w-60 flex-wrap justify-end gap-1.5">
                   {!done && ready && <button type="button" className={small} disabled={busy} onClick={() => post(a, 'assign', {}, 'Could not take the alert')}>Take</button>}
                   {!done && ready && manager && <button type="button" className={small} disabled={busy} onClick={() => toggle('give', a)}>Give to</button>}
                   {a.status === 'OPEN' && <button type="button" className={small} disabled={busy} onClick={() => toggle('ack', a)}>Acknowledge</button>}

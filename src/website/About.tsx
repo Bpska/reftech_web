@@ -62,7 +62,7 @@ export function About() {
                 {CORE_VALUES.map((value, i) => (
                   <Reveal key={value.title} delay={i * 80}>
                     <div className="group rounded-2xl border border-frost-100 bg-frost-50/50 p-5 transition-all duration-300 hover:border-frost-300 hover:bg-frost-50 hover:shadow-lg">
-                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-frost-500 to-frost-700 text-white shadow-md transition-transform duration-300 group-hover:scale-110">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-linear-to-br from-frost-500 to-frost-700 text-white shadow-md transition-transform duration-300 group-hover:scale-110">
                         <value.icon className="h-5 w-5" />
                       </div>
                       <h3 className="mt-3.5 font-display text-base font-bold text-deep-900">

@@ -130,8 +130,8 @@ export function RecruitmentPage() {
           {s.charAt(0) + s.slice(1).toLowerCase()} <span className="opacity-70">{pipe[s] ?? 0}</span></button>)}
       </div>
       <Section title="Applications" right={<form className="flex flex-wrap gap-2" onSubmit={e => { e.preventDefault(); void loadApps().catch(x => r.setErr(x.message)); }}>
-        <select value={postingId} onChange={e => setPostingId(e.target.value)} className={input + ' !w-auto'}><option value="">All openings</option>{postings.map(p => <option key={p.id} value={p.id}>{p.title} ({p.code})</option>)}</select>
-        <input value={q} onChange={e => setQ(e.target.value)} placeholder="Name, email, phone, reference" className={input + ' !w-56'} />
+        <select value={postingId} onChange={e => setPostingId(e.target.value)} className={input + ' w-auto!'}><option value="">All openings</option>{postings.map(p => <option key={p.id} value={p.id}>{p.title} ({p.code})</option>)}</select>
+        <input value={q} onChange={e => setQ(e.target.value)} placeholder="Name, email, phone, reference" className={input + ' w-56!'} />
         <button className={btnLight}>Search</button></form>}>
         {apps.length === 0 ? <p className="text-slate-500">No applications{stage && ` at the stage ${stage.toLowerCase()}`}.</p> :
           <div className="overflow-x-auto"><table className="w-full text-sm"><thead><tr className="bg-slate-50"><th className={th}>Candidate</th><th className={th}>Opening</th><th className={th}>Experience</th><th className={th}>Stage</th><th className={th}>Rating</th><th className={th}>Applied</th><th className={th}></th></tr></thead>

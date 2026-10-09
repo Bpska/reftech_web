@@ -75,7 +75,7 @@ export function BulkImportPage() {
 
     {kinds.length > 0 && <Section title="1. Choose what to load">
       <div className="flex flex-wrap items-end gap-3">
-        <label className="min-w-[14rem]"><span className={label}>Kind</span>
+        <label className="min-w-56"><span className={label}>Kind</span>
           <select className={input} value={kind} onChange={e => { setKind(e.target.value); setRun(null); if (e.target.value === 'OPENING_STOCK') setMode('CREATE_ONLY'); }}>
             {kinds.map(k => <option key={k.kind} value={k.kind}>{k.label}</option>)}
           </select>

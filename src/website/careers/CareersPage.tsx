@@ -19,7 +19,7 @@ function Shell({ children }: { children: ReactNode }) {
 }
 
 function Banner({ title, sub }: { title: ReactNode; sub: ReactNode }) {
-  return <section className="bg-gradient-to-br from-frost-950 via-deep-900 to-frost-900 px-5 py-14 text-white md:px-10 lg:px-16">
+  return <section className="bg-linear-to-br from-frost-950 via-deep-900 to-frost-900 px-5 py-14 text-white md:px-10 lg:px-16">
     <div className="mx-auto max-w-5xl">
       <span className="heading-eyebrow text-frost-300"><span className="h-px w-8 bg-frost-400"/>Careers</span>
       <h1 className="mt-3 font-display text-3xl font-extrabold tracking-tight md:text-5xl">{title}</h1>
@@ -108,7 +108,7 @@ export function CareerJobPage() {
     </section>}
     {o && <>
       <Banner title={o.title} sub={<><div className="mb-3"><Link to="/careers" className="inline-flex items-center gap-1.5 text-sm font-semibold text-frost-300 hover:text-white"><ArrowLeft className="h-4 w-4"/>All open positions</Link></div>
-        <div className="[&_*]:!text-white/80 [&_svg]:!text-frost-300"><Facts o={o}/></div></>}/>
+        <div className="**:text-white/80! [&_svg]:text-frost-300!"><Facts o={o}/></div></>}/>
       <section className="mx-auto grid max-w-5xl gap-10 px-5 py-10 md:px-10 lg:grid-cols-5">
         <article className="lg:col-span-3">
           {o.department && <p className="text-sm font-semibold uppercase tracking-wide text-frost-700">{o.department} · {o.code}</p>}
@@ -188,7 +188,7 @@ function ApplyForm({ o }: { o: Opening }) {
         </label>
       </div>
       {/* Spam trap: people never see this field; a robot that fills it in is refused. */}
-      <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden"><label>Website<input name="website" tabIndex={-1} autoComplete="off"/></label></div>
+      <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden"><label>Website<input name="website" tabIndex={-1} autoComplete="off"/></label></div>
       <label className="flex items-start gap-2 text-sm text-slate-700"><input type="checkbox" name="consent" required className="mt-1"/>
         <span>I agree that RefTech may keep my details and resume to consider me for this and similar openings, and may contact me about them. *</span></label>
     </div>
@@ -201,7 +201,7 @@ function ApplyForm({ o }: { o: Opening }) {
 export function CareersTeaser() {
   const [n, setN] = useState<number | null>(null);
   useEffect(() => { listOpenings().then(r => setN(r.length)).catch(() => setN(null)); }, []);
-  return <section id="careers" className="bg-gradient-to-r from-frost-50 via-white to-ice-50 px-5 py-14 md:px-10 lg:px-16">
+  return <section id="careers" className="bg-linear-to-r from-frost-50 via-white to-ice-50 px-5 py-14 md:px-10 lg:px-16">
     <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 md:flex-row md:items-center">
       <div>
         <span className="heading-eyebrow text-frost-700"><span className="h-px w-8 bg-frost-500"/>Careers</span>

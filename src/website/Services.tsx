@@ -34,11 +34,11 @@ export function Services() {
             <Reveal key={service.title} delay={i * 100}>
               <article className="group relative h-full overflow-hidden rounded-3xl border border-frost-100 bg-white p-8 shadow-sm transition-all duration-500 hover:border-frost-300 hover:shadow-2xl hover:shadow-frost-900/10">
                 {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-frost-50/0 to-frost-50/0 opacity-0 transition-opacity duration-500 group-hover:from-frost-50/50 group-hover:to-white group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-linear-to-br from-frost-50/0 to-frost-50/0 opacity-0 transition-opacity duration-500 group-hover:from-frost-50/50 group-hover:to-white group-hover:opacity-100" />
 
                 <div className="relative">
                   <div className="flex items-start justify-between">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-frost-500 to-frost-700 text-white shadow-lg shadow-frost-600/25 transition-all duration-500 group-hover:scale-110 group-hover:shadow-xl">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br from-frost-500 to-frost-700 text-white shadow-lg shadow-frost-600/25 transition-all duration-500 group-hover:scale-110 group-hover:shadow-xl">
                       <service.icon className="h-7 w-7" />
                     </div>
                     <span className="font-display text-5xl font-extrabold text-frost-50 transition-colors duration-500 group-hover:text-frost-100">
@@ -56,7 +56,7 @@ export function Services() {
                   <ul className="mt-6 space-y-2.5">
                     {service.features.map((feature) => (
                       <li key={feature} className="flex items-center gap-3 text-sm text-deep-700">
-                        <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-frost-500" />
+                        <CheckCircle2 className="h-4 w-4 shrink-0 text-frost-500" />
                         {feature}
                       </li>
                     ))}
@@ -72,7 +72,7 @@ export function Services() {
                 </div>
 
                 {/* Bottom accent line */}
-                <div className="absolute bottom-0 left-0 h-1 w-0 rounded-full bg-gradient-to-r from-frost-400 to-frost-600 transition-all duration-500 group-hover:w-full" />
+                <div className="absolute bottom-0 left-0 h-1 w-0 rounded-full bg-linear-to-r from-frost-400 to-frost-600 transition-all duration-500 group-hover:w-full" />
               </article>
             </Reveal>
           ))}

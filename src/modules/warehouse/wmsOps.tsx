@@ -147,7 +147,7 @@ export function LinesEditor({ lines, setLines, products, fields, fixedProduct }:
       const pr = products.find(p => String(p.id) === String(l.productId));
       return <tr key={i} className="border-t">
         <td className={td}>{i + 1}</td>
-        <td className={`${td} min-w-[12rem]`}>{fixedProduct?.(l)
+        <td className={`${td} min-w-48`}>{fixedProduct?.(l)
           ? <span>{l.productName || pr?.name}</span>
           : <select className={cell} value={l.productId || ''} onChange={e => { const p = products.find(x => String(x.id) === e.target.value); set(i, 'productId', e.target.value); if (p) setLines(lines.map((x, j) => j === i ? { ...x, productId: e.target.value, uom: p.baseUom } : x)); }}>
               <option value="">Choose…</option>{products.map(p => <option key={p.id} value={p.id}>{p.productCode} · {p.name}</option>)}
