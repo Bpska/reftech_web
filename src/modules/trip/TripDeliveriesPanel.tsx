@@ -471,7 +471,7 @@ export function TripDeliveriesPanel({ tripId, refreshKey, onChanged, apiBase }: 
             </dl>
             <div className="flex flex-wrap items-start gap-3">
               {d.hasSignature && <figure><Picture path={`${base}/deliveries/${d.id}/signature`} alt={`Signature of ${d.receiverName}`} className="h-24 w-56 rounded-xl border border-slate-200 bg-white object-contain" /><figcaption className="mt-1 text-xs text-slate-500">Signature of the receiver</figcaption></figure>}
-              {d.photos.map(p => <figure key={p.id}><Picture path={`${base}/deliveries/${d.id}/photos/${p.id}`} alt={p.fileName || 'Delivery photo'} className="h-24 w-32 rounded-xl border border-slate-200 object-cover" /><figcaption className="mt-1 max-w-[8rem] truncate text-xs text-slate-500">{p.fileName || 'Photo'}</figcaption></figure>)}
+              {d.photos.map(p => <figure key={p.id}><Picture path={`${base}/deliveries/${d.id}/photos/${p.id}`} alt={p.fileName || 'Delivery photo'} className="h-24 w-32 rounded-xl border border-slate-200 object-cover" /><figcaption className="mt-1 max-w-32 truncate text-xs text-slate-500">{p.fileName || 'Photo'}</figcaption></figure>)}
               {!d.hasSignature && d.photos.length === 0 && <p className="text-sm text-slate-500">No signature or photo was stored.</p>}
             </div>
           </div>}

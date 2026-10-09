@@ -60,7 +60,7 @@ export function DataTable({ path, columns, filters = [], params = {}, exportName
 
   return <div>
     <div className="flex flex-wrap items-end gap-2">
-      <label className="relative min-w-[14rem] flex-1">
+      <label className="relative min-w-56 flex-1">
         <span className="sr-only">{t(searchPlaceholder)}</span>
         <Search aria-hidden className="pointer-events-none absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
         <input value={typed} onChange={e => setTyped(e.target.value)} placeholder={t(searchPlaceholder)} className={`${input} pl-9`} />

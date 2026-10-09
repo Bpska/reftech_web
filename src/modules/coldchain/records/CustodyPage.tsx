@@ -134,7 +134,7 @@ export function CustodyPage() {
       <Section title="Timeline">
         {!rec.timeline?.length ? <p className="text-slate-500">Nothing recorded yet.</p> :
           <ol className="relative ml-2 border-l-2 border-sky-200">{rec.timeline.map((e: any, i: number) => <li key={i} className="mb-3 ml-4">
-            <span className="absolute -left-[7px] mt-1.5 h-3 w-3 rounded-full bg-sky-600" />
+            <span className="absolute left-[-7px] mt-1.5 h-3 w-3 rounded-full bg-sky-600" />
             <div className="text-xs text-slate-500">{at(e.at)} · {words(e.stage)}</div>
             <div className="font-semibold">{e.what}{e.temperatureC != null ? <span className="ml-2 font-normal">{temp(e.temperatureC)}</span> : null}{e.flag ? <span className="ml-2"><Pill state={e.flag} text="Sensor calibration overdue" /></span> : null}</div>
             <div className="text-sm text-slate-700">{[e.who, e.where].filter(Boolean).join(' · ')}</div>

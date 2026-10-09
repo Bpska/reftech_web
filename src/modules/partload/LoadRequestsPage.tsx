@@ -203,7 +203,7 @@ export function LoadRequestsPage() {
                 <td className={`${cell} whitespace-nowrap`}>{when(x.createdAt)}</td>
                 <td className={cell}>{declineId === x.id
                   ? <form onSubmit={e => decline(e, x)} className="flex flex-wrap items-center gap-2">
-                      <input name="reason" required placeholder="Reason the partner will see" aria-label={`Reason for declining ${x.loadNumber}`} className={`${small} min-w-[14rem] grow`} />
+                      <input name="reason" required placeholder="Reason the partner will see" aria-label={`Reason for declining ${x.loadNumber}`} className={`${small} min-w-56 grow`} />
                       <button disabled={busy} className="rounded-lg bg-red-700 px-3 py-1.5 text-xs font-bold text-white disabled:opacity-50">Decline</button>
                       <button type="button" onClick={() => setDeclineId(null)} className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-bold text-slate-700">Back</button>
                     </form>

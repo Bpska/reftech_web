@@ -20,7 +20,7 @@ export function SkipLink({ target = 'main' }: { target?: string }) {
     el.scrollIntoView({ block: 'start' });
   }
   return <a href={`#${target}`} onClick={go}
-    className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[1000] focus:rounded-xl focus:bg-white focus:px-4 focus:py-2 focus:font-bold focus:text-sky-900 focus:shadow-lg">
+    className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-1000 focus:rounded-xl focus:bg-white focus:px-4 focus:py-2 focus:font-bold focus:text-sky-900 focus:shadow-lg">
     {t('Skip to main content')}
   </a>;
 }

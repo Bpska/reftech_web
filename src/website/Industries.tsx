@@ -66,7 +66,7 @@ export function Industries() {
                       alt={industry.title}
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-frost-950/80 via-frost-950/20 to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-t from-frost-950/80 via-frost-950/20 to-transparent" />
                     <div className="absolute bottom-3 left-3 rounded-full bg-frost-500/90 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
                       {industry.temperature}
                     </div>

@@ -105,8 +105,8 @@ export function AppShell() {
           happen to look aligned. The logo image fills that cell with zero padding on every side (no
           gap between the image's own edge and the cell/sidebar edge below it), at every breakpoint. */}
       {/* REQ-PLT-002: the company's second colour as a thin line under the header (none without one) */}
-      <div className="flex w-full flex-shrink-0 items-stretch bg-frost-950 text-white shadow-lg" style={{ boxShadow: 'inset 0 -3px 0 var(--brand-accent-line, transparent), 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)' }}>
-        <div className={`block w-full leading-[0] lg:flex-none ${sidebarCollapsed?'lg:w-20':'lg:w-96'}`}>
+      <div className="flex w-full shrink-0 items-stretch bg-frost-950 text-white shadow-lg" style={{ boxShadow: 'inset 0 -3px 0 var(--brand-accent-line, transparent), 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)' }}>
+        <div className={`block w-full leading-0 lg:flex-none ${sidebarCollapsed?'lg:w-20':'lg:w-96'}`}>
           <img
             src="/media/reftech_logo_new.png"
             alt="RefTech - Temperature Controlled, Powered By Technology"
@@ -118,7 +118,7 @@ export function AppShell() {
           <div>
             {/* REQ-PLT-002: the company's own name and logo when it is not the company that runs RefTech */}
             {brand && (brand.logo || (brand.name && brand.name !== 'RefTech')) && <div className="mb-1 flex items-center justify-end gap-2 text-sm font-bold text-sky-100">
-              {brand.logo && <img src={brand.logo} alt="" className="h-7 w-auto max-w-[7rem] rounded bg-white object-contain p-0.5" />}{brand.name}</div>}
+              {brand.logo && <img src={brand.logo} alt="" className="h-7 w-auto max-w-28 rounded bg-white object-contain p-0.5" />}{brand.name}</div>}
             <div className="font-bold text-white">{displayName}</div>
             <div className="text-xs font-bold text-sky-300">{me?.role || role}</div>{/* REQ-HR-001: the real role (HR, BILLING ...), not the base level */}
             <div className="mt-1 text-xs text-slate-200">{now.toLocaleDateString()} · <b>{now.toLocaleTimeString()}</b></div>
@@ -126,7 +126,7 @@ export function AppShell() {
         </div>
       </div>
       <div className="lg:flex lg:min-h-0 lg:flex-1">
-        <aside className={`bg-frost-950 text-white transition-[width] duration-200 lg:flex lg:flex-shrink-0 lg:flex-col lg:overflow-hidden ${sidebarCollapsed?'lg:w-20':'lg:w-96'}`}>
+        <aside className={`bg-frost-950 text-white transition-[width] duration-200 lg:flex lg:shrink-0 lg:flex-col lg:overflow-hidden ${sidebarCollapsed?'lg:w-20':'lg:w-96'}`}>
           <div className={`hidden border-b border-white/10 px-3 py-3 lg:flex ${sidebarCollapsed ? 'justify-center' : 'justify-start'}`}>
             <button
               type="button"
@@ -388,7 +388,7 @@ export function AppShell() {
               <Link className={sub} to="/operations#trip-tracking">{t('Trip Reports')}</Link>
             </>)}
           </nav>
-          <div className="flex-shrink-0 border-t border-white/10 p-4">
+          <div className="shrink-0 border-t border-white/10 p-4">
             <button title={t('Sign Out')} onClick={() => { api('/api/auth/logout',{method:'POST'}).catch(()=>{}).finally(()=>{ localStorage.clear(); window.location.href = '/login'; }); }} className={`${nav} text-red-100`}><LogOut className="h-5 w-5 shrink-0" />{label(t('Sign Out'))}</button>
           </div>
         </aside>

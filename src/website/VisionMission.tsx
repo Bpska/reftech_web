@@ -22,7 +22,7 @@ export function VisionMission() {
                 alt="Trucks on highway at sunset"
                 className="h-[400px] w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-frost-950/60 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-frost-950/60 to-transparent" />
               <div className="absolute bottom-6 left-6 flex items-center gap-3 rounded-xl bg-white/95 px-4 py-3 backdrop-blur-sm shadow-lg">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-frost-600">
                   <Eye className="h-5 w-5 text-white" />
@@ -64,7 +64,7 @@ export function VisionMission() {
                 alt="Warehouse logistics operations"
                 className="h-[400px] w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-frost-950/60 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-frost-950/60 to-transparent" />
               <div className="absolute bottom-6 left-6 flex items-center gap-3 rounded-xl bg-white/95 px-4 py-3 backdrop-blur-sm shadow-lg">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent-500">
                   <Target className="h-5 w-5 text-white" />

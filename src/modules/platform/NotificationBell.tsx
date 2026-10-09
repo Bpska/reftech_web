@@ -95,7 +95,7 @@ export function NotificationBell({ tone = 'dark' }: { tone?: 'dark' | 'light' })
     <button ref={button} type="button" aria-label={label} title={label} aria-haspopup="true" aria-expanded={open} onClick={() => setOpen(!open)}
       className={`relative inline-flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 ${iconColour}`}>
       <Bell aria-hidden className="h-6 w-6" />
-      {count > 0 && <span aria-hidden className="absolute -right-0.5 -top-0.5 min-w-[1.25rem] rounded-full bg-red-600 px-1 text-center text-xs font-bold leading-5 text-white">{count > 99 ? '99+' : count}</span>}
+      {count > 0 && <span aria-hidden className="absolute -right-0.5 -top-0.5 min-w-5 rounded-full bg-red-600 px-1 text-center text-xs font-bold leading-5 text-white">{count > 99 ? '99+' : count}</span>}
     </button>
     {open && <div role="dialog" aria-label="Latest notifications" className="absolute right-0 z-50 mt-2 w-96 max-w-[90vw] rounded-2xl bg-white text-left text-slate-900 shadow-xl ring-1 ring-slate-200">
       <div className="flex items-center justify-between border-b px-4 py-2">

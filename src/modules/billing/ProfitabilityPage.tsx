@@ -105,7 +105,7 @@ function Trips({ data }: { data: any }) {
     <Section title={`Trips ${day(data.from)} to ${day(data.to)}`}>
       {data.truncated && <div className="mb-2 rounded-xl bg-amber-50 p-2 text-sm text-amber-900">Only the first {rows.length} trips are shown. Pick a shorter period.</div>}
       {data.expensesByTrip === false && <div className="mb-2 rounded-xl bg-amber-50 p-2 text-sm text-amber-900">Expenses are not yet linked to trips on this server, so trip costs show hired freight only.</div>}
-      <div className="max-h-[40rem] overflow-auto"><table className="w-full min-w-[1200px] text-sm">
+      <div className="max-h-160 overflow-auto"><table className="w-full min-w-[1200px] text-sm">
         <thead className="sticky top-0"><tr className="bg-slate-50 text-slate-600"><th className={th}>Trip</th><th className={th}>Date</th><th className={th}>Vehicle</th><th className={th}>Partner</th><th className={th}>Route</th>
           <th className={`${th} text-right`}>Km</th><th className={`${th} text-right`}>Income</th>{types.map(c => <th key={c} className={`${th} text-right`}>{title(c)}</th>)}
           <th className={`${th} text-right`}>Total cost</th><th className={`${th} text-right`}>Profit</th><th className={`${th} text-right`}>Margin</th><th className={th}>Billed</th></tr></thead>

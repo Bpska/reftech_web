@@ -73,7 +73,7 @@ export function Navbar() {
             </a>
             {/* One Login button: the sign-in page offers Employee, Partner and Hired Truck/Transporter Login. */}
             <a href="/login" className="rounded-full bg-deep-900 px-6 py-2.5 text-xs font-bold text-white shadow-md ring-1 ring-deep-800 transition-colors hover:bg-deep-800">Login</a>
-            <a href="/#contact" className="btn-primary !py-2.5 !px-5 text-xs">Get a Quote</a>
+            <a href="/#contact" className="btn-primary py-2.5! px-5! text-xs">Get a Quote</a>
           </div>
 
           <button

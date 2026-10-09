@@ -94,7 +94,7 @@ export function RoutePlaybackPage() {
     <Section title="Trip" right={d ? <Link to={`/trips/${d.trip.id}`} className="text-sm font-semibold text-sky-700 hover:underline">Open trip details</Link> : undefined}>
       <div className="flex flex-wrap items-end gap-3">
         <label className="text-sm">Search trip or truck<input className={`${input} block w-64`} value={q} onChange={e => setQ(e.target.value)} placeholder="TRP-... or OD02..." /></label>
-        <label className="text-sm">Trip<select className={`${input} block min-w-[22rem]`} value={tripId || ''} onChange={e => setParams(e.target.value ? { trip: e.target.value } : {})}>
+        <label className="text-sm">Trip<select className={`${input} block min-w-88`} value={tripId || ''} onChange={e => setParams(e.target.value ? { trip: e.target.value } : {})}>
           <option value="">Choose a trip</option>
           {tripId && !trips.some(t => String(t.id) === tripId) && <option value={tripId}>{d?.trip?.tripNumber || `Trip ${tripId}`}</option>}
           {trips.map(t => <option key={t.id} value={t.id}>{t.tripNumber} · {t.vehicleNumber || '-'} · {t.from} to {t.to} · {t.status} · {t.positions} positions</option>)}

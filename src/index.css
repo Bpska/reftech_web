@@ -7,11 +7,36 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@config '../tailwind.config.js';
+
+/* Keep the existing v3 utility sizes and focus treatment during the security upgrade. */
+@theme {
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --radius-sm: 0.125rem;
+  --blur-sm: 4px;
+  --default-ring-width: 3px;
+  --default-ring-color: #3b82f6;
+}
+
+@utility shadow {
+  --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+  box-shadow: var(--tw-inset-shadow, 0 0 #0000), var(--tw-inset-ring-shadow, 0 0 #0000), var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+@utility rounded { border-radius: 0.25rem; }
+@utility blur { --tw-blur: blur(8px); filter: var(--tw-blur) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,); }
+@utility backdrop-blur { --tw-backdrop-blur: blur(8px); -webkit-backdrop-filter: var(--tw-backdrop-blur); backdrop-filter: var(--tw-backdrop-blur); }
+@utility outline-none { outline: 2px solid transparent; outline-offset: 2px; }
 
 @layer base {
+  *, ::before, ::after, ::backdrop, ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+  input::placeholder, textarea::placeholder { color: var(--color-gray-400); }
+  button:not(:disabled), [role='button']:not(:disabled) { cursor: pointer; }
+  dialog { margin: auto; }
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
@@ -71,10 +96,10 @@
       radial-gradient(at 90% 90%, rgba(180, 220, 235, 0.2) 0px, transparent 50%);
   }
   .gradient-text {
-    @apply bg-gradient-to-r from-frost-400 via-ice-400 to-frost-500 bg-clip-text text-transparent;
+    @apply bg-linear-to-r from-frost-400 via-ice-400 to-frost-500 bg-clip-text text-transparent;
   }
   .gradient-text-warm {
-    @apply bg-gradient-to-r from-accent-400 to-accent-600 bg-clip-text text-transparent;
+    @apply bg-linear-to-r from-accent-400 to-accent-600 bg-clip-text text-transparent;
   }
   .mask-fade-r {
     mask-image: linear-gradient(to right, black 70%, transparent 100%);

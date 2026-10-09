@@ -44,12 +44,12 @@ export function Technology() {
             { ...TECHNOLOGIES[2], icon: Brain, color: 'from-accent-400 to-accent-600' },
           ].map((tech, i) => (
             <Reveal key={tech.title} delay={i * 100}>
-              <article className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all duration-500 hover:border-white/20 hover:bg-white/[0.08]">
+              <article className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all duration-500 hover:border-white/20 hover:bg-white/8">
                 {/* Pulse ring */}
                 <div className="relative">
                   <div className="absolute inset-0 animate-pulse-ring rounded-2xl bg-frost-400/20" />
                   <div
-                    className={`relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${tech.color} text-white shadow-lg transition-transform duration-500 group-hover:scale-110`}
+                    className={`relative flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br ${tech.color} text-white shadow-lg transition-transform duration-500 group-hover:scale-110`}
                   >
                     <tech.icon className="h-7 w-7" />
                   </div>
@@ -73,14 +73,14 @@ export function Technology() {
                   <div className="group relative flex h-full flex-col items-center p-8 text-center transition-colors hover:bg-white/5">
                     {/* Connector line */}
                     {i < PROCESS_STEPS.length - 1 && (
-                      <div className="absolute right-0 top-1/2 hidden h-px w-8 -translate-y-1/2 translate-x-full bg-gradient-to-r from-frost-400/50 to-transparent md:block" />
+                      <div className="absolute right-0 top-1/2 hidden h-px w-8 -translate-y-1/2 translate-x-full bg-linear-to-r from-frost-400/50 to-transparent md:block" />
                     )}
                     <div className="relative">
                       <span className="font-display text-5xl font-extrabold text-white/10 transition-colors group-hover:text-frost-400/30">
                         {step.number}
                       </span>
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-frost-500 to-frost-700 text-white shadow-lg transition-transform duration-300 group-hover:scale-110">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-frost-500 to-frost-700 text-white shadow-lg transition-transform duration-300 group-hover:scale-110">
                           <step.icon className="h-6 w-6" />
                         </div>
                       </div>

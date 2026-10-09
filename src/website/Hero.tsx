@@ -47,8 +47,8 @@ export function Hero() {
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${activeSlide === 2 ? 'opacity-100' : 'opacity-0'}`}
         />
 
-        <div className="absolute inset-0 bg-gradient-to-r from-frost-950/90 via-frost-950/45 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-frost-950/70 via-transparent to-frost-950/20" />
+        <div className="absolute inset-0 bg-linear-to-r from-frost-950/90 via-frost-950/45 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-frost-950/70 via-transparent to-frost-950/20" />
       </div>
 
       {/* Floating decorative elements */}
@@ -110,7 +110,7 @@ export function Hero() {
             style={{ animationDelay: '0.1s' }}
           >
             Revolutionizing{' '}
-            <span className="bg-gradient-to-r from-frost-500 to-frost-700 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-frost-500 to-frost-700 bg-clip-text text-transparent">
               Cold Chain
             </span>{' '}
             Logistics with 5PL Solutions

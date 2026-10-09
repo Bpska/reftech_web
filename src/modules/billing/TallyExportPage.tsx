@@ -132,7 +132,7 @@ export default function TallyExportPage() {
           <div className="font-semibold">Check before importing:</div>
           <ul className="ml-5 list-disc">{preview.problems.map((p: string, i: number) => <li key={i}>{p}</li>)}</ul></div>}
         <p className="mt-3 text-sm text-slate-600">{rows.length} voucher(s){includeExported ? `, ${rows.length - fresh} already exported (grey)` : ''}.</p>
-        <div className="mt-1 max-h-[32rem] overflow-auto"><table className="w-full min-w-[800px] text-sm">
+        <div className="mt-1 max-h-128 overflow-auto"><table className="w-full min-w-[800px] text-sm">
           <thead><tr className="bg-slate-50 text-slate-600"><th className={th}>Date</th><th className={th}>Kind</th><th className={th}>Tally type</th><th className={th}>Number</th><th className={th}>Party</th>
             <th className={`${th} text-right`}>Amount</th><th className={th}></th></tr></thead>
           <tbody>{rows.map(v => <tr key={`${v.kind}:${v.id}`} className={`border-t ${v.exported ? 'text-slate-400' : ''}`}>

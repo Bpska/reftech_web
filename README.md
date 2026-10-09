@@ -10,7 +10,7 @@ Web front end of the RefTech cold-chain ERP: the public company website plus the
 staff, drivers, transporters and customers (partners). All data comes from the backend
 [`reftech_core`](https://github.com/prakashmahali/reftech_core).
 
-**Version:** 0.2.3. **Stack:** React 18, TypeScript, Vite 5, Tailwind CSS 3, React Router 6, lucide-react icons and
+**Version:** 0.2.3. **Stack:** React 18, TypeScript, Vite 7, Tailwind CSS 4, React Router 7, lucide-react icons and
 Vitest. The interface is available in English, Hindi and Odia.
 
 ## What it contains
@@ -40,7 +40,9 @@ Import modules with the `@/` alias, which points to `src/`.
 
 ## Prerequisites
 
-- **Node.js 20** or newer (with npm)
+- **Node.js 22.12+ or 24+** (with npm); Node.js 24 is recommended.
+- **Browser:** Safari 16.4+, Chrome 111+, or Firefox 128+ for Tailwind CSS 4
+  ([browser requirements](https://tailwindcss.com/docs/upgrade-guide#browser-requirements)).
 - A running **reftech_core** backend (default `http://localhost:8080`). Without it, only the public website works.
 
 ## 1. Configure

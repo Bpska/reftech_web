@@ -122,7 +122,7 @@ export function TripTimelinePanel({ tripId, refreshKey, onChanged }: { tripId: n
         {data.items.length === 0
           ? <p className="mt-2 text-sm text-slate-500">Nothing has happened on this trip yet. Status changes, the loading checklist, door and reefer events, alerts and toll crossings appear here.</p>
           : <ol className="mt-3 space-y-3 border-l-2 border-slate-200 pl-4">{data.items.map((it, i) => <li key={`${it.at}-${it.kind}-${i}`} className="relative">
-            <span className={`absolute -left-[23px] top-1.5 h-3 w-3 rounded-full ring-2 ring-white ${DOT[it.level] || DOT.info}`} />
+            <span className={`absolute left-[-23px] top-1.5 h-3 w-3 rounded-full ring-2 ring-white ${DOT[it.level] || DOT.info}`} />
             <div className="flex flex-wrap items-baseline gap-x-3"><span className="whitespace-nowrap text-xs font-semibold text-slate-500">{when(it.at)}</span><span className="rounded bg-slate-100 px-1.5 py-0.5 text-[11px] font-bold uppercase tracking-wide text-slate-600">{KIND[it.kind] || it.kind}</span><span className={`font-semibold ${it.level === 'danger' ? 'text-red-800' : 'text-slate-900'}`}>{it.title}</span></div>
             {(it.detail || it.by || it.latitude != null) && <p className="mt-0.5 text-sm text-slate-600">{it.detail}{it.by ? `${it.detail ? ' ' : ''}By ${it.by}.` : ''}{it.latitude != null && it.longitude != null && <> <a href={mapLink(it.latitude, it.longitude)} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 font-semibold text-sky-700 hover:underline">Position<ExternalLink className="h-3 w-3" /></a></>}</p>}
           </li>)}</ol>}

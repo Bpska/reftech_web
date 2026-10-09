@@ -150,7 +150,7 @@ export function LoginPage() {
           className="absolute inset-0 h-full w-full object-cover"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-r from-frost-950/30 to-frost-950/80" />
+        <div className="absolute inset-0 bg-linear-to-r from-frost-950/30 to-frost-950/80" />
 
       </section>
 
