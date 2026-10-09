@@ -6,6 +6,9 @@
  */
 
 import { useEffect, useState } from 'react';
+import type { CSSProperties } from 'react';
+import { SidebarResizeHandle } from './SidebarResizeHandle';
+import { SIDEBAR_DEFAULT_WIDTH, clampSidebarWidth } from './sidebarWidth';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Boxes, ChevronDown, ChevronRight, LayoutDashboard, LogOut, Menu, PackagePlus, ReceiptText, Route, ShieldCheck, Thermometer, Users, KeyRound, Warehouse, Handshake, FileCheck2, Landmark, Radar, LockKeyhole, UserRound, Settings, BarChart3, Building2 } from 'lucide-react'; // REQ-CNF-001..007 Building2
 import { api, currentUser } from '@/shared/services/api';
@@ -41,6 +44,23 @@ export function AppShell() {
   const [now, setNow] = useState(new Date());
   const [open, setOpen] = useState<Record<string, boolean>>({});
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => localStorage.getItem('reftech_sidebar_collapsed') === '1');
+  const [sidebarWidth, setSidebarWidth] = useState(() => {
+    try {
+      const saved = Number(localStorage.getItem('reftech_sidebar_width'));
+      return clampSidebarWidth(Number.isFinite(saved) && saved > 0 ? saved : SIDEBAR_DEFAULT_WIDTH);
+    } catch { return clampSidebarWidth(SIDEBAR_DEFAULT_WIDTH); }
+  });
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      try { localStorage.setItem('reftech_sidebar_width', String(sidebarWidth)); } catch { /* Resizing also works without browser storage. */ }
+    }, 150);
+    return () => window.clearTimeout(timer);
+  }, [sidebarWidth]);
+  useEffect(() => {
+    const resize = () => setSidebarWidth(width => clampSidebarWidth(width));
+    window.addEventListener('resize', resize);
+    return () => window.removeEventListener('resize', resize);
+  }, []);
   const setCollapsed = (v:boolean) => { setSidebarCollapsed(v); localStorage.setItem('reftech_sidebar_collapsed', v ? '1' : '0'); };
   const toggle = (k: string) => setOpen(x => ({ ...x, [k]: !x[k] }));
   const location = useLocation();
@@ -97,16 +117,16 @@ export function AppShell() {
   );
 
   return (
-    <div className="min-h-screen bg-slate-50 lg:flex lg:h-screen lg:flex-col">
+    <div className="min-h-screen bg-slate-50 lg:flex lg:h-screen lg:flex-col" style={{ '--sidebar-width': `${sidebarCollapsed ? 80 : sidebarWidth}px` } as CSSProperties}>
       <SkipLink />
       <SupportBanner />
-      {/* The logo cell and the sidebar below it share the same fixed width (lg:w-96) so their right
+      {/* The logo cell and the sidebar below it share the same adjustable width so their right
           edges are structurally the same line, instead of two independently-sized elements that only
           happen to look aligned. The logo image fills that cell with zero padding on every side (no
           gap between the image's own edge and the cell/sidebar edge below it), at every breakpoint. */}
       {/* REQ-PLT-002: the company's second colour as a thin line under the header (none without one) */}
       <div className="flex w-full shrink-0 items-stretch bg-frost-950 text-white shadow-lg" style={{ boxShadow: 'inset 0 -3px 0 var(--brand-accent-line, transparent), 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)' }}>
-        <div className={`block w-full leading-0 lg:flex-none ${sidebarCollapsed?'lg:w-20':'lg:w-96'}`}>
+        <div className="portal-sidebar-width block w-full leading-0 lg:flex-none">
           <img
             src="/media/reftech_logo_new.png"
             alt="RefTech - Temperature Controlled, Powered By Technology"
@@ -126,7 +146,7 @@ export function AppShell() {
         </div>
       </div>
       <div className="lg:flex lg:min-h-0 lg:flex-1">
-        <aside className={`bg-frost-950 text-white transition-[width] duration-200 lg:flex lg:shrink-0 lg:flex-col lg:overflow-hidden ${sidebarCollapsed?'lg:w-20':'lg:w-96'}`}>
+        <aside id="portal-sidebar" className="portal-sidebar-width bg-frost-950 text-white lg:flex lg:shrink-0 lg:flex-col lg:overflow-hidden">
           <div className={`hidden border-b border-white/10 px-3 py-3 lg:flex ${sidebarCollapsed ? 'justify-center' : 'justify-start'}`}>
             <button
               type="button"
@@ -428,7 +448,8 @@ export function AppShell() {
             <button title={t('Sign Out')} onClick={() => { api('/api/auth/logout',{method:'POST'}).catch(()=>{}).finally(()=>{ localStorage.clear(); window.location.href = '/login'; }); }} className={`${nav} text-red-100`}><LogOut className="h-5 w-5 shrink-0" />{label(t('Sign Out'))}</button>
           </div>
         </aside>
-        <div className="lg:flex-1 lg:overflow-y-auto">
+        {!sidebarCollapsed && <SidebarResizeHandle width={sidebarWidth} onChange={setSidebarWidth} label={t('Resize left menu')} />}
+        <div className="min-w-0 lg:flex-1 lg:overflow-y-auto">
           {/* REQ-CC-001-FIX1: pages use the full width of the monitor (was capped at 1500px, which left white space on both sides). */}
           <main id="main" tabIndex={-1} className="w-full p-5 lg:p-7 focus:outline-none">
             <Outlet />
