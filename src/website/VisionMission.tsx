@@ -18,6 +18,8 @@ export function VisionMission() {
           <Reveal>
             <div className="relative overflow-hidden rounded-3xl shadow-2xl group">
               <img
+                  loading="lazy"
+                  decoding="async"
                 src={VISION_IMAGE}
                 alt="Trucks on highway at sunset"
                 className="h-[400px] w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -60,6 +62,8 @@ export function VisionMission() {
           <Reveal className="lg:order-2">
             <div className="relative overflow-hidden rounded-3xl shadow-2xl group">
               <img
+                  loading="lazy"
+                  decoding="async"
                 src={MISSION_IMAGE}
                 alt="Warehouse logistics operations"
                 className="h-[400px] w-full object-cover transition-transform duration-700 group-hover:scale-105"

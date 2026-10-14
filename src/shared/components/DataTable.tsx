@@ -58,8 +58,8 @@ export function DataTable({ path, columns, filters = [], params = {}, exportName
   const items: any[] = Array.isArray(data.items) ? data.items : [];
   const from = data.total ? (page - 1) * size + 1 : 0, to = Math.min(page * size, data.total || 0);
 
-  return <div>
-    <div className="flex flex-wrap items-end gap-2">
+  return <div className="ui-data-table">
+    <div className="ui-table-toolbar flex flex-wrap items-end gap-2">
       <label className="relative min-w-56 flex-1">
         <span className="sr-only">{t(searchPlaceholder)}</span>
         <Search aria-hidden className="pointer-events-none absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
@@ -82,8 +82,8 @@ export function DataTable({ path, columns, filters = [], params = {}, exportName
       </div>}
     </div>
     {err && <div role="alert" className="my-3 rounded-xl bg-red-50 p-3 text-red-800">{err}</div>}
-    <div className="mt-3 overflow-x-auto">
-      <table className="w-full text-sm" aria-busy={busy}>
+    <div className="ui-table-scroll mt-3 overflow-x-auto">
+      <table className="ui-table w-full text-sm" aria-busy={busy}>
         <thead><tr className="bg-slate-50">{columns.map(c => <th key={c.key} scope="col" className={th}>
           {c.sort ? <button type="button" onClick={() => sortBy(c)} className="inline-flex items-center gap-1 font-semibold">
             {c.label}{sort === c.sort && (dir === 'asc' ? <ArrowUp aria-label={t('ascending')} className="h-3 w-3" /> : <ArrowDown aria-label={t('descending')} className="h-3 w-3" />)}
@@ -94,7 +94,7 @@ export function DataTable({ path, columns, filters = [], params = {}, exportName
         </tbody>
       </table>
     </div>
-    <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-sm text-slate-600">
+    <div className="ui-table-footer mt-3 flex flex-wrap items-center justify-between gap-2 text-sm text-slate-600">
       <span>{busy ? t('Loading...') : t('{from}-{to} of {total}', { from, to, total: data.total || 0 })}</span>
       <div className="flex items-center gap-2">
         <label>{t('Rows')} <select value={size} onChange={e => { setSize(Number(e.target.value)); setPage(1); }} className="rounded-lg border border-slate-300 px-2 py-1">

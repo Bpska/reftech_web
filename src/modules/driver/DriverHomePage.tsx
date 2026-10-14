@@ -185,7 +185,7 @@ export function DriverHomePage() {
   if (role !== 'DRIVER') return <main className="min-h-screen bg-slate-50 p-6"><div className="mx-auto max-w-xl rounded-2xl bg-white p-6 shadow-sm"><h1 className="text-xl font-bold">Driver page</h1><p className="mt-2 text-slate-600">This page is for a driver login. {role ? 'You are signed in as ' + role + '.' : 'Sign in with your driver login.'}</p><a href={role ? '/dashboard' : '/login'} className="mt-4 inline-block font-bold text-sky-700 underline">{role ? 'Go to the Dashboard' : 'Sign in'}</a></div></main>;
 
   const name = me?.driver?.name || [user.firstName, user.lastName].filter(Boolean).join(' ') || user.username;
-  const shell = (children: any) => <main className="min-h-screen bg-slate-50">
+  const shell = (children: any) => <main className="driver-app min-h-screen bg-slate-50">
     <header className="bg-frost-950 text-white"><div className="mx-auto flex max-w-3xl items-center justify-between gap-3 px-4 py-3">
       <div><div className="flex items-center gap-2 text-lg font-black"><Truck className="h-5 w-5" />RefTech Driver</div><div data-testid="driver-name" className="text-sm text-sky-200">{name}{me?.driver?.licenceNumber ? ` · licence ${me.driver.licenceNumber}` : ''}</div></div>
       <div className="flex gap-2">

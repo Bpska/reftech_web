@@ -36,7 +36,7 @@ export function ForgotPasswordPage() {
     catch (x: any) { setErr(x.message); } finally { setBusy(false); }
   }
   const field = 'mt-1 w-full rounded-xl border border-white/20 bg-white/10 px-3 py-2.5 text-white placeholder:text-white/40';
-  return <main className="flex min-h-screen items-center justify-center bg-frost-950 p-4">
+  return <main className="auth-app flex min-h-screen items-center justify-center bg-frost-950 p-4">
     <div className="w-full max-w-md rounded-2xl bg-white/5 p-8 text-white shadow-xl">
       <a href="/login" className="flex items-center gap-1 text-sm text-white/70 hover:text-white"><ArrowLeft className="h-4 w-4" />Back to sign in</a>
       <h1 className="mt-4 flex items-center gap-2 text-2xl font-bold"><KeyRound />Forgot password</h1>

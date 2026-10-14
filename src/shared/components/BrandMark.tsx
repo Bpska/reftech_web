@@ -23,7 +23,7 @@ export function BrandMark({ compact = false, sidebar = false }: Props) {
       <img
         src="/media/reftech_logo_new.png"
         alt="RefTech - Temperature Controlled, Powered By Technology"
-        className="h-14 w-auto max-w-[260px] shrink-0 rounded-xl bg-white p-1.5 object-contain shadow-md ring-1 ring-black/5 sm:h-16 sm:max-w-[300px] md:h-20 md:max-w-[340px]"
+        className="h-11 w-auto max-w-[190px] shrink-0 rounded-lg bg-white p-1 object-contain shadow-sm ring-1 ring-black/5 sm:h-12 sm:max-w-[215px]"
       />
     );
   }

@@ -17,7 +17,6 @@ import {
   Brain,
   Package,
   ThermometerSun,
-  Boxes,
   Route,
   Eye,
   Target,
@@ -61,22 +60,18 @@ export const HERO_IMAGE = '/media/reftech_truck.jpeg';
 
 export const HERO_IMAGE_2 = '/media/reftech_warehouse.jpeg';
 
-export const ABOUT_IMAGE = '/media/reftech_warehouse.jpeg';
+export const ABOUT_IMAGE = '/media/industry-generated-3.jpg';
 
-export const VISION_IMAGE =
-  'https://images.pexels.com/photos/38927007/pexels-photo-38927007.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop';
+export const VISION_IMAGE = '/media/reftech_truck.jpeg';
 
-export const MISSION_IMAGE =
-  'https://images.pexels.com/photos/4487383/pexels-photo-4487383.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop';
+export const MISSION_IMAGE = '/media/industry-generated-2.jpg';
 
-export const INDUSTRY_IMAGE =
-  'https://images.pexels.com/photos/1267327/pexels-photo-1267327.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop';
+export const INDUSTRY_IMAGE = '/media/industry-generated-4.jpg';
 
-export const TECH_IMAGE =
-  'https://images.pexels.com/photos/12969403/pexels-photo-12969403.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop';
+export const TECH_IMAGE = '/media/industry-generated-1.jpg';
 
 export const CTA_IMAGE =
-  'https://images.pexels.com/photos/38779041/pexels-photo-38779041.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop';
+  '/media/reftech_warehouse.jpeg';
 
 export const CORE_VALUES = [
   {
@@ -180,42 +175,42 @@ export const INDUSTRIES = [
     title: 'Food & Beverage',
     description: 'Ensuring freshness from farm to table.',
     image:
-      'https://images.pexels.com/photos/12519455/pexels-photo-12519455.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
+      '/media/industry-generated-2.jpg',
     temperature: '-18°C to +4°C',
   },
   {
     title: 'Pharmaceuticals',
     description: 'Maintaining the efficacy of temperature-sensitive medications.',
     image:
-      'https://images.pexels.com/photos/7615415/pexels-photo-7615415.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
+      '/media/industry-generated-1.jpg',
     temperature: '+2°C to +8°C',
   },
   {
     title: 'Agriculture',
     description: 'Preserving the quality of produce during transit.',
     image:
-      'https://images.pexels.com/photos/31834232/pexels-photo-31834232.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
+      '/media/industry-generated-3.jpg',
     temperature: '+2°C to +8°C',
   },
   {
     title: 'Floral Products',
     description: 'Delivering fresh flowers and plants with care.',
     image:
-      'https://images.pexels.com/photos/8931670/pexels-photo-8931670.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
+      '/media/industry-generated-4.jpg',
     temperature: '+2°C to +6°C',
   },
   {
     title: 'Dairy & Frozen Goods',
     description: 'Managing the complexities of cold storage and transportation.',
     image:
-      'https://images.pexels.com/photos/4725704/pexels-photo-4725704.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
+      '/media/reftech_warehouse.jpeg',
     temperature: '-25°C to +4°C',
   },
   {
     title: 'Seafood & Meat',
     description: 'Preserving freshness and quality from source to shelf.',
     image:
-      'https://images.pexels.com/photos/1656663/pexels-photo-1656663.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
+      '/media/reftech_truck.jpeg',
     temperature: '-2°C to +4°C',
   },
 ];
@@ -239,13 +234,6 @@ export const TECHNOLOGIES = [
     description:
       'Leverage AI for predictive analytics to foresee potential disruptions and optimize routes.',
   },
-];
-
-export const STATS = [
-  { value: 99.8, suffix: '%', label: 'On-Time Delivery', icon: Clock },
-  { value: 500, suffix: '+', label: 'Shipments Monthly', icon: Truck },
-  { value: 24, suffix: '/7', label: 'Monitoring & Support', icon: Activity },
-  { value: 50, suffix: '+', label: 'Cities Served', icon: MapPin },
 ];
 
 export const PROCESS_STEPS = [
@@ -277,44 +265,6 @@ export const PROCESS_STEPS = [
     description:
       'On-time delivery with complete chain-of-custody documentation and quality checks.',
   },
-];
-
-export const TESTIMONIALS = [
-  {
-    quote:
-      'Reftech transformed our cold chain operations. Their real-time tracking and temperature monitoring gave us complete peace of mind across every shipment.',
-    author: 'Rajesh Kumar',
-    role: 'Supply Chain Director, FreshFoods India',
-    rating: 5,
-  },
-  {
-    quote:
-      'The 5PL approach means we never have to worry about logistics. Reftech handles everything end-to-end with remarkable precision and transparency.',
-    author: 'Dr. Priya Sharma',
-    role: 'Head of Logistics, PharmaCorp',
-    rating: 5,
-  },
-  {
-    quote:
-      'Their commitment to sustainability and technology sets them apart. We have reduced our logistics costs while improving delivery reliability.',
-    author: 'Amit Patel',
-    role: 'Operations Manager, AgriFresh',
-    rating: 5,
-  },
-];
-
-export const CONTACT_INFO = [
-  { icon: MapPin, label: 'Office', value: 'Reftech SCS 5PL Private Limited, India' },
-  { icon: Phone, label: 'Phone', value: '+91 98765 43210' },
-  { icon: Mail, label: 'Email', value: 'admin@reftech.in' },
-  { icon: Clock, label: 'Hours', value: '24/7 Operations & Support' },
-];
-
-export const SOCIAL_LINKS = [
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: Facebook, href: '#', label: 'Facebook' },
-  { icon: Instagram, href: '#', label: 'Instagram' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
 ];
 
 export const FOOTER_LINKS = {

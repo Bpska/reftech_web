@@ -94,6 +94,8 @@ npm run preview           # optional: serve dist/ locally to check it
 npm run package           # build + reftech-portal-<version>.tar.gz, for deploy/install.sh
 ```
 
+**Docker + VPS Nginx:** follow [docs/DEPLOYMENT_DOCKER_NGINX.md](docs/DEPLOYMENT_DOCKER_NGINX.md) for the container build, host reverse proxy, HTTPS, updates and rollback.
+
 **Our server setup (nginx under `/opt/reftech`):**
 - `deploy/install.sh reftech-portal-<version>.tar.gz` unpacks the build into `/opt/reftech/portal/releases/<version>`,
   points `/opt/reftech/portal/current` at it and reloads nginx. To roll back, point `current` at an older release.

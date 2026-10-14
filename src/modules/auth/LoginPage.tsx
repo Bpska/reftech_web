@@ -136,7 +136,7 @@ export function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen bg-frost-950 md:grid md:grid-cols-2">
+    <main className="auth-app min-h-screen bg-frost-950 md:grid md:grid-cols-2">
 
       {/* --------------------------------------------------
           LEFT SIDE - REFTECH IMAGE

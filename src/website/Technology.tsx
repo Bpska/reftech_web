@@ -102,6 +102,8 @@ export function Technology() {
         <Reveal delay={100}>
           <div className="mt-12 overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
             <img
+                  loading="lazy"
+                  decoding="async"
               src={TECH_IMAGE}
               alt="Real-time analytics dashboard"
               className="h-72 w-full object-cover opacity-80 transition-opacity duration-500 hover:opacity-100"

@@ -1,0 +1,34 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Empty means same-origin API calls: https://portal.example.com/api/...
+        VITE_API_URL: ${VITE_API_URL:-}
+        VITE_GOOGLE_MAPS_API_KEY: ${VITE_GOOGLE_MAPS_API_KEY:-}
+        VITE_GOOGLE_MAPS_EMBED_KEY: ${VITE_GOOGLE_MAPS_EMBED_KEY:-}
+        VITE_MAP_PROVIDER: ${VITE_MAP_PROVIDER:-}
+        VITE_OSM_TILE_URL: ${VITE_OSM_TILE_URL:-}
+    image: reftech-portal:${IMAGE_TAG:-latest}
+    container_name: reftech-portal
+    restart: unless-stopped
+    environment:
+      # Used only by the container Nginx fallback proxy.
+      API_UPSTREAM: ${API_UPSTREAM:-http://host.docker.internal:8080}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      # Only the VPS host can reach the frontend container.
+      - "127.0.0.1:${FRONTEND_PORT:-8081}:80"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

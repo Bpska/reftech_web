@@ -29,3 +29,6 @@ pnpm-debug.log*
 
 # Release archives (npm run package)
 reftech-portal-*.tar.gz
+
+# VPS Docker deployment overrides
+deploy/docker/.env

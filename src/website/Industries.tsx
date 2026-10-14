@@ -33,6 +33,8 @@ export function Industries() {
 
               <div className="mt-8 overflow-hidden rounded-2xl shadow-xl">
                 <img
+                  loading="lazy"
+                  decoding="async"
                   src={INDUSTRY_IMAGE}
                   alt="Warehouse loading dock"
                   className="h-56 w-full object-cover"
@@ -56,14 +58,17 @@ export function Industries() {
           </Reveal>
 
           {/* Right: industry cards */}
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="industry-grid grid gap-5 sm:grid-cols-2">
             {INDUSTRIES.map((industry, i) => (
               <Reveal key={industry.title} delay={i * 70}>
                 <article className="group relative h-full overflow-hidden rounded-2xl border border-frost-100 bg-white shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
                   <div className="relative h-44 overflow-hidden">
                     <img
+                  loading="lazy"
+                  decoding="async"
                       src={industry.image}
-                      alt={industry.title}
+                      alt={industry.title + ' cold-chain logistics'}
+                      sizes="(max-width: 767px) 100vw, 33vw"
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-frost-950/80 via-frost-950/20 to-transparent" />

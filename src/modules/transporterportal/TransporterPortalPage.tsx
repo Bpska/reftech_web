@@ -65,7 +65,7 @@ export function TransporterPortalPage() {
   function signOut() { api('/api/auth/logout', { method: 'POST' }).catch(() => {}).finally(() => { localStorage.clear(); window.location.href = '/login?type=TRANSPORTER'; }); }
   const go = (t: Tab) => { setTab(t); setMsg(''); setError(''); };
 
-  return <div className="min-h-screen bg-slate-100">
+  return <div className="transporter-app min-h-screen bg-slate-100">
     <header className="flex flex-wrap items-center justify-between gap-3 bg-slate-900 px-4 py-3 text-white">
       <div className="flex items-center gap-3"><BrandMark /><div><div className="text-lg font-bold">Transporter portal</div><div className="text-xs text-sky-300">{me?.name || ''}{me?.code ? ` · ${me.code}` : ''}</div></div></div>
       <div className="flex items-center gap-3 text-sm"><span>{user.username}</span><button onClick={signOut} className="rounded-lg bg-white/10 px-3 py-1.5 font-semibold hover:bg-white/20">Sign out</button></div>

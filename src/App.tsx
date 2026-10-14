@@ -8,14 +8,17 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from '@/website/Navbar';
 import { Hero } from '@/website/Hero';
+import { LogisticsRouteMap } from '@/website/LogisticsRouteMap';
+import { IntegrationEcosystem } from '@/website/IntegrationEcosystem';
+import { IoTProductSimulator } from '@/website/IoTProductSimulator';
 import { About } from '@/website/About';
-import { VisionMission } from '@/website/VisionMission';
 import { Services } from '@/website/Services';
 import { Industries } from '@/website/Industries';
 import { Technology } from '@/website/Technology';
 import { Stats } from '@/website/Stats';
 import { Testimonials } from '@/website/Testimonials';
 import { Contact } from '@/website/Contact';
+import { WhatsAppSales } from '@/website/WhatsAppSales';
 import { Footer } from '@/website/Footer';
 import { ScrollProgress } from '@/website/ScrollProgress';
 import { BackToTop } from '@/website/BackToTop';
@@ -184,7 +187,7 @@ import { AskPage } from '@/modules/platform/AskPage';
 import { EnergyPage } from '@/modules/platform/EnergyPage';
 
 function PublicWebsite() {
-  return <div className="min-h-screen bg-white"><ScrollProgress/><Navbar/><main><Hero/><About/><VisionMission/><Services/><Industries/><Technology/><ErpAccess/><Stats/><Testimonials/><CareersTeaser/><Contact/></main><Footer/><BackToTop/></div>;
+  return <div className="public-site min-h-screen bg-white"><ScrollProgress/><Navbar/><main><Hero/><Stats/><Services/><Technology/><LogisticsRouteMap/><IntegrationEcosystem/><IoTProductSimulator/><Industries/><About/><Testimonials/><ErpAccess/><CareersTeaser/><WhatsAppSales/><Contact/></main><Footer/><BackToTop/></div>;
 }
 
 export default function App() {

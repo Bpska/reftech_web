@@ -10,7 +10,7 @@ import type { CSSProperties } from 'react';
 import { SidebarResizeHandle } from './SidebarResizeHandle';
 import { SIDEBAR_DEFAULT_WIDTH, clampSidebarWidth } from './sidebarWidth';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Boxes, ChevronDown, ChevronRight, LayoutDashboard, LogOut, Menu, PackagePlus, ReceiptText, Route, ShieldCheck, Thermometer, Users, KeyRound, Warehouse, Handshake, FileCheck2, Landmark, Radar, LockKeyhole, UserRound, Settings, BarChart3, Building2 } from 'lucide-react'; // REQ-CNF-001..007 Building2
+import { Boxes, ChevronDown, ChevronRight, LayoutDashboard, LogOut, Menu, X, PackagePlus, ReceiptText, Route, ShieldCheck, Thermometer, Users, KeyRound, Warehouse, Handshake, FileCheck2, Landmark, Radar, LockKeyhole, UserRound, Settings, BarChart3, Building2 } from 'lucide-react'; // REQ-CNF-001..007 Building2
 import { api, currentUser } from '@/shared/services/api';
 import { can, useMe } from '@/modules/hr/hr';
 // REQ-PLT-002 branding, REQ-PLT-016 support view, REQ-PLT-015 language and accessibility, REQ-PLT-003 notification bell
@@ -43,6 +43,7 @@ export function AppShell() {
   const [profile, setProfile] = useState<any>({});
   const [now, setNow] = useState(new Date());
   const [open, setOpen] = useState<Record<string, boolean>>({});
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => localStorage.getItem('reftech_sidebar_collapsed') === '1');
   const [sidebarWidth, setSidebarWidth] = useState(() => {
     try {
@@ -86,6 +87,15 @@ export function AppShell() {
   }, []);
 
   useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
     if (location.hash) {
       const el = document.getElementById(location.hash.slice(1));
       if (el) el.scrollIntoView({ block: 'start' });
@@ -117,7 +127,7 @@ export function AppShell() {
   );
 
   return (
-    <div className="min-h-screen bg-slate-50 lg:flex lg:h-screen lg:flex-col" style={{ '--sidebar-width': `${sidebarCollapsed ? 80 : sidebarWidth}px` } as CSSProperties}>
+    <div className="portal-app min-h-screen lg:flex lg:h-screen lg:flex-col" style={{ '--sidebar-width': `${sidebarCollapsed ? 80 : sidebarWidth}px` } as CSSProperties}>
       <SkipLink />
       <SupportBanner />
       {/* The logo cell and the sidebar below it share the same adjustable width so their right
@@ -125,7 +135,7 @@ export function AppShell() {
           happen to look aligned. The logo image fills that cell with zero padding on every side (no
           gap between the image's own edge and the cell/sidebar edge below it), at every breakpoint. */}
       {/* REQ-PLT-002: the company's second colour as a thin line under the header (none without one) */}
-      <div className="flex w-full shrink-0 items-stretch bg-frost-950 text-white shadow-lg" style={{ boxShadow: 'inset 0 -3px 0 var(--brand-accent-line, transparent), 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)' }}>
+      <div className="portal-header flex w-full shrink-0 items-stretch bg-frost-950 text-white shadow-lg" style={{ boxShadow: 'inset 0 -3px 0 var(--brand-accent-line, transparent), 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)' }}>
         <div className="portal-sidebar-width block w-full leading-0 lg:flex-none">
           <img
             src="/media/reftech_logo_new.png"
@@ -146,7 +156,8 @@ export function AppShell() {
         </div>
       </div>
       <div className="lg:flex lg:min-h-0 lg:flex-1">
-        <aside id="portal-sidebar" className="portal-sidebar-width bg-frost-950 text-white lg:flex lg:shrink-0 lg:flex-col lg:overflow-hidden">
+        {mobileMenuOpen && <button type="button" aria-label={t('Close menu')} onClick={() => setMobileMenuOpen(false)} className="portal-backdrop fixed inset-0 z-40 bg-slate-950/55 backdrop-blur-sm lg:hidden" />}
+        <aside id="portal-sidebar" className={`portal-sidebar portal-sidebar-width fixed inset-y-0 left-0 z-50 flex max-w-[88vw] flex-col overflow-hidden bg-frost-950 text-white transition-transform duration-300 lg:static lg:z-auto lg:flex lg:shrink-0 lg:translate-x-0 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
           <div className={`hidden border-b border-white/10 px-3 py-3 lg:flex ${sidebarCollapsed ? 'justify-center' : 'justify-start'}`}>
             <button
               type="button"
@@ -158,7 +169,8 @@ export function AppShell() {
               <Menu className="h-6 w-6" />
             </button>
           </div>
-          <nav className="space-y-1 p-3 lg:flex-1 lg:overflow-y-auto">
+          <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 lg:hidden"><span className="text-xs font-black uppercase tracking-[.16em] text-cyan-200">{t('Navigation')}</span><button type="button" onClick={() => setMobileMenuOpen(false)} aria-label={t('Close menu')} className="grid h-10 w-10 place-items-center rounded-xl bg-white/10"><X className="h-5 w-5"/></button></div>
+          <nav className="space-y-1 overflow-y-auto p-3 lg:flex-1">
             <Link title={t('Dashboard')} to="/dashboard" className={`${nav} ${location.pathname === '/dashboard' ? 'bg-sky-700' : ''}`}><LayoutDashboard className="h-5 w-5 shrink-0" />{label(t('Dashboard'))}</Link>
             {/* REQ-CC-001: temperature excursion alerts -- internal users only, a Partner login does not see it. */}
             {(admin || manager || employee) && <Link title={t('Temperature Alerts')} to="/excursions" className={`${nav} ${location.pathname === '/excursions' ? 'bg-sky-700' : ''}`}><Thermometer className="h-5 w-5 shrink-0" />{label(t('Temperature Alerts'))}</Link>}
@@ -451,7 +463,7 @@ export function AppShell() {
         {!sidebarCollapsed && <SidebarResizeHandle width={sidebarWidth} onChange={setSidebarWidth} label={t('Resize left menu')} />}
         <div className="min-w-0 lg:flex-1 lg:overflow-y-auto">
           {/* REQ-CC-001-FIX1: pages use the full width of the monitor (was capped at 1500px, which left white space on both sides). */}
-          <main id="main" tabIndex={-1} className="w-full p-5 lg:p-7 focus:outline-none">
+          <main id="main" tabIndex={-1} className="portal-main w-full p-4 sm:p-6 lg:p-8 focus:outline-none">
             <Outlet />
           </main>
         </div>

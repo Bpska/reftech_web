@@ -1,76 +1,19 @@
-/*
- * RefTech Technology Company
- * CONFIDENTIAL: this source code is the property of RefTech Technology Company and is confidential to the
- * company. Copying it, or sharing it with anyone outside the company without written permission, is a
- * violation of law.
- */
-
+/* RefTech Technology Company - confidential. */
 import { Reveal } from '@/website/Reveal';
-import { STATS } from '@/website/data';
-import { useEffect, useRef, useState } from 'react';
+import { Activity, ArrowUpRight, Boxes, Link2, ShieldCheck } from 'lucide-react';
 
-function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
-  const [display, setDisplay] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const started = useRef(false);
+const capabilities = [
+  { icon: Activity, code: '01', label: 'Live visibility', note: 'Location and shipment condition in one operational view.' },
+  { icon: ShieldCheck, code: '02', label: 'Traceable records', note: 'Temperature and custody evidence designed for review.' },
+  { icon: Boxes, code: '03', label: 'Connected operations', note: 'Transport, storage, dispatch and proof in one workflow.' },
+  { icon: Link2, code: '04', label: 'API-ready data', note: 'Structured connections for tracking and operations.' },
+];
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          const duration = 1800;
-          const start = performance.now();
-          const animate = (now: number) => {
-            const progress = Math.min((now - start) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setDisplay(value * eased);
-            if (progress < 1) requestAnimationFrame(animate);
-          };
-          requestAnimationFrame(animate);
-        }
-      });
-    }, { threshold: 0.3 });
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [value]);
-
-  const isDecimal = value % 1 !== 0;
-
-  return (
-    <span ref={ref}>
-      {isDecimal ? display.toFixed(1) : Math.round(display).toLocaleString()}
-      {suffix}
-    </span>
-  );
-}
-
-export function Stats() {
-  return (
-    <section className="relative -mt-px bg-white py-16 md:py-20">
-      <div className="mx-auto max-w-7xl px-5 md:px-10 lg:px-16">
-        <Reveal>
-          <div className="overflow-hidden rounded-3xl bg-mesh shadow-2xl">
-            <div className="grid gap-8 p-10 md:grid-cols-4 md:p-14">
-              {STATS.map((stat, i) => (
-                <Reveal key={stat.label} delay={i * 80}>
-                  <div className="group text-center">
-                    <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-frost-300 transition-all duration-300 group-hover:scale-110 group-hover:bg-white/15">
-                      <stat.icon className="h-7 w-7" />
-                    </div>
-                    <p className="mt-4 font-display text-4xl font-extrabold text-white md:text-5xl">
-                      <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                    </p>
-                    <p className="mt-2 text-sm font-medium text-white/60">{stat.label}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
+export function Stats(){
+  return <section className="capability-rail relative bg-white py-14 md:py-20"><div className="mx-auto max-w-7xl px-5 md:px-10 lg:px-16">
+    <Reveal><div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"><div><span className="heading-eyebrow">Operating layer</span><h2 className="mt-3 max-w-xl font-display text-2xl font-extrabold tracking-tight text-deep-900 md:text-3xl">Signals become operational decisions.</h2></div><p className="max-w-md text-sm leading-6 text-deep-500">A connected workflow for teams handling time- and temperature-sensitive movement.</p></div></Reveal>
+    <div className="grid overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_24px_80px_rgba(8,49,67,.10)] sm:grid-cols-2 lg:grid-cols-4">
+      {capabilities.map((item,index)=><Reveal key={item.label} delay={index*70}><article className="group relative h-full min-h-64 border-b border-slate-200 p-6 transition hover:bg-cyan-50/50 sm:border-r lg:border-b-0"><div className="flex items-start justify-between"><span className="grid h-11 w-11 place-items-center rounded-xl bg-[#082433] text-cyan-300"><item.icon className="h-5 w-5"/></span><span className="font-mono text-[10px] text-slate-400">NODE / {item.code}</span></div><h3 className="mt-12 font-display text-lg font-bold text-deep-900">{item.label}</h3><p className="mt-2 text-sm leading-6 text-deep-500">{item.note}</p><ArrowUpRight className="absolute bottom-5 right-5 h-4 w-4 text-slate-300 transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-cyan-600"/></article></Reveal>)}
+    </div>
+  </div></section>;
 }

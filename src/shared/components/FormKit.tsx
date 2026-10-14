@@ -11,11 +11,11 @@
 import { FormEvent, ReactNode, useEffect, useRef } from 'react';
 import { t, toBase, toShown, unitNow, UnitKind } from '@/shared/i18n';
 
-export const input = 'w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-slate-900';
-export const label = 'mb-1 block text-sm font-semibold text-slate-700';
-export const btn = 'rounded-xl bg-sky-700 px-4 py-2 font-semibold text-white hover:bg-sky-800 disabled:opacity-50';
-export const btnLight = 'rounded-xl border border-slate-300 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50';
-export const btnRed = 'rounded-xl border border-red-300 bg-white px-3 py-1.5 text-sm font-semibold text-red-700 hover:bg-red-50 disabled:opacity-50';
+export const input = 'ui-input w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-slate-900';
+export const label = 'ui-label mb-1 block text-sm font-semibold text-slate-700';
+export const btn = 'ui-button ui-button-primary rounded-xl bg-sky-700 px-4 py-2 font-semibold text-white hover:bg-sky-800 disabled:opacity-50';
+export const btnLight = 'ui-button ui-button-secondary rounded-xl border border-slate-300 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50';
+export const btnRed = 'ui-button ui-button-danger rounded-xl border border-red-300 bg-white px-3 py-1.5 text-sm font-semibold text-red-700 hover:bg-red-50 disabled:opacity-50';
 export const th = 'px-2.5 py-2 text-left font-semibold';
 export const td = 'px-2.5 py-2 align-top';
 export const errorText = (x: unknown, fallback: string) => (x instanceof Error && x.message ? x.message : fallback);
@@ -75,8 +75,8 @@ export function QuickForm({ fields, initial, onSubmit, submitText, onCancel, bus
 
 export function Banner({ msg, error }: { msg?: string; error?: string }) {
   return <>
-    {msg && <div className="my-3 whitespace-pre-line rounded-xl bg-emerald-50 p-3 text-emerald-900">{msg}</div>}
-    {error && <div className="my-3 whitespace-pre-line rounded-xl bg-red-50 p-3 text-red-800">{error}</div>}
+    {msg && <div role="status" className="ui-notice my-3 whitespace-pre-line rounded-xl bg-emerald-50 p-3 text-emerald-900">{msg}</div>}
+    {error && <div role="alert" className="ui-notice my-3 whitespace-pre-line rounded-xl bg-red-50 p-3 text-red-800">{error}</div>}
   </>;
 }
 
@@ -106,7 +106,7 @@ export function ScanBox({ placeholder, onScan, autoFocus, disabled }: { placehol
 }
 
 export function Section({ id, title, right, children }: { id?: string; title: ReactNode; right?: ReactNode; children: ReactNode }) {
-  return <section id={id} className="mt-5 rounded-2xl bg-white p-4 shadow-sm">
+  return <section id={id} className="ui-panel mt-5 rounded-2xl bg-white p-4 shadow-sm">
     <div className="flex flex-wrap items-center justify-between gap-2"><h2 className="text-xl font-bold">{title}</h2>{right}</div>
     <div className="mt-3">{children}</div>
   </section>;

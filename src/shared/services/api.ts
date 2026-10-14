@@ -5,7 +5,7 @@
  * violation of law.
  */
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = String(import.meta.env.VITE_API_URL || (typeof window !== 'undefined' ? window.location.origin : '')).replace(/\/$/, '');
 // REQ-PLT-016 support view: a tab opened by RefTech support carries its own read-only token in sessionStorage
 // (see modules/platform/support.tsx); every other tab uses the normal login.
 function sessionToken(){try{return sessionStorage.getItem('reftech_support_token')||localStorage.getItem('reftech_token');}catch{return localStorage.getItem('reftech_token');}}

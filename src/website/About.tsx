@@ -18,6 +18,8 @@ export function About() {
             <div className="relative">
               <div className="overflow-hidden rounded-3xl shadow-2xl">
                 <img
+                  loading="lazy"
+                  decoding="async"
                   src={ABOUT_IMAGE}
                   alt="Cold storage facility"
                   className="h-[420px] w-full object-cover transition-transform duration-700 hover:scale-105"
