@@ -44,7 +44,9 @@ export function AppShell() {
   const [now, setNow] = useState(new Date());
   const [open, setOpen] = useState<Record<string, boolean>>({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(() => localStorage.getItem('reftech_sidebar_collapsed') === '1');
+  // Compact by default; hovering temporarily reveals labels. The toggle pins it open.
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(() => localStorage.getItem('reftech_sidebar_collapsed') !== '0');
+  const [sidebarHovered, setSidebarHovered] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(() => {
     try {
       const saved = Number(localStorage.getItem('reftech_sidebar_width'));
@@ -63,6 +65,7 @@ export function AppShell() {
     return () => window.removeEventListener('resize', resize);
   }, []);
   const setCollapsed = (v:boolean) => { setSidebarCollapsed(v); localStorage.setItem('reftech_sidebar_collapsed', v ? '1' : '0'); };
+  const sidebarCompact = sidebarCollapsed && !sidebarHovered;
   const toggle = (k: string) => setOpen(x => ({ ...x, [k]: !x[k] }));
   const location = useLocation();
 
@@ -113,21 +116,21 @@ export function AppShell() {
   const employeeName = [firstName, lastName].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
   const displayName = employeeName || fullName || username || t('User');
 
-  const nav = `flex w-full items-center ${sidebarCollapsed?'justify-center':'gap-3'} rounded-xl px-3 py-2.5 text-left text-[15px] font-bold text-slate-100 transition hover:bg-white/10 hover:text-white`;
-  const label = (text:string) => sidebarCollapsed ? null : <span className="flex-1">{text}</span>;
+  const nav = `flex w-full items-center ${sidebarCompact?'justify-center':'gap-3'} rounded-xl px-3 py-2.5 text-left text-[15px] font-bold text-slate-100 transition hover:bg-white/10 hover:text-white`;
+  const label = (text:string) => sidebarCompact ? null : <span className="portal-nav-label flex-1">{text}</span>;
   const sub = 'block rounded-lg px-3 py-2 text-sm font-semibold text-slate-200 hover:bg-white/10 hover:text-white';
   const section = (key: string, label: string, Icon: any, children: any) => (
     <>
-      <button title={label} onClick={() => sidebarCollapsed ? setCollapsed(false) : toggle(key)} className={nav}>
-        <Icon className="h-5 w-5 shrink-0" />{!sidebarCollapsed&&<span className="flex-1">{label}</span>}
-        {!sidebarCollapsed&&(open[key] ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />)}
+      <button title={label} onClick={() => sidebarCompact ? setCollapsed(false) : toggle(key)} className={nav}>
+        <Icon className="h-5 w-5 shrink-0" />{!sidebarCompact&&<span className="portal-nav-label flex-1">{label}</span>}
+        {!sidebarCompact&&(open[key] ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />)}
       </button>
-      {!sidebarCollapsed && open[key] && <div className="ml-6 space-y-1 border-l border-white/20 pl-2">{children}</div>}
+      {!sidebarCompact && open[key] && <div className="portal-nav-label ml-6 space-y-1 border-l border-white/20 pl-2">{children}</div>}
     </>
   );
 
   return (
-    <div className="portal-app min-h-screen lg:flex lg:h-screen lg:flex-col" style={{ '--sidebar-width': `${sidebarCollapsed ? 80 : sidebarWidth}px` } as CSSProperties}>
+    <div className="portal-app min-h-screen lg:flex lg:h-screen lg:flex-col" style={{ '--sidebar-width': `${sidebarCompact ? 80 : sidebarWidth}px` } as CSSProperties}>
       <SkipLink />
       <SupportBanner />
       {/* The logo cell and the sidebar below it share the same adjustable width so their right
@@ -135,35 +138,36 @@ export function AppShell() {
           happen to look aligned. The logo image fills that cell with zero padding on every side (no
           gap between the image's own edge and the cell/sidebar edge below it), at every breakpoint. */}
       {/* REQ-PLT-002: the company's second colour as a thin line under the header (none without one) */}
-      <div className="portal-header flex w-full shrink-0 items-stretch bg-frost-950 text-white shadow-lg" style={{ boxShadow: 'inset 0 -3px 0 var(--brand-accent-line, transparent), 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)' }}>
-        <div className="portal-sidebar-width block w-full leading-0 lg:flex-none">
+      <div className="portal-header flex w-full shrink-0 items-center bg-frost-950 text-white shadow-lg" style={{ boxShadow: 'inset 0 -3px 0 var(--brand-accent-line, transparent), 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)' }}>
+        <div className="portal-header-brand portal-sidebar-width flex w-full items-center gap-2 leading-0 lg:flex-none">
+          <button type="button" onClick={()=>setMobileMenuOpen(true)} aria-label={t('Open menu')} className="portal-mobile-menu grid h-9 w-9 shrink-0 place-items-center rounded-lg text-white hover:bg-white/10 lg:hidden"><Menu className="h-5 w-5"/></button>
           <img
             src="/media/reftech_logo_new.png"
             alt="RefTech - Temperature Controlled, Powered By Technology"
             className="block h-auto w-full"
           />
         </div>
-        <div className="flex flex-1 items-center justify-end gap-4 px-6 py-4 text-right">
-          {!driverLogin && <NotificationBell tone="dark" />}{/* REQ-PLT-003 */}
-          <div>
+        <div className="portal-header-actions flex flex-1 items-center justify-end gap-3 text-right">
+          <div className="portal-header-profile">
             {/* REQ-PLT-002: the company's own name and logo when it is not the company that runs RefTech */}
-            {brand && (brand.logo || (brand.name && brand.name !== 'RefTech')) && <div className="mb-1 flex items-center justify-end gap-2 text-sm font-bold text-sky-100">
+            {brand && (brand.logo || (brand.name && brand.name !== 'RefTech')) && <div className="portal-company-brand flex items-center justify-end gap-2 font-bold text-sky-100">
               {brand.logo && <img src={brand.logo} alt="" className="h-7 w-auto max-w-28 rounded bg-white object-contain p-0.5" />}{brand.name}</div>}
             <div className="font-bold text-white">{displayName}</div>
             <div className="text-xs font-bold text-sky-300">{me?.role || role}</div>{/* REQ-HR-001: the real role (HR, BILLING ...), not the base level */}
             <div className="mt-1 text-xs text-slate-200">{now.toLocaleDateString()} · <b>{now.toLocaleTimeString()}</b></div>
           </div>
+          {!driverLogin && <NotificationBell tone="dark" />}{/* REQ-PLT-003: kept at the far right of the header row */}
         </div>
       </div>
       <div className="lg:flex lg:min-h-0 lg:flex-1">
         {mobileMenuOpen && <button type="button" aria-label={t('Close menu')} onClick={() => setMobileMenuOpen(false)} className="portal-backdrop fixed inset-0 z-40 bg-slate-950/55 backdrop-blur-sm lg:hidden" />}
-        <aside id="portal-sidebar" className={`portal-sidebar portal-sidebar-width fixed inset-y-0 left-0 z-50 flex max-w-[88vw] flex-col overflow-hidden bg-frost-950 text-white transition-transform duration-300 lg:static lg:z-auto lg:flex lg:shrink-0 lg:translate-x-0 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-          <div className={`hidden border-b border-white/10 px-3 py-3 lg:flex ${sidebarCollapsed ? 'justify-center' : 'justify-start'}`}>
+        <aside id="portal-sidebar" onMouseEnter={()=>setSidebarHovered(true)} onMouseLeave={()=>setSidebarHovered(false)} className={`portal-sidebar portal-sidebar-width fixed inset-y-0 left-0 z-50 flex max-w-[88vw] flex-col overflow-hidden bg-frost-950 text-white transition-transform duration-300 lg:static lg:z-auto lg:flex lg:shrink-0 lg:translate-x-0 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+          <div className={`hidden border-b border-white/10 px-3 py-3 lg:flex ${sidebarCompact ? 'justify-center' : 'justify-start'}`}>
             <button
               type="button"
               onClick={() => setCollapsed(!sidebarCollapsed)}
-              title={sidebarCollapsed ? t('Expand menu') : t('Collapse menu')}
-              aria-label={sidebarCollapsed ? t('Expand left menu') : t('Collapse left menu')}
+              title={sidebarCollapsed ? t('Pin menu open') : t('Use automatic menu')}
+              aria-label={sidebarCollapsed ? t('Pin left menu open') : t('Collapse left menu automatically')}
               className="inline-flex h-10 w-10 items-center justify-center rounded-full text-slate-100 transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30"
             >
               <Menu className="h-6 w-6" />
@@ -460,7 +464,7 @@ export function AppShell() {
             <button title={t('Sign Out')} onClick={() => { api('/api/auth/logout',{method:'POST'}).catch(()=>{}).finally(()=>{ localStorage.clear(); window.location.href = '/login'; }); }} className={`${nav} text-red-100`}><LogOut className="h-5 w-5 shrink-0" />{label(t('Sign Out'))}</button>
           </div>
         </aside>
-        {!sidebarCollapsed && <SidebarResizeHandle width={sidebarWidth} onChange={setSidebarWidth} label={t('Resize left menu')} />}
+        {!sidebarCompact && !sidebarCollapsed && <SidebarResizeHandle width={sidebarWidth} onChange={setSidebarWidth} label={t('Resize left menu')} />}
         <div className="min-w-0 lg:flex-1 lg:overflow-y-auto">
           {/* REQ-CC-001-FIX1: pages use the full width of the monitor (was capped at 1500px, which left white space on both sides). */}
           <main id="main" tabIndex={-1} className="portal-main w-full p-4 sm:p-6 lg:p-8 focus:outline-none">

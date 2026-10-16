@@ -4,8 +4,8 @@
  * company. Copying it, or sharing it with anyone outside the company without written permission, is a
  * violation of law.
  */
-import {useEffect,useState} from 'react';
-import {AlertTriangle,BadgeAlert,CloudLightning,Boxes,Building2,CalendarDays,ChevronDown,ChevronRight,Clock3,Gauge,ShieldCheck,Snowflake,Thermometer,Truck,Users,Wrench,Siren,Receipt} from 'lucide-react';
+import {useCallback,useEffect,useState} from 'react';
+import {AlertTriangle,BadgeAlert,CloudLightning,Boxes,Building2,CalendarDays,ChevronDown,ChevronRight,Clock3,Gauge,ShieldCheck,Snowflake,Thermometer,Truck,Users,Wrench,Siren,Receipt,RefreshCw} from 'lucide-react';
 import {Link} from 'react-router-dom';
 import {api,currentUser} from '@/shared/services/api';
 import {WeatherAlertsBoard} from '@/modules/weather/WeatherAlertsBoard';
@@ -26,9 +26,10 @@ export function DashboardPage(){usePrefsFormat();/* REQ-PLT-015: show again when
 function StaffDashboard(){
  const user=currentUser(); const role=String(user.role||user.roleCode||'EMPLOYEE').replace('ROLE_','').toUpperCase();
  const [dash,setDash]=useState<any>({alerts:[],alertCounts:{},runningTrips:[],upcomingTrips:[],completedTripsToday:[]}); const [inv,setInv]=useState<any>({partners:[],warehouses:[],chambers:[],vehicles:[]});
+ const [loading,setLoading]=useState(true),[refreshing,setRefreshing]=useState(false),[loadError,setLoadError]=useState(''),[updatedAt,setUpdatedAt]=useState<Date|null>(null);
  const [boardOpen,setBoardOpen]=useState<Record<string,boolean>>({alerts:true,running:true,upcoming:true,completed:true}); const toggleBoard=(k:string)=>setBoardOpen(x=>({...x,[k]:!x[k]}));
- const loadDash=()=>api('/api/operations/dashboard').then(setDash).catch(()=>{});
- useEffect(()=>{void loadDash();api('/api/operations/inventory/summary').then(setInv).catch(()=>{})},[]);
+ const loadDash=useCallback(async(silent=false)=>{silent?setRefreshing(true):setLoading(true);try{const [d,i]=await Promise.all([api('/api/operations/dashboard'),api('/api/operations/inventory/summary')]);setDash(d);setInv(i);setLoadError('');setUpdatedAt(new Date())}catch{setLoadError('Live data could not be refreshed. The last available figures are still shown.')}finally{setLoading(false);setRefreshing(false)}},[]);
+ useEffect(()=>{void loadDash();const id=window.setInterval(()=>void loadDash(true),30000);return()=>window.clearInterval(id)},[loadDash]);
  const TripTable=({title,rows,type,boardKey}:{title:string,rows:any[],type:string,boardKey:string})=>{
   const expanded=boardOpen[boardKey]!==false;
   const Icon=type==='completed'?ShieldCheck:type==='upcoming'?CalendarDays:Truck;
@@ -44,12 +45,13 @@ function StaffDashboard(){
  // planned and running trips), with the highest level. The colour follows the highest level. For staff the tile opens the board.
  const wxHigh=String(dash.weatherHighest||'NONE'); const wxColour=wxHigh==='RED'?'bg-red-100 text-red-800':wxHigh==='ORANGE'?'bg-orange-50 text-orange-800':wxHigh==='YELLOW'?'bg-yellow-50 text-yellow-800':'bg-sky-50 text-sky-800';
  const wxBody=<div className="flex items-center gap-3"><CloudLightning className="h-7 w-7"/><div><div className="text-2xl font-black">{dash.alertCounts?.weather||0}</div><div className="font-bold">Weather Alerts</div>{wxHigh!=='NONE'&&<div className="text-xs font-bold">Highest: {LEVEL_LABEL[wxHigh]}</div>}</div></div>;
- return <>
- <div className="admin-page-heading"><div><h1>Operations overview</h1><p>Monitor alerts, active movements and operational capacity from one place.</p></div><span className="admin-live">Live workspace</span></div>
+ return <div className="dash-page" aria-busy={loading}>
+ <header className="dash-hero"><div><p className="dash-eyebrow">Operations command centre</p><h1>Operations overview</h1><p>Trips, exceptions, weather and fleet capacity in one clear view.</p></div><div className="dash-sync"><span className={loadError?'bg-amber-500':'bg-emerald-500'}/><div><b>{loadError?'Connection needs attention':'Live data connected'}</b><small>{updatedAt?`Updated ${updatedAt.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}`:'Connecting'}</small></div><button onClick={()=>void loadDash(true)} disabled={refreshing} aria-label="Refresh dashboard"><RefreshCw className={refreshing?'animate-spin':''}/></button></div></header>
+ {loadError&&<div className="dash-error" role="alert"><AlertTriangle/><span>{loadError}</span><button onClick={()=>void loadDash(true)}>Try again</button></div>}
  <section className="overflow-hidden rounded-2xl bg-white shadow-sm"><div className="flex items-center justify-between border-b bg-sky-50/70 px-4 py-3"><button onClick={()=>toggleBoard('alerts')} className="flex flex-1 items-center gap-2 text-left"><AlertTriangle className="h-5 w-5 text-sky-700"/><h2 className="text-lg font-black text-slate-900">Alerts & Notifications</h2></button><button onClick={()=>toggleBoard('alerts')} aria-label="Toggle alerts">{boardOpen.alerts!==false?<ChevronDown className="h-5 w-5 text-sky-700"/>:<ChevronRight className="h-5 w-5 text-sky-700"/>}</button></div>{boardOpen.alerts!==false&&<div className="grid gap-3 p-3 md:grid-cols-3 lg:grid-cols-4">{alerts.map(([l,v,I,c,href,tip])=>{const body=<div className="flex items-center gap-3"><I className="h-7 w-7"/><div><div className="text-2xl font-black">{v}</div><div className="font-bold">{l}</div></div></div>;return href&&staff?<Link key={l} to={href} title={tip} className={`block rounded-xl p-4 hover:ring-2 hover:ring-amber-300 ${c}`}>{body}</Link>:<div key={l} className={`rounded-xl p-4 ${c}`}>{body}</div>})}{staff?<button type="button" data-testid="weather-tile" title="Official weather warnings for the watched areas and the routes of planned and running trips. Open the Weather Alerts board" onClick={()=>document.getElementById('weather-alerts')?.scrollIntoView({behavior:'smooth'})} className={`block rounded-xl p-4 text-left hover:ring-2 hover:ring-amber-300 ${wxColour}`}>{wxBody}</button>:<div className={`rounded-xl p-4 ${wxColour}`}>{wxBody}</div>}</div>}</section>
  {staff&&<WeatherAlertsBoard onChanged={()=>void loadDash()}/>}
  <div className="mt-4 space-y-4"><TripTable boardKey="running" title={role==='EMPLOYEE'?'My Running Trips':'Running Trips'} rows={dash.runningTrips||[]} type="running"/><TripTable boardKey="upcoming" title={role==='EMPLOYEE'?'My Upcoming Trips':'Upcoming Trips'} rows={dash.upcomingTrips||[]} type="upcoming"/><TripTable boardKey="completed" title={role==='EMPLOYEE'?'My Completed Trips Today':'Completed Trips Today'} rows={dash.completedTripsToday||[]} type="completed"/></div>
- <section className="mt-4 rounded-2xl bg-white p-4 shadow-sm"><h2 className="flex items-center gap-2 text-lg font-bold"><Boxes className="h-5 w-5 text-sky-700"/>Inventory Overview</h2><div className="mt-3 grid gap-3 md:grid-cols-4"><InventoryCard icon={Users} title="Partners" n={inv.partners?.length||0} href="/inventory#partners"/><InventoryCard icon={Building2} title="Warehouses" n={inv.warehouses?.length||0} href="/inventory#warehouses"/><InventoryCard icon={Snowflake} title="Cold Chambers" n={inv.chambers?.length||0} href="/inventory#chambers"/><InventoryCard icon={Truck} title="Available Vehicles" n={inv.vehicles?.length||0} href="/inventory#vehicles"/></div></section>
- </>
+ <section className="mt-4 rounded-2xl bg-white p-4 shadow-sm"><h2 className="flex items-center gap-2 text-lg font-bold"><Boxes className="h-5 w-5 text-sky-700"/>Inventory overview</h2><div className="dash-inventory-grid"><InventoryCard icon={Users} title="Partners" n={inv.partners?.length||0} href="/inventory#partners"/><InventoryCard icon={Building2} title="Warehouses" n={inv.warehouses?.length||0} href="/inventory#warehouses"/><InventoryCard icon={Snowflake} title="Cold chambers" n={inv.chambers?.length||0} href="/inventory#chambers"/><InventoryCard icon={Truck} title="Available vehicles" n={inv.vehicles?.length||0} href="/inventory#vehicles"/></div></section>
+ </div>
 }
 function InventoryCard({icon:Icon,title,n,href}:any){return <Link to={href} className="rounded-xl border p-4 hover:border-sky-300"><Icon className="h-6 w-6 text-sky-700"/><div className="mt-2 text-xl font-black">{n}</div><div className="font-bold">{title}</div><div className="mt-2 text-xs font-bold text-sky-700">View Details →</div></Link>}

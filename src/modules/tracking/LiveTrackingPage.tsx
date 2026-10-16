@@ -42,7 +42,7 @@ type TruckRow = {
 type Colour = 'RED' | 'AMBER' | 'GREEN' | 'GREY';
 type Live = { asOf: string; ready: boolean; message?: string; running: number; withPosition: number; counts: Record<Colour, number>; positionStaleMinutes: number; trucks: TruckRow[] };
 
-const REFRESH_SECONDS = 30;
+const REFRESH_SECONDS = 15;
 const COLOUR: Record<Colour, { hex: string; name: string; meaning: string; chip: string; dot: string }> = {
   RED: { hex: '#dc2626', name: 'Red', meaning: 'Open temperature alert', chip: 'border-red-300 bg-red-50 text-red-800', dot: 'bg-red-600' },
   AMBER: { hex: '#f59e0b', name: 'Amber', meaning: 'Outside the range, being watched', chip: 'border-amber-300 bg-amber-50 text-amber-900', dot: 'bg-amber-500' },
@@ -58,6 +58,7 @@ const when = (v?: string | null) => {
 const clock = (v?: string | null) => { const d = v ? new Date(v) : null; return d && !Number.isNaN(d.getTime()) ? fmtTime(d) : '-'; };
 const range = (t: Temperature) => t.minC == null && t.maxC == null ? 'not set' : fmtTempRange(t.minC, t.maxC);
 const shortName = (v?: string | null) => { const s = String(v || '').replace(/\s+/g, ''); return s.length > 4 ? s.slice(-4) : s || '?'; };
+const validPoint = (lat: unknown, lng: unknown) => Number.isFinite(Number(lat)) && Number.isFinite(Number(lng)) && Number(lat) >= -90 && Number(lat) <= 90 && Number(lng) >= -180 && Number(lng) <= 180;
 // REQ-TRK-002: SIM, LINK and FASTAG positions of hired trucks; REEFER from the reefer unit.
 const SOURCE: Record<string, string> = { PHONE: "driver's phone", DEVICE: 'vehicle tracker', MANUAL: 'entered by hand', SIM: 'SIM (mobile operator)', LINK: "driver's phone link", FASTAG: 'FASTag toll crossing', REEFER: 'reefer unit' };
 
@@ -78,6 +79,7 @@ export function LiveTrackingPage() {
   const [mapNote, setMapNote] = useState('');       // why OpenStreetMap is shown although a key is set
   const [tileNote, setTileNote] = useState('');     // the map background could not be loaded
   const [busy, setBusy] = useState(false);
+  const loading = useRef(false);
   const box = useRef<HTMLDivElement>(null);
   const map = useRef<LiveMap | null>(null);
   const fitted = useRef(false);                     // the map is fitted to the trucks once, then left where the user put it
@@ -87,15 +89,19 @@ export function LiveTrackingPage() {
 
   // ---------------------------------------------------------------- data
   const load = useCallback(async () => {
+    if (loading.current) return;
+    loading.current = true;
     setBusy(true);
     try { setLive(await api('/api/tracking/live')); setError(''); }
     catch (x) { setError(x instanceof Error ? x.message : 'The live positions could not be loaded'); }
-    finally { setBusy(false); }
+    finally { loading.current = false; setBusy(false); }
   }, []);
   useEffect(() => {
     void load();
     const timer = window.setInterval(() => { if (!document.hidden) void load(); }, REFRESH_SECONDS * 1000);
-    return () => window.clearInterval(timer);
+    const visible = () => { if (!document.hidden) void load(); };
+    document.addEventListener('visibilitychange', visible);
+    return () => { window.clearInterval(timer); document.removeEventListener('visibilitychange', visible); };
   }, [load]);
 
   const select = useCallback((id: number | null) => {
@@ -111,7 +117,7 @@ export function LiveTrackingPage() {
     let gone = false;
     api(`/api/tracking/trips/${selected}/trail?max=600`)
       .then((r: { points: [number, number, number, number | null][]; total: number; shown: number }) => {
-        if (!gone) setTrail({ tripId: selected, points: (r.points || []).map(p => [Number(p[0]), Number(p[1])] as MapPoint), total: r.total, shown: r.shown });
+        if (!gone) setTrail({ tripId: selected, points: (r.points || []).filter(p => validPoint(p[0],p[1])).map(p => [Number(p[0]), Number(p[1])] as MapPoint), total: r.total, shown: r.shown });
       })
       .catch(() => { if (!gone) setTrail({ tripId: selected, points: [], total: 0, shown: 0 }); });
     return () => { gone = true; };
@@ -150,7 +156,7 @@ export function LiveTrackingPage() {
   useEffect(() => {
     const m = map.current;
     if (!m) return;
-    const withPosition = visible.filter(t => t.position);
+    const withPosition = visible.filter(t => t.position && validPoint(t.position.latitude,t.position.longitude));
     const markers: MapMarker[] = withPosition.map(t => ({
       id: t.tripId, lat: Number(t.position!.latitude), lng: Number(t.position!.longitude), colour: COLOUR[t.colour].hex, label: shortName(t.vehicleNumber),
       title: `${t.vehicleNumber || 'Truck'} · ${t.tripNumber} · ${t.temperature.text}`, stale: t.position!.stale, selected: t.tripId === selected,
@@ -158,7 +164,7 @@ export function LiveTrackingPage() {
     m.setMarkers(markers);
     const line = trail && trail.tripId === selected ? trail.points : [];
     m.setTrail(line);
-    if (current?.position && focused.current !== current.tripId) {
+    if (current?.position && validPoint(current.position.latitude,current.position.longitude) && focused.current !== current.tripId) {
       focused.current = current.tripId; fitted.current = true;
       if (line.length > 1) m.fit(line); else m.focus(Number(current.position.latitude), Number(current.position.longitude));
     } else if (!selected && !fitted.current && markers.length > 0) {
@@ -179,14 +185,14 @@ export function LiveTrackingPage() {
 
   function showAll() {
     select(null); fitted.current = true;
-    const pts = visible.filter(t => t.position).map(t => [Number(t.position!.latitude), Number(t.position!.longitude)] as MapPoint);
+    const pts = visible.filter(t => t.position && validPoint(t.position.latitude,t.position.longitude)).map(t => [Number(t.position!.latitude), Number(t.position!.longitude)] as MapPoint);
     map.current?.fit(pts);
   }
 
   const pos = current?.position || null;
   const temp = current?.temperature;
   const overSpeed = pos?.speedKmph != null && current?.maxSpeedKmph != null && Number(pos.speedKmph) > Number(current.maxSpeedKmph);
-  const noPosition = trucks.filter(t => !t.position).length;
+  const noPosition = trucks.filter(t => !t.position || !validPoint(t.position.latitude,t.position.longitude)).length;
 
   return <>
     <div className="flex flex-wrap items-start justify-between gap-4">

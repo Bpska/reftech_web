@@ -8,6 +8,7 @@
 import { useEffect, useState } from 'react';
 import { Menu, X, Mail } from 'lucide-react';
 import { NAV_LINKS } from '@/website/data';
+import { BrandMark } from '@/shared/components/BrandMark';
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -32,7 +33,9 @@ export function Navbar() {
         className={`fixed left-1/2 top-2 z-50 w-[calc(100%-18px)] max-w-[1480px] -translate-x-1/2 rounded-2xl border py-1.5 transition-all duration-500 backdrop-blur-2xl ${scrolled ? 'border-white/15 bg-[#041917]/55 shadow-[0_18px_55px_rgba(0,0,0,.24)]' : 'border-white/10 bg-[#041917]/28 shadow-[0_10px_35px_rgba(0,0,0,.12)]'}`}
       >
         <nav className="flex w-full items-center justify-between px-2.5 md:px-4">
-          <a href="/#home" className="group flex shrink-0 items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-2.5 py-1.5 text-white transition-colors hover:bg-white/10"><span className="hidden sm:grid"><strong className="text-xs tracking-[.16em]">REFTECH</strong><small className="text-[8px] text-white/45">COLD CHAIN INTELLIGENCE</small></span></a>
+          <a href="/#home" className="group flex shrink-0 items-center gap-2 transition-transform hover:scale-[1.02]">
+            <BrandMark compact />
+          </a>
 
           <ul className="hidden items-center gap-3 lg:flex">
             {NAV_LINKS.map((link) => (
@@ -83,10 +86,13 @@ export function Navbar() {
           onClick={() => setOpen(false)}
         />
         <div
-          className={`absolute right-0 top-0 flex h-full w-80 max-w-[85%] flex-col bg-frost-950 p-6 pt-28 shadow-2xl transition-transform duration-500 ${
+          className={`absolute right-0 top-0 flex h-full w-80 max-w-[85%] flex-col bg-frost-950 p-6 pt-20 shadow-2xl transition-transform duration-500 ${
             open ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
+          <div className="mb-6 flex items-center justify-start">
+            <BrandMark compact className="!max-w-[200px]" />
+          </div>
           <ul className="flex flex-col gap-2">
             {NAV_LINKS.map((link, i) => (
               <li key={link.href}>

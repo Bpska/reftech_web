@@ -1,7 +1,7 @@
 ﻿import { useEffect, useRef, useState } from 'react';
 
 const FRAME_COUNT = 120;
-const frameUrl = (index: number) => `/hero/frames/frame-${String(index + 1).padStart(4, '0')}.webp`;
+const frameUrl = (index: number, mobile: boolean) => `/hero/${mobile ? 'mobile-frames' : 'frames'}/frame-${String(index + 1).padStart(4, '0')}.webp`;
 type IdleWindow = Window & typeof globalThis & {
   requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
   cancelIdleCallback?: (handle: number) => void;
@@ -36,6 +36,8 @@ export function ScrollSequenceHero() {
     let target = 0;
     let drawn = -1;
     let raf = 0;
+    let needsMeasure = true;
+    let needsResize = true;
     let idleHandle: number | undefined;
     let timer: ReturnType<typeof setTimeout> | undefined;
     let disposed = false;
@@ -50,7 +52,7 @@ export function ScrollSequenceHero() {
     };
 
     const sizeCanvas = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2);
       const width = Math.max(1, canvas.clientWidth);
       const height = Math.max(1, canvas.clientHeight);
       canvas.width = Math.round(width * dpr);
@@ -77,9 +79,6 @@ export function ScrollSequenceHero() {
       drawn = index;
     };
 
-    const requestDraw = () => {
-      if (!raf) raf = requestAnimationFrame(draw);
-    };
 
     const loadFrame = (index: number) => {
       if (disposed || index < 0 || index >= FRAME_COUNT || requested.has(index)) return;
@@ -91,15 +90,15 @@ export function ScrollSequenceHero() {
       image.onload = () => {
         if (!disposed) {
           loaded.add(index);
-          requestDraw();
+          scheduleFrame(false);
         }
       };
-      image.src = frameUrl(index);
+      image.src = frameUrl(index, mobile);
     };
 
     const loadNear = (index: number) => {
       loadFrame(index);
-      for (let offset = 1; offset <= (mobile ? 3 : 6); offset += 1) {
+      for (let offset = 1; offset <= (mobile ? 5 : 8); offset += 1) {
         loadFrame(index - offset);
         loadFrame(index + offset);
       }
@@ -109,7 +108,7 @@ export function ScrollSequenceHero() {
     const loadBatch = () => {
       if (disposed) return;
       let count = 0;
-      while (cursor < FRAME_COUNT && count < (mobile ? 3 : 8)) {
+      while (cursor < FRAME_COUNT && count < (mobile ? 4 : 8)) {
         if (!requested.has(cursor)) {
           loadFrame(cursor);
           count += 1;
@@ -118,35 +117,52 @@ export function ScrollSequenceHero() {
       }
       if (cursor >= FRAME_COUNT) return;
       if (idleWindow.requestIdleCallback) idleHandle = idleWindow.requestIdleCallback(loadBatch, { timeout: 900 });
-      else timer = setTimeout(loadBatch, mobile ? 280 : 120);
+      else timer = setTimeout(loadBatch, mobile ? 220 : 120);
     };
 
-    const update = () => {
+    const updateTarget = () => {
       const rect = section.getBoundingClientRect();
       const distance = Math.max(1, section.offsetHeight - innerHeight);
       const progress = Math.min(1, Math.max(0, -rect.top / distance));
       target = Math.round(progress * (FRAME_COUNT - 1));
       if (progressRef.current) progressRef.current.style.transform = `scaleX(${progress})`;
       loadNear(target);
-      requestDraw();
     };
+    const renderFrame = () => {
+      raf = 0;
+      if (needsResize) {
+        needsResize = false;
+        sizeCanvas();
+      }
+      if (needsMeasure) {
+        needsMeasure = false;
+        updateTarget();
+      }
+      draw();
+    };
+    function scheduleFrame(measure = true) {
+      needsMeasure ||= measure;
+      if (!raf) raf = requestAnimationFrame(renderFrame);
+    }
     const refresh = () => {
-      sizeCanvas();
-      update();
+      needsResize = true;
+      scheduleFrame();
     };
 
-    sizeCanvas();
+    const onScroll = () => scheduleFrame();
+
     loadNear(0);
-    update();
+    for (let index = 0; index < FRAME_COUNT; index += 12) loadFrame(index);
+    scheduleFrame();
     timer = setTimeout(loadBatch, 250);
-    addEventListener('scroll', update, { passive: true });
+    addEventListener('scroll', onScroll, { passive: true });
     addEventListener('resize', refresh);
     addEventListener('orientationchange', refresh);
     addEventListener('pageshow', refresh);
 
     return () => {
       disposed = true;
-      removeEventListener('scroll', update);
+      removeEventListener('scroll', onScroll);
       removeEventListener('resize', refresh);
       removeEventListener('orientationchange', refresh);
       removeEventListener('pageshow', refresh);

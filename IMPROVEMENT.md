@@ -570,3 +570,8 @@ Visual improvements must not remove their business logic.
 ## 19. Immediate next action
 
 Start with a small UI-foundation pull request, not a full-site restyle. Implement semantic tokens plus `PageHeader`, `Panel`, `Button`, `StatusBadge`, and accessible `ConfirmDialog`; migrate the dashboard and one representative table/form screen; validate the approach with users; then expand it across the application.
+
+in the admin dashbord page propoly chang in the ui and fullly simple and attrative UI AND ALL THE THINGS IS USE FULL and real data , real time and responsive , 
+the ui is not lloking good . it over write each other . and not use full .fix this issu and propoly chack and do this all the this fully user firiendly and responisive and attrative UI AND SIMPLE and user friendly 
+
+in the admin Dashbord sidebar manu is automatical hide , which time the mouse croser is go the fully show add some animation innthe side navbar propoly 

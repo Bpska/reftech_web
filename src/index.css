@@ -12,8 +12,11 @@
 @config '../tailwind.config.js';
 
 @media (min-width: 1024px) {
-  .portal-sidebar-width { width: var(--sidebar-width, 384px); }
+  .portal-sidebar-width { width: var(--sidebar-width, 304px); transition:width .28s cubic-bezier(.22,1,.36,1); }
+  .portal-sidebar { will-change:width; }
+  .portal-nav-label { animation:sidebar-label-in .2s .08s ease-out both; }
 }
+@keyframes sidebar-label-in{from{opacity:0;transform:translateX(-7px)}to{opacity:1;transform:translateX(0)}}
 
 /* Keep the existing v3 utility sizes and focus treatment during the security upgrade. */
 @theme {
@@ -421,6 +424,44 @@
 .admin-page-heading p{margin-top:.35rem;color:var(--admin-muted)}
 .admin-page-heading .admin-live{display:inline-flex;align-items:center;gap:.45rem;border:1px solid #cceaf0;border-radius:999px;background:#effcff;padding:.5rem .75rem;font-size:.72rem;font-weight:800;color:#08758f}
 .admin-page-heading .admin-live::before{content:"";width:7px;height:7px;border-radius:50%;background:#10b981;box-shadow:0 0 0 4px rgb(16 185 129/.13)}
+
+/* Admin dashboard: compact, readable and collision-safe at every viewport. */
+.dash-page{max-width:1800px;margin-inline:auto}
+.dash-hero{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;margin-bottom:1.25rem}
+.dash-eyebrow{margin:0 0 .45rem!important;color:#08758f!important;font-size:.7rem!important;font-weight:800;text-transform:uppercase;letter-spacing:.14em}
+.dash-hero h1{font-size:clamp(1.85rem,3vw,2.6rem);font-weight:850;line-height:1.05;letter-spacing:-.05em}
+.dash-hero h1+p{margin-top:.55rem;color:var(--ui-muted);font-size:.98rem}
+.dash-sync{display:flex;align-items:center;gap:.65rem;flex:0 0 auto;min-width:220px;padding:.65rem .7rem .65rem .85rem;border:1px solid #cfe5eb;border-radius:14px;background:rgb(255 255 255/.82);box-shadow:0 8px 24px rgb(15 23 42/.05)}
+.dash-sync>span{width:8px;height:8px;flex:none;border-radius:999px;box-shadow:0 0 0 4px rgb(16 185 129/.12)}
+.dash-sync>div{display:flex;min-width:0;flex:1;flex-direction:column}.dash-sync b{font-size:.78rem;color:#244354}.dash-sync small{font-size:.68rem;color:#708394}
+.dash-sync button{display:grid;width:34px;height:34px;place-items:center;border-radius:9px;color:#08758f}.dash-sync button:hover{background:#e9f8fb}.dash-sync svg{width:16px}
+.dash-error{display:flex;align-items:center;gap:.65rem;margin-bottom:1rem;padding:.75rem 1rem;border:1px solid #fde68a;border-radius:13px;background:#fffbeb;color:#92400e;font-size:.82rem;font-weight:650}
+.dash-error svg{width:18px;flex:none}.dash-error span{flex:1}.dash-error button{border-bottom:1px solid;font-weight:800}
+.dash-page>section,.dash-page>.mt-4>section{overflow:hidden;border-color:#d9e5eb!important;box-shadow:0 10px 30px rgb(15 36 48/.045)!important}
+.dash-page>section>div:first-child,.dash-page>.mt-4>section>div:first-child,#weather-alerts>div:first-child{min-height:62px;background:#f7fbfc!important;padding:.8rem 1rem!important}
+.dash-page>section>div:first-child h2,.dash-page>.mt-4>section>div:first-child h2,#weather-alerts h2{font-size:1rem!important;font-weight:800!important}
+.dash-page>section>div:first-child button,.dash-page>.mt-4>section>div:first-child button{min-width:0}
+.dash-page>section>div:nth-child(2).grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:.7rem;padding:.85rem}
+.dash-page>section>div:nth-child(2).grid>a,.dash-page>section>div:nth-child(2).grid>button,.dash-page>section>div:nth-child(2).grid>div{min-width:0;min-height:94px;display:flex;align-items:center;border:1px solid rgb(148 163 184/.13);border-radius:14px;padding:.9rem;transition:transform .16s,box-shadow .16s,border-color .16s}
+.dash-page>section>div:nth-child(2).grid>a:hover,.dash-page>section>div:nth-child(2).grid>button:hover{transform:translateY(-2px);border-color:rgb(14 116 144/.22);box-shadow:0 10px 24px rgb(15 23 42/.08)}
+.dash-page>section>div:nth-child(2).grid svg{width:23px;height:23px;flex:none}.dash-page>section>div:nth-child(2).grid .text-2xl{font-size:1.45rem;line-height:1.1}.dash-page>section>div:nth-child(2).grid .font-bold{margin-top:.22rem;font-size:.78rem;line-height:1.25}
+.dash-page .overflow-x-auto{overscroll-behavior-inline:contain;scrollbar-width:thin}.dash-page table th{padding:.75rem .7rem!important;white-space:nowrap;font-size:.7rem;text-transform:uppercase;letter-spacing:.045em}.dash-page table td{padding:.75rem .7rem!important;line-height:1.4}.dash-page tbody tr:hover{background:#f8fbfc}
+.dash-inventory-grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:.75rem;padding:.9rem!important}
+.dash-inventory-card{display:flex;align-items:center;gap:.8rem;min-width:0;padding:.9rem;border:1px solid #dde7ed;border-radius:14px;background:#fff;transition:border-color .16s,transform .16s,box-shadow .16s}
+.dash-inventory-card:hover{transform:translateY(-2px);border-color:#8ed1df;box-shadow:0 8px 22px rgb(15 23 42/.06)}
+.dash-inventory-card>span{display:grid;width:42px;height:42px;flex:none;place-items:center;border-radius:12px;background:#ecf8fb;color:#08758f}.dash-inventory-card>span svg{width:20px}.dash-inventory-card>div{min-width:0;flex:1}.dash-inventory-card strong{font-size:1.25rem;line-height:1}.dash-inventory-card p{margin-top:.2rem;color:#637688;font-size:.75rem;font-weight:700}.dash-inventory-card>svg{width:17px;color:#91a3af}
+.dash-inventory-grid>a{min-width:0;padding:1rem;border:1px solid #dde7ed;border-radius:14px;background:#fff;transition:.16s}.dash-inventory-grid>a:hover{transform:translateY(-2px);border-color:#8ed1df;box-shadow:0 8px 22px rgb(15 23 42/.06)}.dash-inventory-grid>a>svg{width:21px;color:#08758f}.dash-inventory-grid>a>div:first-of-type{margin-top:.55rem;font-size:1.3rem;font-weight:850}.dash-inventory-grid>a>div:nth-of-type(2){font-size:.78rem;color:#52687a}.dash-inventory-grid>a>div:last-child{margin-top:.7rem;font-size:.68rem;color:#08758f}
+.dash-skeleton{height:94px;border-radius:14px;background:linear-gradient(90deg,#f1f5f9 25%,#e2e8f0 45%,#f1f5f9 65%);background-size:250% 100%;animation:dash-shimmer 1.3s infinite}
+@keyframes dash-shimmer{to{background-position:-250% 0}}
+@media(max-width:1279px){.dash-page>section>div:nth-child(2).grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dash-inventory-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:767px){
+ .dash-hero{align-items:stretch;flex-direction:column;gap:.85rem}.dash-hero h1{font-size:1.75rem}.dash-hero h1+p{font-size:.86rem;line-height:1.5}.dash-sync{width:100%;min-width:0}
+ .dash-page>section>div:nth-child(2).grid{grid-template-columns:1fr 1fr;gap:.5rem;padding:.6rem}.dash-page>section>div:nth-child(2).grid>a,.dash-page>section>div:nth-child(2).grid>button,.dash-page>section>div:nth-child(2).grid>div{min-height:82px;padding:.7rem}.dash-page>section>div:nth-child(2).grid svg{width:20px}.dash-page>section>div:nth-child(2).grid .text-2xl{font-size:1.25rem}.dash-page>section>div:nth-child(2).grid .font-bold{font-size:.7rem;overflow-wrap:anywhere}
+ .dash-page>section>div:first-child,.dash-page>.mt-4>section>div:first-child,#weather-alerts>div:first-child{align-items:flex-start;min-height:56px;padding:.7rem!important}.dash-page>.mt-4>section>div:first-child>div,#weather-alerts>div:first-child>div{gap:.65rem!important}.dash-page>.mt-4>section>div:first-child a,#weather-alerts>div:first-child>div span{font-size:.72rem}.dash-page>.mt-4>section>div:first-child h2,#weather-alerts h2{font-size:.9rem!important}
+ #weather-alerts>div:first-child{display:grid;grid-template-columns:1fr}#weather-alerts>div:first-child>div{justify-content:space-between;width:100%}#weather-alerts>div:first-child>div>span{width:100%;line-height:1.45}
+ .dash-inventory-grid{grid-template-columns:1fr;padding:.65rem!important}.dash-inventory-card{padding:.75rem}
+}
+@media(max-width:390px){.dash-page>section>div:nth-child(2).grid{grid-template-columns:1fr}.dash-page>section>div:nth-child(2).grid>a,.dash-page>section>div:nth-child(2).grid>button,.dash-page>section>div:nth-child(2).grid>div{min-height:74px}}
 @media(max-width:1023px){
 .portal-header{position:sticky;top:0;z-index:35;min-height:68px}.portal-header .portal-sidebar-width{width:auto!important;flex:1}.portal-header>div:last-child{flex:0 0 auto;padding:.5rem 1rem;gap:.65rem}.portal-header>div:last-child>div>div:first-of-type{font-size:.78rem}.portal-header>div:last-child>div>div:nth-last-child(-n+2){display:none}.portal-sidebar{width:min(340px,88vw)!important;box-shadow:24px 0 70px rgb(0 0 0/.3)}.portal-sidebar nav{display:block!important;padding:.75rem}.portal-sidebar nav>*{margin-bottom:.2rem}.portal-main{padding:1.15rem!important}
 }
@@ -2034,3 +2075,56 @@
 @media (max-width: 390px) {
   .route-map__fleet-list { grid-template-columns: 1fr; }
 }
+
+/* Compact admin top navigation. These final overrides intentionally win over legacy header rules. */
+.portal-header{min-height:58px!important;height:58px;background:linear-gradient(105deg,#061b29,#08384a 64%,#07566d)!important;box-shadow:0 5px 18px rgb(10 39 54/.16)!important}
+.portal-header-brand{height:58px;padding:6px 12px!important;overflow:hidden}
+.portal-header-brand>img{width:auto!important;max-width:100%;max-height:44px!important;padding:2px!important;border-radius:8px!important;object-fit:contain}
+.portal-header-actions{height:58px;padding:6px 18px!important}
+.portal-header-actions>button{display:grid;min-width:38px;min-height:38px;place-items:center;border-radius:10px;transition:background .16s,transform .16s}
+.portal-header-actions>button:hover{background:rgb(255 255 255/.09);transform:translateY(-1px)}
+.portal-header-profile{display:grid;line-height:1.15}.portal-header-profile>.font-bold.text-white{font-size:.8rem}.portal-header-profile>.text-sky-300{margin-top:2px;font-size:.63rem;letter-spacing:.055em;text-transform:uppercase}.portal-header-profile>.text-slate-200{margin-top:3px!important;font-size:.62rem!important;color:#b9d1dc}
+.portal-mobile-menu{outline:none}.portal-mobile-menu:focus-visible{box-shadow:0 0 0 3px rgb(103 232 249/.28)}
+@media(max-width:1023px){
+ .portal-header{height:56px;min-height:56px!important}.portal-header-brand{height:56px;width:auto!important;min-width:0;flex:1!important;padding:5px 10px!important}.portal-header-brand>img{max-width:160px;max-height:42px!important}.portal-header-actions{height:56px;flex:0 0 auto!important;padding:5px 10px!important;gap:.45rem!important}.portal-header-profile>.text-slate-200{display:none}
+}
+@media(max-width:480px){.portal-header-brand>img{max-width:132px}.portal-header-actions{padding-left:2px!important}.portal-header-profile>.text-sky-300{display:none}.portal-header-profile>.font-bold.text-white{max-width:92px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.72rem}}
+@media(max-width:360px){.portal-header-brand>img{max-width:105px}.portal-header-profile{display:none}}
+
+/* Keep identity content inside the compact header without stacking collisions. */
+.portal-header-profile{min-width:0;max-width:min(360px,32vw);overflow:hidden}
+.portal-company-brand{min-width:0;max-width:100%;margin:0 0 2px;font-size:.64rem!important;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.portal-company-brand>img{width:auto;max-width:72px;max-height:18px;flex:none}
+.portal-header-profile>.font-bold.text-white,.portal-header-profile>.text-sky-300{max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.portal-header-profile>.text-slate-200{display:none!important}
+.portal-header-actions>div:first-child{flex:0 0 auto;margin-right:2px}
+@media(max-width:767px){.portal-header-profile{max-width:130px}.portal-company-brand{display:none}.portal-header-profile>.font-bold.text-white{font-size:.72rem;line-height:1.2}.portal-header-profile>.text-sky-300{display:block;margin-top:3px;font-size:.58rem}}
+@media(max-width:420px){.portal-header-profile{max-width:88px}.portal-header-actions{gap:.25rem!important}.portal-header-actions>div:first-child button{width:36px;height:36px}.portal-header-actions>div:first-child svg{width:21px;height:21px}}
+
+/* Header identity is one horizontal row: company, user, role, time, then notifications. */
+.portal-header-actions{min-width:0;overflow:visible}
+.portal-header-profile{display:flex!important;align-items:center;justify-content:flex-end;gap:0;min-width:0;max-width:none!important;overflow:visible;line-height:1!important}
+.portal-header-profile>div{display:block!important;flex:0 1 auto;min-width:0;margin:0!important;padding:0 11px;border-left:1px solid rgb(255 255 255/.16);line-height:1.2!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.portal-header-profile>div:first-child{border-left:0}.portal-company-brand{max-width:300px!important;font-size:.72rem!important}.portal-header-profile>.font-bold.text-white{max-width:210px;font-size:.78rem}.portal-header-profile>.text-sky-300{max-width:100px;margin:0!important;font-size:.62rem!important}.portal-header-profile>.text-slate-200{display:block!important;max-width:165px;font-size:.62rem!important;color:#c5d9e2}
+.portal-header-actions>div:last-child{flex:0 0 auto;margin-left:4px}.portal-header-actions>div:last-child>button{width:38px;height:38px}
+@media(max-width:900px){.portal-header-profile>div{padding-inline:7px}.portal-company-brand{max-width:150px!important}.portal-header-profile>.font-bold.text-white{max-width:120px}.portal-header-profile>.text-slate-200{max-width:145px}}
+@media(max-width:600px){.portal-header-brand>img{max-width:82px}.portal-header-profile>div{padding-inline:4px}.portal-company-brand{max-width:86px!important;font-size:.55rem!important}.portal-header-profile>.font-bold.text-white{max-width:68px;font-size:.6rem}.portal-header-profile>.text-sky-300{max-width:42px;font-size:.52rem!important}.portal-header-profile>.text-slate-200{max-width:108px;font-size:.52rem!important}.portal-header-actions>div:last-child{margin-left:1px}.portal-header-actions>div:last-child>button{width:34px;height:34px}}
+@media(max-width:420px){.portal-header-brand>img{max-width:44px}.portal-header-profile{display:flex!important;max-width:none!important}.portal-company-brand{max-width:65px!important}.portal-header-profile>.font-bold.text-white{max-width:58px}.portal-header-profile>.text-slate-200{max-width:91px}.portal-header-actions>div:last-child button{width:32px;height:32px}}
+
+/* Final admin polish: calm motion, consistent cyan accents, and tactile feedback. */
+.portal-app{--admin-accent:#0891b2;--admin-accent-soft:#ecfeff}
+.portal-main section.rounded-2xl,.portal-main .ui-panel,.portal-main .ui-data-table{transition:border-color .22s ease,box-shadow .22s ease,transform .22s ease}
+@media(hover:hover){.portal-main section.rounded-2xl:hover,.portal-main .ui-panel:hover{border-color:#c5e2e9!important;box-shadow:0 14px 34px rgb(15 36 48/.075)!important}}
+.portal-main button,.portal-main a{transition-property:color,background-color,border-color,box-shadow,transform,opacity;transition-duration:.16s;transition-timing-function:ease-out}
+.portal-main button:active:not(:disabled),.portal-main a:active{transform:scale(.985)}
+.portal-sidebar nav>a,.portal-sidebar nav>button{position:relative;isolation:isolate;overflow:hidden}
+.portal-sidebar nav>a::after,.portal-sidebar nav>button::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,transparent,rgb(103 232 249/.09),transparent);transform:translateX(-110%);transition:transform .42s ease}
+.portal-sidebar nav>a:hover::after,.portal-sidebar nav>button:hover::after{transform:translateX(110%)}
+.portal-sidebar nav>a>svg,.portal-sidebar nav>button>svg{transition:color .18s ease,transform .18s ease}.portal-sidebar nav>a:hover>svg,.portal-sidebar nav>button:hover>svg{color:#67e8f9;transform:scale(1.08)}
+.dash-sync>span{animation:admin-live-pulse 2.4s ease-out infinite}.dash-page>section:nth-of-type(1){animation-delay:.03s}.dash-page>section:nth-of-type(2){animation-delay:.07s}.dash-page>.mt-4>section:nth-child(1){animation-delay:.1s}.dash-page>.mt-4>section:nth-child(2){animation-delay:.14s}.dash-page>.mt-4>section:nth-child(3){animation-delay:.18s}
+.dash-page tbody tr{transition:background-color .15s ease,box-shadow .15s ease}.dash-page tbody tr:hover{box-shadow:inset 3px 0 var(--admin-accent)}
+.dash-inventory-grid>a>svg,.dash-inventory-card svg{transition:transform .2s ease,color .2s ease}.dash-inventory-grid>a:hover>svg,.dash-inventory-card:hover svg{color:#0e7490;transform:translateY(-1px) scale(1.08)}
+.portal-header{background-size:160% 160%!important;animation:admin-header-shift 14s ease-in-out infinite alternate}
+@keyframes admin-live-pulse{0%,70%,100%{box-shadow:0 0 0 4px rgb(16 185 129/.12)}35%{box-shadow:0 0 0 7px rgb(16 185 129/.04)}}
+@keyframes admin-header-shift{from{background-position:0 50%}to{background-position:100% 50%}}
+@media(prefers-reduced-motion:reduce){.portal-app *,.portal-app *::before,.portal-app *::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.portal-main section,.portal-main .ui-panel{transform:none!important}}
